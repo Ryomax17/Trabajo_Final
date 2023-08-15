@@ -201,3 +201,10 @@ a.custom-card:hover {
   max-width: 100%;
   height: auto; 
 }
+
+#imagenfondo {
+  background-image:url(img/Shopping-E-Commerce-Animated-GIF-Icon-Pack_2.webp);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
