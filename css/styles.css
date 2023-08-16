@@ -212,6 +212,16 @@ a.custom-card:hover {
 }
 
 .product img {
+  max-width: 100%;
+  height: auto; 
+  margin: 5px;
+}
+
+#imagenfondo {
+  background-image:url(img/Shopping-E-Commerce-Animated-GIF-Icon-Pack_2.webp);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 max-width: 50%;
 height: auto;
 position: relative; 
@@ -294,3 +304,4 @@ order: 1;
 .alert-subheading{
   color: #521414;
 }
+
