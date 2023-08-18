@@ -1,7 +1,24 @@
 function showAlertSuccess() {
     document.getElementById("alert-success").classList.add("show");
-}
+    localStorage.setItem("usuarioCreado", "true");
 
+    let usuario = {
+        nombre: document.getElementById("nombre").value,
+        apellido: document.getElementById("apellido").value,
+        email: document.getElementById("email").value,
+        password: document.getElementById("password1").value
+    };
+
+    let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+    usuarios.push(usuario);
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+    // console.log(usuario); 
+    
+    setTimeout(function() {
+        window.location.href = "login.html";
+    }, 1500);
+}
 function showAlertError() {
     document.getElementById("alert-danger").classList.add("show");
 }
