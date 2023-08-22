@@ -11,4 +11,26 @@ document.addEventListener("DOMContentLoaded", function(){
         localStorage.setItem("catID", 103);
         window.location = "products.html"
     });
+    
+    function getCookie(name) {
+        const cookieArray = document.cookie.split('; ');
+        for (const cookie of cookieArray) {
+            const [cookieName, cookieValue] = cookie.split('=');
+            if (cookieName === name) {
+                return decodeURIComponent(cookieValue);
+            }
+        }
+        return null; 
+    }
+    
+    let recuerdameValue = getCookie('recuerdame');
+
+    if (!window.location.pathname.includes("login.html")) {
+        if (recuerdameValue !== 'true' && !localStorage.getItem("sesionIniciada")) {
+            setTimeout(function() {
+                window.location.href = "login.html";
+            }, 2000);
+        }
+    }
+
 });
