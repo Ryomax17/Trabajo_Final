@@ -1,7 +1,14 @@
 const productListDiv = document.getElementById("product-list");
 
+const categoriaId = localStorage.getItem("catID");
+
+if (categoriaId) {
+    // Construye la URL de los productos utilizando el identificador de categoría almacenado.
+    const PRODS_URL = `https://japceibal.github.io/emercado-api/cats_products/${categoriaId}.json`;
+  
+
 // Realizar la petición HTTP
-fetch(PRODUCTS_URL)
+fetch(PRODS_URL)
     .then(response => response.json())
     .then(data => {
         // Manipular los datos recibidos y mostrar en el HTML
@@ -48,3 +55,8 @@ fetch(PRODUCTS_URL)
     .catch(error => {
         console.error("Error al cargar los productos:", error);
     });
+
+} else {
+    // Maneja el caso en el que no se haya seleccionado una categoría.
+    console.error("No se ha seleccionado una categoría de productos.");
+  }
