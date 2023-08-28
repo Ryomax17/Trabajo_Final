@@ -24,13 +24,19 @@ document.addEventListener("DOMContentLoaded", function(){
     }
     
     let recuerdameValue = getCookie('recuerdame');
-
+    // let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+    // let posicionID = localStorage.getItem("usuarioID");
+    
     if (!window.location.pathname.includes("login.html")) {
         if (recuerdameValue !== 'true' && !localStorage.getItem("sesionIniciada")) {
             setTimeout(function() {
                 window.location.href = "login.html";
             }, 2000);
         }
-    }
-
+        // let cambiarUsuario = document.getElementById("cuenta");
+        // cambiarUsuario.innerHTML = usuarios[posicionID].email;
+    } 
+    
+    console.log(posicionID);
+    console.log(usuarios);
 });

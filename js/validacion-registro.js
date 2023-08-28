@@ -1,19 +1,20 @@
 function showAlertSuccess() {
     document.getElementById("alert-success").classList.add("show");
-    localStorage.setItem("usuarioCreado", "true");
 
     let usuario = {
         nombre: document.getElementById("nombre").value,
         apellido: document.getElementById("apellido").value,
         email: document.getElementById("email").value,
-        password: document.getElementById("password1").value
+        password: document.getElementById("password1").value,
     };
-
+    
     let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+    usuario.id = usuarios.length;
 
     usuarios.push(usuario);
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
-    // console.log(usuario); 
+    console.log(usuario); 
     
     setTimeout(function() {
         window.location.href = "login.html";
@@ -25,7 +26,7 @@ function showAlertError() {
 
 document.addEventListener("DOMContentLoaded", function() {
     let regBtn = document.getElementById("regBtn");
-    
+
     regBtn.addEventListener("click", function() {
         let nombre = document.getElementById("nombre").value;
         let apellido = document.getElementById("apellido").value;

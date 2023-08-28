@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
 
+        localStorage.setItem("usuarioID", usuarioEncontrado.id);
         showAlertSuccess();
     });
 
