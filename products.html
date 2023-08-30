@@ -28,8 +28,7 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" id="cuenta" href="login.html">Iniciar Sesión</a>
+          <a class="nav-link" id="cuenta" href="login.html">Iniciar Sesión</a>
           </li>
         </ul>
       </div>
@@ -48,6 +47,7 @@
             <div class="col text-end">
               
               <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
+
                 <div class="search">
                   <label class="searchbox" name="search"></label>
                   <input class="searchbox" id="buscador" name="search" type="search" >
@@ -61,7 +61,8 @@
                   <label class="btn btn-light" for="sortDesc"><img src="img/orden descc.png" width="20em">$</label>
                   <input type="radio" class="btn-check" name="options" id="sortByCount" checked>
                   <label class="btn btn-light" for="sortByCount"><img src="img/orden descc.png" width="20em">Rel</label>
-                </div>
+              </div>
+
                 
               </div>
             
@@ -69,13 +70,13 @@
             <div class="col-lg-6 offset-lg-6 col-md-12 mb-1 container">
               <div class="row container p-0 m-0">
                 <div class="col">
-                  <p class="font-weight-normal text-end my-2">Precios</p>
+                  <p class="font-weight-normal text-end my-2">Cant.</p>
                 </div>
                 <div class="col">
-                  <input class="form-control" type="number" placeholder="min." id="rangeFilterCountMin" min="0">
+                  <input class="form-control" type="number" placeholder="min." id="rangeFilterCountMin">
                 </div>
                 <div class="col">
-                  <input class="form-control" type="number" placeholder="máx." id="rangeFilterCountMax" min="0">
+                  <input class="form-control" type="number" placeholder="máx." id="rangeFilterCountMax">
                 </div>
                 <div class="col-3 p-0">
                   <div class="btn-group" role="group">
@@ -112,6 +113,8 @@
   
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
+  <script src="js/index.js"></script>
+  <script src="js/validacion.js"></script>
   <script src="js/products.js"></script>
   <script src="js/filtrado_products.js"></script>
 </body>
