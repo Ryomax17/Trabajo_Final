@@ -12,7 +12,7 @@ function showAlertSuccess() {
     let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
     usuarios.push(usuario);
-    localStorage.setItem("usuarios", JSON.stringify(ousuaris));
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
     // console.log(usuario); 
     
     setTimeout(function() {
