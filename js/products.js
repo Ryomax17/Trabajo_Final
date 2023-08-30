@@ -1,22 +1,19 @@
 const productListDiv = document.getElementById("product-list");
-const categoriaId = localStorage.getItem("catID");
-//const categoriaNombre = localStorage.getItem(productName);
 
+const categoriaId = localStorage.getItem("catID");
 
 if (categoriaId) {
     // Construye la URL de los productos utilizando el identificador de categoría almacenado.
     const PRODS_URL = `https://japceibal.github.io/emercado-api/cats_products/${categoriaId}.json`;
+  
 
-    //const categoriaNombre = categorias[categoriaId];
-    // Actualiza el contenido del elemento con id "h5" para mostrar el nombre de la categoría
-    //document.querySelector("#h5").innerHTML = `Verás aquí todos los productos de la categoría "${categoriaNombre}"`;
+// Realizar la petición HTTP
+fetch(PRODS_URL)
+    .then(response => response.json())
+    .then(data => {
 
-    document.querySelector("#h5").innerHTML = `Verás aquí todos los productos de la categoría ${categoriaId}`;
+        document.getElementById("categoria").innerHTML = `Aquí verás todos los productos de la categoría ${data.catName}`;
 
-    // Realizar la petición HTTP
-    fetch(PRODS_URL)
-        .then(response => response.json())
-        .then(data => {
             // Manipular los datos recibidos y mostrar en el HTML
             const products = data["products"];
             for (let i = 0; i < products.length; i++) {
