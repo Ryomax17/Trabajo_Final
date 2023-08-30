@@ -50,8 +50,8 @@ fetch(PRODS_URL)
             textdiv.appendChild(cartbttn);
             productDiv.appendChild(productSold);
             productDiv.appendChild(productImage);
-            productDiv.appendChild(productId);
-            productDiv.appendChild(textdiv);
+            productDiv.appendChild(productId);//modif.
+            productDiv.appendChild(textdiv);//modif.
             productListDiv.appendChild(productDiv);
         };
     })
