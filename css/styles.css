@@ -304,3 +304,34 @@ order: 1;
   color: #521414;
 }
 
+.row{
+  display: flex;
+}
+
+.txtcont{
+  justify-content: start;
+  text-align: start;
+  margin:5px;
+}
+#price{
+  margin: 5px;
+  
+}
+
+#soldprod{
+  text-align: end;
+  align-self: center;
+  font-size: 10px;
+ padding-left: 50%;
+}
+.btn-group,.btn-group-toggle,.mb-4{
+  display: flex;
+  justify-content: space-between;
+ 
+  
+}
+
+.alert-subheading{
+  font-size: medium;
+  margin-bottom: 3rem;
+}
