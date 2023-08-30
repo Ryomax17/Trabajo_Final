@@ -27,6 +27,18 @@ function sortCategoriesByPrice(criteria, array) {
     }
 }
 
+function filterProductsByPrice() {
+    const minPrice = parseInt(document.getElementById("rangeFilterCountMin").value);
+    const maxPrice = parseInt(document.getElementById("rangeFilterCountMax").value);
+
+    const filteredProducts = currentCategoriesArray.filter(function (product) {
+        return (minPrice === undefined || product.cost >= minPrice) &&
+               (maxPrice === undefined || product.cost <= maxPrice);
+    });
+
+    showCategoriesList(filteredProducts);
+}
+
 function setCatID(id) {
     localStorage.setItem("catID", id);
     window.location = "products.html";
@@ -113,8 +125,7 @@ const categoriaId = localStorage.getItem("catID");
         });
 
         document.getElementById("rangeFilterCount").addEventListener("click", function () {
-            minCount = parseInt(document.getElementById("rangeFilterCountMin").value) || undefined;
-            maxCount = parseInt(document.getElementById("rangeFilterCountMax").value) || undefined;
+            filterProductsByPrice();
             showCategoriesList();
         });
 
