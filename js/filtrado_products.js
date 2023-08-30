@@ -122,7 +122,7 @@ const categoriaId = localStorage.getItem("catID");
             let inputText = e.target.value.toLowerCase().trim()//obtiene el valor que tiene el input en cada momento-trim()me elimina los espacios en blanco que pueden haber-tolowercase cambia todo el texto a minuscula cuando es procesado para que me busque lo que quiero este usando mayus o minus.
             console.log(inputText);
             let mostrarfiltro = currentCategoriesArray.filter(function (elmnt) {
-                return elmnt.name.toLowerCase().trim().startsWith(inputText) || 
+                return elmnt.name.toLowerCase().trim().includes(inputText) || 
                 elmnt.description.toLowerCase().trim().includes(inputText);
              })
             if (mostrarfiltro.length) {
