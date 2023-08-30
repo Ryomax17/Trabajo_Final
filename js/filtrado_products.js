@@ -119,9 +119,7 @@ const categoriaId = localStorage.getItem("catID");
         document.getElementById("clearRangeFilter").addEventListener("click", function () {
             document.getElementById("rangeFilterCountMin").value = "";
             document.getElementById("rangeFilterCountMax").value = "";
-            minCount = undefined;
-            maxCount = undefined;
-            showCategoriesList();
+            showCategoriesList(currentCategoriesArray);
         });
 
         document.getElementById("rangeFilterCount").addEventListener("click", function () {
