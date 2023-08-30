@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
 
+        localStorage.setItem("usuarioChange", usuarioEncontrado.email);
         showAlertSuccess();
     });
 

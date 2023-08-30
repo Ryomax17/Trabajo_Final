@@ -11,6 +11,9 @@ if (categoriaId) {
 fetch(PRODS_URL)
     .then(response => response.json())
     .then(data => {
+
+        document.getElementById("categoria").innerHTML = `Aquí verás todos los productos de la categoría ${data.catName}`;
+
         // Manipular los datos recibidos y mostrar en el HTML
         const products = data["products"];
         for (let i = 0; i < products.length; i++) {
