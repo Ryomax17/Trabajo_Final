@@ -50,8 +50,8 @@ fetch(PRODS_URL)
             textdiv.appendChild(cartbttn);
             productDiv.appendChild(productSold);
             productDiv.appendChild(productImage);
-            productDiv.appendChild(productId);//modif.
-            productDiv.appendChild(textdiv);//modif.
+            productDiv.appendChild(productId);
+            productDiv.appendChild(textdiv);
             productListDiv.appendChild(productDiv);
         };
     })
@@ -63,3 +63,44 @@ fetch(PRODS_URL)
     // Maneja el caso en el que no se haya seleccionado una categoría.
     console.error("No se ha seleccionado una categoría de productos.");
   }
+function ordena() {
+    result = []
+    fetch(PRODUCTS_URL)
+        .then(response => response.json())
+        .then(data => {
+            // Manipular los datos recibidos y mostrar en el HTML
+            const products = data["products"];
+            for (let i = 0; i < products.length; i++) {
+                const products = products[i];
+            }
+        })
+}
+
+
+function ordena(array) {
+    
+    array.sort(function (a, b) {
+        return a - b;
+    });
+}
+
+console.log(ordenaAsc(jsondata));
+
+
+function ordenaDesc() {
+
+    array.sort(function (a, b) {
+        return b - a;
+    })
+}
+//tengo una funcion que me ordena un array en orden ascendente o descendente//
+
+filterMenosAMas = document.getElementById("sortAsc");
+
+filterMasAMenos = document.getElementById("sortDesc")
+
+filterMasAMenos.addEventListener("click", ordenaDesc(productName));
+
+filterMenosAMas.addEventListener("click", ordenaAsc(productName));
+
+
