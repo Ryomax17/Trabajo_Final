@@ -21,9 +21,9 @@ fetch(PRODS_URL)
           
             const productDiv = document.createElement("div");
             const productId = document.createElement("p"); 
-            idname= "id"+ product.id
+            idname= "id" + product.id;
             productDiv.setAttribute("id",idname );
-            productDiv.setAttribute("onclick","window.location.href='product-info.html'");
+            productDiv.setAttribute("onclick","window.location.href='product-info.html'"); /* 6/9/23 REVISAR */
             productDiv.classList.add("product");
             
             const productName = document.createElement("h2");
@@ -91,7 +91,7 @@ function ordena(array) {
     });
 }
 
-console.log(ordenaAsc(jsondata));
+console.log(ordenaAsc(jsondata)); /* Revisar esto */
 
 
 function ordenaDesc() {
@@ -112,10 +112,8 @@ filterMenosAMas.addEventListener("click", ordenaAsc(productName));
 
 
 /* ------------agregado prueba 6/9/23 --------*/
-
 function setProductID(id) {
     localStorage.setItem("id", id);
-    window.location = "products-info.html"
-}
-console.log(setProductID("50921"));
-
+    window.location.href = "products-info.html";
+  }
+  
