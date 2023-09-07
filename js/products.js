@@ -20,28 +20,35 @@ fetch(PRODS_URL)
             const product = products[i];
           
             const productDiv = document.createElement("div");
-            const productId = document.createElement("p"); //modificacion//
+            const productId = document.createElement("p"); 
             idname= "id"+ product.id
             productDiv.setAttribute("id",idname );
+            productDiv.setAttribute("onclick","window.location.href='product-info.html'");
             productDiv.classList.add("product");
+            
             const productName = document.createElement("h2");
             productName.textContent = product.name;
             productName.setAttribute("class", "textcont");
+            
             const productImage = document.createElement("img");
             productImage.src = product.image;
             productImage.alt = product.name;
+            
             const textdiv =document.createElement("div");
-            const productPrice = document.createElement("p");
+            const productPrice = document.createElement("p");  /*6/9/23 ARREGLAR EL PRECIO Y MONEDA */
             productPrice.textContent = `Precio: USD${product.cost}`;
             productPrice.setAttribute("class","textcont")
+            
             const productDescription = document.createElement("p");
             productDescription.textContent = product.description;
             productDescription.setAttribute("class", "textcont");
+            
             const productSold = document.createElement("p");
             productSold.textContent = `Cantidad vendida: ${product.soldCount}`;
             productSold.setAttribute("class", "productsold");
+            
             cartbttn = document.createElement("button");
-            cartbttn.innerHTML = "comprar";
+            cartbttn.innerHTML = "Comprar";
             cartbttn.setAttribute("class", "cartbttn");
 
             textdiv.appendChild(productName);
@@ -103,4 +110,12 @@ filterMasAMenos.addEventListener("click", ordenaDesc(productName));
 
 filterMenosAMas.addEventListener("click", ordenaAsc(productName));
 
+
+/* ------------agregado prueba 6/9/23 --------*/
+
+function setProductID(id) {
+    localStorage.setItem("id", id);
+    window.location = "products-info.html"
+}
+console.log(setProductID("50921"));
 

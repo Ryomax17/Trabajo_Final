@@ -1,63 +1,93 @@
+
 const productInfoDiv = document.getElementById("prod info container");
 
-const productIdInfo = localStorage.getItem("catID");
+const productIdInfo = localStorage.getItem("id"); /* 6/9/23 revisar */
 
 if (productIdInfo) {
-    // Construye la URL de los productos utilizando el identificador de categoría almacenado.
     const PRODS_INFO_URL = `https://japceibal.github.io/emercado-api/products/${productIdInfo}.json`;
   
 
 // Realizar la petición HTTP
-fetch(PRODS_INFO_URL)
+fetch(PRODS_INFO_URL) /* 6/9/23 Me esta dando como que no selecciono ningun prod */
     .then(response => response.json())
     .then(data => {
 
-            // Manipular los datos recibidos y mostrar en el HTML
-        /* const products = data["products"];
-        for (let i = 0; i < products.length; i++) {
-            const product = products[i]; */
-          
-         /*    const productDiv = document.createElement("div");
-            const productId = document.createElement("p"); //modificacion//
-            idname= "id"+ product.id
-            productDiv.setAttribute("id",idname );
-            productDiv.classList.add("product");
-            const productName = document.createElement("h2");
-            productName.textContent = product.name;
-            productName.setAttribute("class", "textcont");
-            const productImage = document.createElement("img");
-            productImage.src = product.image;
-            productImage.alt = product.name;
-            const textdiv =document.createElement("div");
+        const product = data["product"];
+        for (let i = 0; i < product.length; i++) { /* 6/9/23 REVISAR EL FOR, no creo que vaya */
+            const product = product[i];
+
+            /* Titulo del producto */
+            const productNameHeading = document.getElementById("product name h4");
+            productNameHeading.textContent = product.name;
+            
+            /* Precio */
+            const productPriceHeading = document.createElement("h5");
+            productPriceHeading.textContent = `Precio`;
+            productPriceHeading.setAttribute("class","subtitle prods info");
+
             const productPrice = document.createElement("p");
-            productPrice.textContent = `Precio: USD${product.cost}`;
-            productPrice.setAttribute("class","textcont")
+            productPrice.textContent = `${product.cost}`;
+            productPrice.setAttribute("id","precio");
+
+            const productCurrency = document.createElement("p");
+            productCurrency.textContent = `${product.currency} `;
+            productCurrency.setAttribute("id","moneda");
+
+            /* Precio + Moneda (lo que se muestra en la pagina) */
+            const precioCompleto = productCurrency + productPrice;
+
+            /* Descripción */
+            const productDescHeading = document.createElement("h5");
+            productDescHeading.textContent = `Descripción`;
+            productDescHeading.setAttribute("class","subtitle prods info");
             const productDescription = document.createElement("p");
             productDescription.textContent = product.description;
-            productDescription.setAttribute("class", "textcont");
-            const productSold = document.createElement("p");
-            productSold.textContent = `Cantidad vendida: ${product.soldCount}`;
-            productSold.setAttribute("class", "productsold");
-            cartbttn = document.createElement("button");
-            cartbttn.innerHTML = "comprar";
-            cartbttn.setAttribute("class", "cartbttn");
+            productDescription.setAttribute("id", "descrip");
 
-            textdiv.appendChild(productName);
-            textdiv.appendChild(productDescription);
-            textdiv.appendChild(productPrice);
-            textdiv.appendChild(cartbttn);
-            productDiv.appendChild(productSold);
-            productDiv.appendChild(productImage);
-            productDiv.appendChild(productId);
-            productDiv.appendChild(textdiv);
-            productListDiv.appendChild(productDiv); */
+            /* Categoría */
+            const productCatHeading = document.createElement("h5");
+            productCatHeading.textContent = `Categoría`;
+            productCatHeading.setAttribute("class","subtitle prods info");
+            const productCategory = document.createElement("p");
+            productCategory.textContent = `${product.category}`;
+            productCategory.setAttribute("id", "cat");
+
+            /* Cantidad vendida */
+            const productSoldHeading = document.createElement("h5");
+            productSoldHeading.textContent = `Cantidad vendida`;
+            productSoldHeading.setAttribute("class","subtitle prods info");
+            const productCantVendida = document.createElement("p");
+            productCantVendida.textContent = `${product.soldCount}`;
+            productCantVendida.setAttribute("id", "cantvendida");
+
+            /* Imagenes */
+            const productImgHeading = document.createElement("h5");
+            productImgHeading.textContent = `Imagenes ilustrativas`;
+            productImgHeading.setAttribute("class","subtitle prods info");
+            const productImg = document.createElement("img");
+            productImg.src = product.image;                 /* 6/9/23 REVISAR QUE MUESTRE TODAS LAS IMAGENES */
+            productCantVendida.setAttribute("id", "img");
+
+            /* 6/9/23: Falta agregar productos relacionados */
+          
+            productInfoDiv.appendChild(productNameHeading);
+            productInfoDiv.appendChild(productPriceHeading);
+            productInfoDiv.appendChild(precioCompleto);
+            productInfoDiv.appendChild(productDescHeading);
+            productInfoDiv.appendChild(productDescription);
+            productInfoDiv.appendChild(productCatHeading);
+            productInfoDiv.appendChild(productCategory);
+            productInfoDiv.appendChild(productSoldHeading);
+            productInfoDiv.appendChild(productCantVendida);
+            productInfoDiv.appendChild(productImgHeading);
+            productInfoDiv.appendChild(productImg);
         };
     })
     .catch(error => {
-        console.error("Error al cargar los productos:", error);
+        console.error("Error al cargar la informacion del producto:", error);
     });
 
 } else {
-    // Maneja el caso en el que no se haya seleccionado una categoría.
-    console.error("No se ha seleccionado una categoría de productos.");
-  }
+    // Maneja el caso en el que no se haya seleccionado.
+    console.error("No se ha seleccionado un producto.");
+  };
