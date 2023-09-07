@@ -114,6 +114,6 @@ filterMenosAMas.addEventListener("click", ordenaAsc(productName));
 /* ------------agregado prueba 6/9/23 --------*/
 function setProductID(id) {
     localStorage.setItem("id", id);
-    window.location.href = "products-info.html";
+    window.location.href = "product-info.html";
   }
   
