@@ -26,7 +26,7 @@ fetch(PRODS_URL)
             productDiv.classList.add("product");
             const productName = document.createElement("h2");
             productName.textContent = product.name;
-            productName.setAttribute("class", "textcont");
+            productName.setAttribute("class", "container");
             const productImage = document.createElement("img");
             productImage.src = product.image;
             productImage.alt = product.name;
