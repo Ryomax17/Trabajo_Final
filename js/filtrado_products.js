@@ -50,21 +50,18 @@ function showCategoriesList(array) {
         let category = array[i];
         if (((minCount == undefined) || (minCount != undefined && parseInt(category.cost) >= minCount)) &&
             ((maxCount == undefined) || (maxCount != undefined && parseInt(category.cost) <= maxCount))) {
-            htmlContentToAppend += `
-                <div onclick="setCatID(${category.id})" class="list-group-item list-group-item-action cursor-active">
+                htmlContentToAppend += `
+                <div class="list-group-item list-group-item-action cursor-active" onclick="setCatID(${category.id})">
                     <div class="row">
                         <div class="col-3">
-                            <img src="${category.image}" alt="${category.description}" class="img-thumbnail">
+                            <img src="${category.image}" alt="${category.name}" class="img-thumbnail">
                         </div>
                         <div class="col">
                             <div class="d-flex w-100 justify-content-between">
                                 <h4 class="mb-1">${category.name}</h4>
+                                <small class="text-muted">${category.soldCount} artículos</small>
                             </div>
-                            <p class="mb-1 txtcont">${category.description}</p>
-                            <p class="mb-1 txtcont" id="price"> Precio: ${category.cost}</p>
-                        </div>
-                        <div class="col-4">
-                            <p id="soldprod">Articulos vendidos: ${category.soldCount}</P>
+                            <p class="mb-1">${category.description}</p>
                         </div>
                     </div>
                 </div>

@@ -18,40 +18,55 @@ fetch(PRODS_URL)
         const products = data["products"];
         for (let i = 0; i < products.length; i++) {
             const product = products[i];
-          
+
             const productDiv = document.createElement("div");
-            const productId = document.createElement("p"); //modificacion//
-            idname= "id"+ product.id
-            productDiv.setAttribute("id",idname );
-            productDiv.classList.add("product");
-            const productName = document.createElement("h2");
-            productName.textContent = product.name;
-            productName.setAttribute("class", "container");
+            productDiv.classList.add("list-group-item", "list-group-item-action", "cursor-active");
+            productDiv.onclick = function () {
+                setCatID(product.id);
+            };
+
+            const rowDiv = document.createElement("div");
+            rowDiv.classList.add("row");
+
+            const imageDiv = document.createElement("div");
+            imageDiv.classList.add("col-3");
+
             const productImage = document.createElement("img");
             productImage.src = product.image;
             productImage.alt = product.name;
-            const textdiv =document.createElement("div");
-            const productPrice = document.createElement("p");
-            productPrice.textContent = `Precio: USD${product.cost}`;
-            productPrice.setAttribute("class","textcont")
-            const productDescription = document.createElement("p");
-            productDescription.textContent = product.description;
-            productDescription.setAttribute("class", "textcont");
-            const productSold = document.createElement("p");
-            productSold.textContent = `Cantidad vendida: ${product.soldCount}`;
-            productSold.setAttribute("class", "productsold");
-            cartbttn = document.createElement("button");
-            cartbttn.innerHTML = "comprar";
-            cartbttn.setAttribute("class", "cartbttn");
+            productImage.classList.add("img-thumbnail");
 
-            textdiv.appendChild(productName);
-            textdiv.appendChild(productDescription);
-            textdiv.appendChild(productPrice);
-            textdiv.appendChild(cartbttn);
-            productDiv.appendChild(productSold);
-            productDiv.appendChild(productImage);
-            productDiv.appendChild(productId);
-            productDiv.appendChild(textdiv);
+            imageDiv.appendChild(productImage);
+
+            const contentDiv = document.createElement("div");
+            contentDiv.classList.add("col");
+
+            const titleRow = document.createElement("div");
+            titleRow.classList.add("d-flex", "w-100", "justify-content-between");
+
+            const title = document.createElement("h4");
+            title.classList.add("mb-1");
+            title.textContent = product.name;
+
+            const productCount = document.createElement("small");
+            productCount.classList.add("text-muted");
+            productCount.textContent = `${product.soldCount} artículos`;
+
+            titleRow.appendChild(title);
+            titleRow.appendChild(productCount);
+
+            const description = document.createElement("p");
+            description.classList.add("mb-1");
+            description.textContent = product.description;
+
+            contentDiv.appendChild(titleRow);
+            contentDiv.appendChild(description);
+
+            rowDiv.appendChild(imageDiv);
+            rowDiv.appendChild(contentDiv);
+
+            productDiv.appendChild(rowDiv);
+
             productListDiv.appendChild(productDiv);
         };
     })
