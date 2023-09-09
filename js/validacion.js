@@ -28,6 +28,4 @@ document.addEventListener("DOMContentLoaded", function(){
     } 
 
 
-    console.log(usuarioChange);
-    console.log(usuarios);
 });
