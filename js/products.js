@@ -22,7 +22,10 @@ fetch(PRODS_URL)
             const productDiv = document.createElement("div");
             productDiv.classList.add("list-group-item", "list-group-item-action", "cursor-active");
             productDiv.onclick = function () {
-                setCatID(product.id);
+                const productId = product.id;
+                const infoid=productId.id;
+                localStorage.setItem('selectedProductId', productId);
+                window.location.href = 'product-info.html';
             };
 
             const rowDiv = document.createElement("div");
@@ -118,4 +121,9 @@ filterMasAMenos.addEventListener("click", ordenaDesc(productName));
 
 filterMenosAMas.addEventListener("click", ordenaAsc(productName));
 
+productDiv.onclick = function () {
+    const productId = product.id;
+    localStorage.setItem('selectedProductId', productId);
+    window.location.href = 'product-info.html'; // Redirige a la página de detalles del producto
+};
 
