@@ -37,7 +37,8 @@ function addStars(starsQty) {
         
             commentsSection += `
                 <div class="comment">
-                <span>${comments.user} - ${comments.dateTime} - </span>
+                <span style="font-weight: bold">${comments.user}</span>
+                <span> - ${comments.dateTime} - </span>
                 ${addStars(comments.score)}
                 <p>${comments.description}</p>
                 </div>
