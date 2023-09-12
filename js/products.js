@@ -8,9 +8,12 @@ let maxCount = undefined;
 const ORDER_ASC_BY_PRICE = "1-10";
 const ORDER_DESC_BY_PRICE = "10-1";
 let search = document.getElementById("buscador");
+let productsArray = [];
 
-function redirectToProductInfo (products) {
-  localStorage.setItem('selectedProductId', products);
+function redirectToProductInfo (productsId) {
+  var productToExport = productsArray.find(product => product.id == productsId);
+  productString = JSON.stringify(productToExport);
+  localStorage.setItem('selectedProduct', productString);
   window.location.href = 'product-info.html';
 };
 
@@ -19,7 +22,6 @@ function showProductsList(array) {
   for (let i = 0; i < array.length; i++) {
     let products = array[i];
     console.log(products);
-    localStorage.setItem('selectedProductId',products.id);
     if (
       (minCount == undefined ||
         (minCount != undefined && parseInt(products.cost) >= minCount)) &&
@@ -117,6 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((response) => response.json())
       .then((data) => {
         if (data.products) {
+          productsArray = data.products;
           // Verificamos que "products" exista en el objeto
           currentProductArray = data.products;
           showProductsList(currentProductArray);

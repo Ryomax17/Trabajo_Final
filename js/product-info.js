@@ -1,7 +1,10 @@
-const selectedProductId = localStorage.getItem('selectedProductId');
+const selectedProductJSON = localStorage.getItem('selectedProduct');
+console.log(selectedProductJSON);
+const selectedProduct = JSON.parse(selectedProductJSON);
+console.log(selectedProduct);
 
-if (selectedProductId) {
-    fetch(`https://japceibal.github.io/emercado-api/products/${selectedProductId}.json`) 
+if (selectedProduct) {
+    fetch(`https://japceibal.github.io/emercado-api/products/${selectedProduct.id}.json`) 
         .then(response => response.json())
         .then(productData => {
             const productosinfo = document.getElementById('product-info');
