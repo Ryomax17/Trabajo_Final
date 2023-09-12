@@ -1,4 +1,3 @@
-
 const selectedProductId = localStorage.getItem('selectedProductId');
 
 if (selectedProductId) {
@@ -9,7 +8,7 @@ if (selectedProductId) {
             productosinfo.innerHTML = `
                 <h2>${productData.name}</h2>
                 <p>${productData.description}</p>
-                <p>Precio: $${productData.cost}</p>
+                <p>Precio: ${productData.currency} ${productData.cost}</p>
             `;
 
             const productImages = productData.images;
