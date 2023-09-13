@@ -14,8 +14,8 @@ document.addEventListener("DOMContentLoaded", function() {
             showAlertError();
             return;
         }
-
-        localStorage.setItem("usuarioChange", usuarioEncontrado.email);
+        usuarioString = JSON.stringify(usuarioEncontrado);
+        localStorage.setItem("usuarioChange", usuarioString);
         showAlertSuccess();
     });
 
