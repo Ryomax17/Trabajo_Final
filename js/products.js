@@ -17,6 +17,10 @@ function redirectToProductInfo (productsId) {
   window.location.href = 'product-info.html';
 };
 
+function seleccionarNumero(numero) {
+  document.getElementById('numeroSeleccionado').textContent = numero;
+}
+
 function showProductsList(array) {
   let htmlContentToAppend = "";
   for (let i = 0; i < array.length; i++) {
