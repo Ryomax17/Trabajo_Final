@@ -4,16 +4,16 @@ const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 const user = JSON.parse(localStorage.getItem("usuarioChange"));
 console.log(user);
 productData = [];
-let rate = "";
+let rate = 0;
 
-async function obtenerDatos(select) {
+  async function obtenerDatos(select) {
     const respuesta = await fetch(`https://japceibal.github.io/emercado-api/products/${select}.json`);
     productData = await respuesta.json();
     return productData;
     console.log(productData);
   }
 
-function addStars(starsQty) {
+  function addStars(starsQty) {
     if (starsQty < 1 || starsQty > 5) {
       return ''; 
     }
@@ -33,6 +33,15 @@ function addStars(starsQty) {
 
   function getRate(puntuacion) {
     rate = puntuacion;
+    let botones = document.querySelectorAll('.fa.fa-star.checked-btn');
+  
+    botones.forEach(boton => {
+      boton.classList = 'fa fa-star checked-btn';
+    });
+
+ 
+    let botonSeleccionado = botones[puntuacion - 1];
+    botonSeleccionado.classList.add('-active');
 }
 
   function obtenerFechaActual() {
@@ -52,7 +61,7 @@ function addStars(starsQty) {
     let newComment = document.getElementById("add-comments-box");
     let commentsSection = "";
     let fechaHoraActual = obtenerFechaActual();
-
+    if (rate > 0 && rate < 6) {
     commentsSection += `
                 <div class="comment">
                 <span style="font-weight: bold">${user.nombre}_${user.apellido}</span>
@@ -62,6 +71,9 @@ function addStars(starsQty) {
                 </div>
             `;
             document.getElementById("comments-container").innerHTML += commentsSection;
+    } else {
+      alert("Seleciona una puntacion");
+    }
   }
   
 

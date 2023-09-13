@@ -416,27 +416,20 @@ p {
   margin-bottom: 20px;
 }
 
-#comments-container {
-  border: 1px solid #ddd;
-  padding: 20px;
-  margin-top: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Agrego sombra */
+.checked-btn {
+  background-color: gold;
+  color: black;
+  border: none; 
+  padding: 5px 10px; 
+  cursor: pointer;
+
 }
 
-/* Estilo para cada comentario */
-.comment {
-  border-bottom: 1px solid #ccc;
-  margin-bottom: 10px;
-  padding-bottom: 10px;
+.checked-btn.-active {
+  background-color: black;
+  color: gold;
 }
 
-
-
-.comment p {
-  margin-top: 5px;
-  font-size: 14px;
-}
 #comments-container {
   background-color: #f0f0f0;
   border: 1px solid #ddd;
@@ -493,4 +486,3 @@ p {
   padding: 5px;
   transition: color 0.3s;
 }
-
