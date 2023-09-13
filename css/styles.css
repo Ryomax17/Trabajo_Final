@@ -390,7 +390,7 @@ button {
 }
 
 button:hover{
-  background-color: #641818;
+  background-color: maroon;
   color: #ffffff;
 }
 
@@ -437,3 +437,60 @@ p {
   margin-top: 5px;
   font-size: 14px;
 }
+#comments-container {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+#comments-container h3 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+#add-comments {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#add-comments h5 {
+  font-size: 18px;
+  margin: 0;
+}
+
+#add-comments-box {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+#comment-button {
+  background-color: black;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#comment-button:hover {
+  background-color: #f2ec6f;
+}
+
+.fa-star.btn {
+  font-size: 24px;
+  color: #f7c300;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  transition: color 0.3s;
+}
+
