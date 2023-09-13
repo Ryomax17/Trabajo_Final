@@ -12,11 +12,12 @@ document.addEventListener("DOMContentLoaded", function(){
     
     let recuerdameValue = getCookie('recuerdame');
     let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-    let usuarioChange = localStorage.getItem("usuarioChange");
+    let usuarioChange = JSON.parse(localStorage.getItem("usuarioChange"));
+    console.log(usuarioChange);
     
-    if (usuarioChange !== null) {
+    if (usuarioChange.email !== null) {
     let cambiarUsuario = document.getElementById("cuenta");
-    cambiarUsuario.innerHTML = usuarioChange;
+    cambiarUsuario.innerHTML = usuarioChange.email;
     }
     
     if (!window.location.pathname.includes("login.html")) {
