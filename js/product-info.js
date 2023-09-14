@@ -1,80 +1,151 @@
-const productInfoDiv = document.getElementById("prod info container");
+const selectedProductJSON = localStorage.getItem('selectedProduct');
+const selectedProduct = JSON.parse(selectedProductJSON);
+const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+const user = JSON.parse(localStorage.getItem("usuarioChange"));
+console.log(user);
+productData = [];
+let rate = 0;
 
-const productIdInfo = localStorage.getItem("id"); /* 6/9/23 revisar */
-console.log(productIdInfo)
-if (productIdInfo) {
-    const PRODS_INFO_URL = `https://japceibal.github.io/emercado-api/products/${productIdInfo}.json`;
+  async function obtenerDatos(select) {
+    const respuesta = await fetch(`https://japceibal.github.io/emercado-api/products/${select}.json`);
+    productData = await respuesta.json();
+    return productData;
+    console.log(productData);
+  }
+
+  function addStars(starsQty) {
+    if (starsQty < 1 || starsQty > 5) {
+      return ''; 
+    }
   
+    let estrellasHTML = '';
+  
+    for (let i = 0; i < starsQty; i++) {
+      estrellasHTML += '<span class="fa fa-star checked"></span>';
+    }
+  
+    for (let i = starsQty; i < 5; i++) {
+      estrellasHTML += '<span class="fa fa-star"></span>';
+    }
+  
+    return estrellasHTML;
+  }
 
-// Realizar la petición HTTP
-fetch(PRODS_INFO_URL) /* 6/9/23 Me esta dando como que no selecciono ningun prod */
-    .then(response => response.json())
-    .then(data => {
-
-        const id = data.id;
-       
-        /* Titulo */
-        const titulo = document.getElementById("product name h4") 
-        titulo.textContent = data.name;
-
-        /* Precio */
-        const subtprecio = document.createElement("h5");
-        subtprecio.textContent = `Precio`;
-        subtprecio.setAttribute("class", "subtitulo");
-        const costo =  data.cost;
-        const moneda = data.currency;
-        const precioCompleto = moneda + " " + costo;
-        precioCompleto.setAttribute("class", "txt");
-        subtprecio.appendChild(precioCompleto);
-
-        /* Descripción */
-        const subtdescription = document.createElement("h5");
-        subtdescription.textContent = `Descripción`;
-        subtdescription.setAttribute("class", "subtitulo");
-        const description = data.description;
-        description.setAttribute("class", "txt");
-        subtdescription.appendChild(description);
-        
-        /* Categoria */
-        const subtcategoria = document.createElement("h5");
-        subtcategoria.textContent = `Categoria`;
-        subtcategoria.setAttribute("class", "subtitulo");
-        const categoria = data.category;
-        categoria.setAttribute("class", "txt");
-        subtcategoria.appendChild(categoria);
-
-        /* Cantidad vendida */
-        const subtcantidad = document.createElement("h5");
-        subtcantidad.textContent = `Cantidad vendida`;
-        subtcantidad.setAttribute("class", "subtitulo");
-        const cantidad = data.soldCount;
-        cantidad.setAttribute("class", "txt");
-        subtcantidad.appendChild(cantidad);
-
-        /* Imagenes */
-        const subtimagenes = document.createElement("h5");
-        subtimagenes.textContent = `Imagenes ilustrativas`;
-        subtimagenes.setAttribute("class", "subtitulo");
-        const imagenes = data.images;
-            // Acceder a cada imagen en el arreglo "images" usando un bucle for
-            for (let i = 0; i < images.length; i++) {
-                const image = images[i];
-                console.log("Imagen " + (i + 1) + ":", image);
-            }
-        subtimagenes.appendChild(imagenes);
-        
-        productInfoDiv.appendChild(subtprecio);
-        productInfoDiv.appendChild(subtdescription);
-        productInfoDiv.appendChild(subtcategoria);
-        productInfoDiv.appendChild(subtcantidad);
-        productInfoDiv.appendChild(subtimagenes);
-    
-    })
-    .catch(error => {
-        console.error("Error al cargar la informacion del producto:", error);
+  function getRate(puntuacion) {
+    rate = puntuacion;
+    let botones = document.querySelectorAll('.fa.fa-star.checked-btn');
+  
+    botones.forEach(boton => {
+      boton.classList = 'fa fa-star checked-btn';
     });
 
+ 
+    let botonSeleccionado = botones[puntuacion - 1];
+    botonSeleccionado.classList.add('-active');
+}
+
+  function obtenerFechaActual() {
+    const fechaHoraActual = new Date();
+    const anio = fechaHoraActual.getFullYear();
+    const mes = String(fechaHoraActual.getMonth() + 1).padStart(2, '0'); // Sumamos 1 a getMonth porque los meses comienzan desde 0
+    const dia = String(fechaHoraActual.getDate()).padStart(2, '0');
+    const horas = String(fechaHoraActual.getHours()).padStart(2, '0');
+    const minutos = String(fechaHoraActual.getMinutes()).padStart(2, '0');
+    const segundos = String(fechaHoraActual.getSeconds()).padStart(2, '0');
+
+    const fechaHoraFormateada = `${anio}-${mes}-${dia} ${horas}:${minutos}:${segundos}`;
+    return fechaHoraFormateada;
+  }
+  
+  function addComments(){
+    let newComment = document.getElementById("add-comments-box");
+    let commentsSection = "";
+    let fechaHoraActual = obtenerFechaActual();
+    if (rate > 0 && rate < 6) {
+    commentsSection += `
+                <div class="comment">
+                <span style="font-weight: bold">${user.nombre}_${user.apellido}</span>
+                <span> - ${fechaHoraActual} - </span>
+                ${addStars(rate)}
+                <p>${newComment.value}</p>
+                </div>
+            `;
+            document.getElementById("comments-container").innerHTML += commentsSection;
+    } else {
+      alert("Seleciona una puntacion");
+    }
+  }
+  
+
+  function getCommentsList(array) {
+    let htmlContentToAppend = "";
+    for (let i = 0; i < array.length; i++) {
+        let comments = array[i];
+        console.log(comments);
+        let commentsSection = "";
+        
+        
+            commentsSection += `
+                <div class="comment">
+                <span style="font-weight: bold">${comments.user}</span>
+                <span> - ${comments.dateTime} - </span>
+                ${addStars(comments.score)}
+                <p>${comments.description}</p>
+                </div>
+            `;
+            document.getElementById("comments-container").innerHTML += commentsSection;  
+      }
+    }
+
+document.addEventListener("DOMContentLoaded", function() {
+
+
+if (selectedProduct) {
+    obtenerDatos(selectedProduct.id);
+    fetch(`https://japceibal.github.io/emercado-api/products_comments/${selectedProduct.id}.json`) 
+    .then(response => response.json())
+    .then(data => {
+        let commentsData = data;
+        console.log(commentsData);
+        const productosinfo = document.getElementById('product-info');
+        productosinfo.innerHTML = `
+        <h2>${productData.name}</h2>
+        <p>${productData.description}</p>
+        <p>Precio: ${productData.currency} ${productData.cost}</p>
+        `;
+        
+        
+        const productImages = productData.images;
+        const productImage = document.getElementById('product-image');
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+        let currentImageIndex = 0;
+        
+        function updateImage() {
+            const imageUrl = productImages[currentImageIndex];
+            productImage.src = imageUrl;
+        }
+        
+        prevButton.addEventListener('click', () => {
+                if (currentImageIndex > 0) {
+                    currentImageIndex--;
+                    updateImage();
+                }
+            });
+            
+            nextButton.addEventListener('click', () => {
+                if (currentImageIndex < productImages.length - 1) {
+                    currentImageIndex++;
+                    updateImage();
+                }
+            });
+            updateImage();
+            getCommentsList(commentsData);
+        })
+        .catch(error => {
+            console.error("Error al cargar los detalles del producto:", error);
+        });
 } else {
-    // Maneja el caso en el que no se haya seleccionado.
     console.error("No se ha seleccionado un producto.");
-  };
+}
+    });

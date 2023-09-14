@@ -37,12 +37,32 @@
     </div>
   </nav>
   <main>
-    <!--Info del producto -->
-    <div id="prod info container">
-      <div class="alert alert-danger text-center" role="alert"> 
-        <h4 id="product name h4" class="alert-heading"></h4>
+    <div class="container" id="product-info">
+    </div>
+    <div id="image-carousel">
+      <div class="carousel-container">
+        <img id="product-image" src="" alt="Producto">
+      </div>
+      <div class="carousel-buttons">
+        <button id="prev-button">Anterior</button>
+        <button id="next-button">Siguiente</button>
       </div>
     </div>
+    <div id="comments-container">
+      <h3>Comentarios</h3>
+      <div id="add-comments">
+      <h5></h5>
+      <input type="text" id="add-comments-box" name="add-comments-box" placeholder="Agrega un comentario..." style="opacity: 0.5;" value=""> 
+      <button id="comment-button" onclick="addComments()" type="button">Comentar</button>
+      <button onclick="getRate(1)" class="fa fa-star checked-btn">1</button>
+      <button onclick="getRate(2)" class="fa fa-star checked-btn">2</button>
+      <button onclick="getRate(3)" class="fa fa-star checked-btn">3</button>
+      <button onclick="getRate(4)" class="fa fa-star checked-btn">4</button>
+      <button onclick="getRate(5)" class="fa fa-star checked-btn">5</button>
+    </div>
+    </div>
+
+
   </main>
   <footer class="text-muted">
     <div class="container">
