@@ -149,3 +149,9 @@ if (selectedProduct) {
     console.error("No se ha seleccionado un producto.");
 }
     });
+
+    function toggleMode() {
+      const body = document.body;
+      body.classList.toggle('day-mode');
+      body.classList.toggle('night-mode');
+    }

@@ -12,7 +12,7 @@
   <link href="css/styles.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="day-mode">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -34,10 +34,11 @@
           </li>
         </ul>
       </div>
+      <div><button onclick="toggleMode()">Cambiar Modo</button></div>
     </div>
   </nav>
   <main>
-    <div class="container" id="product-info">
+    <div class="container" id="product-info" class="day-mode">
     </div>
     <div id="image-carousel">
       <div class="carousel-container">
