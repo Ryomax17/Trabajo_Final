@@ -13,6 +13,15 @@ let rate = 0;
     console.log(productData);
   }
 
+/*   function redirectToProductInfo (productsId) {
+    var productToExport = productData.find(product => product.id == productsId);
+    productString = JSON.stringify(productToExport);
+    localStorage.setItem('selectedProduct', productString);
+    window.location.href = 'product-info.html';
+  }; */
+  
+
+
   function addStars(starsQty) {
     if (starsQty < 1 || starsQty > 5) {
       return ''; 
@@ -114,7 +123,23 @@ if (selectedProduct) {
         <p>Precio: ${productData.currency} ${productData.cost}</p>
         `;
         
-        
+        /* Productos relacionados */
+        const relProducts = document.getElementById('related-products');
+        relProducts.innerHTML = `
+            <h3>Productos relacionados</h3>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+              <div  id="${productData.relatedProducts[0].id}" class="col" onclick="redirectToProductInfo('${productData.relatedProducts[0].id}')">
+                <img src="${productData.relatedProducts[0].image}" alt="${productData.relatedProducts[0].name}" class="img-thumbnail">
+                <p>${productData.relatedProducts[0].name}</p>
+              </div>
+              <div  id="${productData.relatedProducts[1].id}" class="col" onclick="redirectToProductInfo('${productData.relatedProducts[1].id}')">
+                <img src="${productData.relatedProducts[1].image}" alt="${productData.relatedProducts[1].name}" class="img-thumbnail">
+                <p>${productData.relatedProducts[1].name}</p>
+              </div>
+            </div>`;
+
+
+
         const productImages = productData.images;
         const productImage = document.getElementById('product-image');
         const prevButton = document.getElementById('prev-button');
