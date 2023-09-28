@@ -390,13 +390,11 @@ button {
 }
 
 button:hover{
-  background-color: maroon;
+  background-color: rgb(0, 0, 0);
   color: #ffffff;
 }
 
-.navbar {
-  margin-bottom: .85rem;
-}
+
 
 #product-info {
   color: #521414;
@@ -431,10 +429,8 @@ p {
 }
 
 #comments-container {
-  background-color: #f0f0f0;
   border: 1px solid #ddd;
   padding: 20px;
-  margin: 20px 0;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
@@ -485,4 +481,34 @@ p {
   cursor: pointer;
   padding: 5px;
   transition: color 0.3s;
+}
+body.day-mode *:not(.navbar *, .stari, .checked-btn) {
+  background-color: #fff;
+  color: #141414;
+  
+}
+
+/* Estilos para el modo oscuro */
+body.night-mode *:not(.navbar *, .stari, .checked-btn) {
+  background-color: #141414;
+  color: #ffffff;
+  & #product-info {
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+  }
+}
+
+
+#next-button,#prev-button {
+  background-color: black;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+body.night-mode #next-button, body.night-mode #prev-button, body.night-mode #comment-button {
+  background-color: white;
+  color: black;
 }

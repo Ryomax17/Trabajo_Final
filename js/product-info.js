@@ -21,11 +21,11 @@ let rate = 0;
     let estrellasHTML = '';
   
     for (let i = 0; i < starsQty; i++) {
-      estrellasHTML += '<span class="fa fa-star checked"></span>';
+      estrellasHTML += '<span class="fa fa-star checked stari"></span>';
     }
   
     for (let i = starsQty; i < 5; i++) {
-      estrellasHTML += '<span class="fa fa-star"></span>';
+      estrellasHTML += '<span class="fa fa-star stari"></span>';
     }
   
     return estrellasHTML;
@@ -149,3 +149,10 @@ if (selectedProduct) {
     console.error("No se ha seleccionado un producto.");
 }
     });
+
+    function toggleMode() {
+      const body = document.body
+      body.classList.toggle('day-mode');
+      body.classList.toggle('night-mode');
+    }
+   
