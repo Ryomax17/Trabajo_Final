@@ -295,7 +295,7 @@ order: 1;
 
 }
 .cartbttn:hover{
-  background-color: #641818;
+  background-color: #d40d0d;
   color: #ffffff;
 }
 .alert-heading{
@@ -535,9 +535,6 @@ bottom: 0.3em;
 top: 0.3em;
 }
 
-body{
-  background-color: aquamarine;
-}
 #switch{
   display: none;
 }
@@ -549,7 +546,8 @@ body{
 #switch:checked~.lblswitch:after {
   background-color: rgb(5, 5, 5);
   left: 28px;
-=======
+}
+
 body.night-mode #titulocoment {
   color: white;
 }

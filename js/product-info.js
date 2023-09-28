@@ -23,11 +23,11 @@
     let estrellasHTML = '';
 
     for (let i = 0; i < starsQty; i++) {
-      estrellasHTML += '<span class="fa fa-star checked stari"></span>';
+      estrellasHTML += '<span class="fa fa-star checked star"></span>';
     }
 
     for (let i = starsQty; i < 5; i++) {
-      estrellasHTML += '<span class="fa fa-star stari"></span>';
+      estrellasHTML += '<span class="fa fa-star star"></span>';
     }
 
     return estrellasHTML;
@@ -210,19 +210,4 @@ function getCommentsList(productId) {
 }
     });
 
-    function toggleMode() {
-      const body = document.body
-      body.classList.toggle('day-mode');
-      body.classList.toggle('night-mode');
-    }
-   
-    if (localStorage.getItem('claseBody')) {
-      const claseGuardada = localStorage.getItem('claseBody');
-      document.body.className = claseGuardada; // Establece la clase del body
-    }
     
-    // Escucha el evento 'beforeunload' para guardar la clase antes de recargar
-    window.addEventListener('beforeunload', function() {
-      const claseActual = document.body.className;
-      localStorage.setItem('claseBody', claseActual); // Almacena la clase actual del body
-    });
