@@ -2,7 +2,7 @@
   const selectedProduct = JSON.parse(selectedProductJSON);
   const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
   const user = JSON.parse(localStorage.getItem("usuarioChange"));
-  console.log(user);
+  // console.log(user);
 
   let productData = {};
   let commentsData = [];
@@ -11,7 +11,7 @@
   async function obtenerDatos(select) {
     const respuesta = await fetch(`https://japceibal.github.io/emercado-api/products/${select}.json`);
     productData = await respuesta.json();
-    console.log(productData); // Mover esta línea antes del return
+    // console.log(productData);
     return productData;
   }
 
@@ -71,17 +71,17 @@
           <p>${newComment.value}</p>
         </div>
       `;
-      document.getElementById("comments-container").innerHTML += commentsSection;
+      document.getElementById("comments-box").innerHTML += commentsSection;
     } else {
       alert("Selecciona una puntuación");
     }
   }
 
-  function getCommentsList(array) {
+  function createCommentsList(array) {
     let htmlContentToAppend = "";
     for (let i = 0; i < array.length; i++) {
       let comments = array[i];
-      console.log(comments);
+      // console.log(comments);
       let commentsSection = "";
       commentsSection += `
         <div class="comment">
@@ -90,7 +90,7 @@
           ${addStars(comments.score)}
           <p>${comments.description}</p>
         </div>`;
-      document.getElementById("comments-container").innerHTML += commentsSection;
+      document.getElementById("comments-box").innerHTML += commentsSection;
     }
   }
 
@@ -101,32 +101,37 @@
     .then(data => {
         let commentsData = data;
         console.log(commentsData);
-        getCommentsList(commentsData);
+        createCommentsList(commentsData);
     });
   } */
 
 
 function clearComments() {
-  const commentsContainer = document.getElementById("comments-container");
+  const commentsContainer = document.getElementById("comments-box");
   commentsContainer.innerHTML = "";
 }
 
-if (selectedProduct) {
-  obtenerDatos(selectedProduct.id);
-  fetch(`https://japceibal.github.io/emercado-api/products_comments/${selectedProduct.id}.json`)
+function getCommentsList(productId) {
+  fetch(`https://japceibal.github.io/emercado-api/products_comments/${productId}.json`)
     .then(response => response.json())
     .then(data => {
       commentsData = data;
       console.log(commentsData);
-      clearComments();
-      getCommentsList(commentsData);
-      selectedProduct = data;
+      createCommentsList(commentsData);
+      return selectedProduct;
     });
+  
 }
+
+// if (selectedProduct) {
+//   getCommentsList();
+//   obtenerDatos(selectedProduct.id);
+// }
   
   /* Actualizar la pagina con el producto seleccionado desde categories o related products */
   function cargarProducto(productData) {
     const productosinfo = document.getElementById('product-info');
+    
     productosinfo.innerHTML = `
       <h2>${productData.name}</h2>
       <p>${productData.description}</p>
@@ -174,11 +179,25 @@ if (selectedProduct) {
         });
         updateImage();
   }
+  function cargarProductoSeleccionado(productId) {
+    obtenerDatos(productId)
+      .then(data => {
+        productData = data;
+        cargarProducto(productData);
+        clearComments();
+        getCommentsList(productId);
+      })
+      .catch(error => {
+        console.error("Error al cargar los detalles del producto:", error);
+      });
+  }
 
   /* Obtener los datos del producto */
   document.addEventListener("DOMContentLoaded", function () {
     if (selectedProduct) {
+      getCommentsList(selectedProduct.id);
       obtenerDatos(selectedProduct.id)
+      
         .then(data => {
           productData = data;
           cargarProducto(productData);
@@ -192,13 +211,3 @@ if (selectedProduct) {
   });
 
   // Función para cargar un producto relacionado
-  function cargarProductoSeleccionado(productId) {
-    obtenerDatos(productId)
-      .then(data => {
-        productData = data;
-        cargarProducto(productData);
-      })
-      .catch(error => {
-        console.error("Error al cargar los detalles del producto:", error);
-      });
-  }
