@@ -5,6 +5,7 @@
   console.log(user);
 
   let productData = {};
+  let commentsData = [];
   let rate = 0;
 
   async function obtenerDatos(select) {
@@ -93,6 +94,36 @@
     }
   }
 
+/*   if (selectedProduct) {
+    obtenerDatos(selectedProduct.id);
+    fetch(`https://japceibal.github.io/emercado-api/products_comments/${selectedProduct.id}.json`) 
+    .then(response => response.json())
+    .then(data => {
+        let commentsData = data;
+        console.log(commentsData);
+        getCommentsList(commentsData);
+    });
+  } */
+
+
+function clearComments() {
+  const commentsContainer = document.getElementById("comments-container");
+  commentsContainer.innerHTML = "";
+}
+
+if (selectedProduct) {
+  obtenerDatos(selectedProduct.id);
+  fetch(`https://japceibal.github.io/emercado-api/products_comments/${selectedProduct.id}.json`)
+    .then(response => response.json())
+    .then(data => {
+      commentsData = data;
+      console.log(commentsData);
+      clearComments();
+      getCommentsList(commentsData);
+      selectedProduct = data;
+    });
+}
+  
   /* Actualizar la pagina con el producto seleccionado desde categories o related products */
   function cargarProducto(productData) {
     const productosinfo = document.getElementById('product-info');
@@ -101,6 +132,7 @@
       <p>${productData.description}</p>
       <p>Precio: ${productData.currency} ${productData.cost}</p>`;
 
+      
     const productImages = productData.images;
     const productImage = document.getElementById('product-image');
     const prevButton = document.getElementById('prev-button');
@@ -121,6 +153,7 @@
           <p>${productData.relatedProducts[1].name}</p>
         </div>
       `;
+
       function updateImage() {
         const imageUrl = productImages[currentImageIndex];
         productImage.src = imageUrl;
@@ -140,7 +173,6 @@
             }
         });
         updateImage();
-        getCommentsList(commentsData);
   }
 
   /* Obtener los datos del producto */
