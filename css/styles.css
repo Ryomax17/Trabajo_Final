@@ -513,6 +513,7 @@ body.night-mode #next-button, body.night-mode #prev-button, body.night-mode #com
   color: black;
 }
 
+
 div .lblswitch{
   display: inline-block;
   width: 55px;
@@ -548,4 +549,7 @@ body{
 #switch:checked~.lblswitch:after {
   background-color: rgb(5, 5, 5);
   left: 28px;
+=======
+body.night-mode #titulocoment {
+  color: white;
 }
