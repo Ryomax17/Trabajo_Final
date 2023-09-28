@@ -23,11 +23,11 @@
     let estrellasHTML = '';
 
     for (let i = 0; i < starsQty; i++) {
-      estrellasHTML += '<span class="fa fa-star checked star"></span>';
+      estrellasHTML += '<span class="fa fa-star checked stari"></span>';
     }
 
     for (let i = starsQty; i < 5; i++) {
-      estrellasHTML += '<span class="fa fa-star star"></span>';
+      estrellasHTML += '<span class="fa fa-star stari"></span>';
     }
 
     return estrellasHTML;
