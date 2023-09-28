@@ -117,7 +117,12 @@ function getCommentsList(productId) {
     .then(data => {
       commentsData = data;
       console.log(commentsData);
+<<<<<<< Updated upstream
       createCommentsList(commentsData);
+=======
+      clearComments();
+      getCommentsList(commentsData);
+>>>>>>> Stashed changes
       return selectedProduct;
     });
   
@@ -179,19 +184,29 @@ function getCommentsList(productId) {
         });
         updateImage();
   }
+<<<<<<< Updated upstream
+=======
+  
+>>>>>>> Stashed changes
   function cargarProductoSeleccionado(productId) {
     obtenerDatos(productId)
       .then(data => {
         productData = data;
         cargarProducto(productData);
+<<<<<<< Updated upstream
         clearComments();
         getCommentsList(productId);
+=======
+>>>>>>> Stashed changes
       })
       .catch(error => {
         console.error("Error al cargar los detalles del producto:", error);
       });
   }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
   /* Obtener los datos del producto */
   document.addEventListener("DOMContentLoaded", function () {
     if (selectedProduct) {
