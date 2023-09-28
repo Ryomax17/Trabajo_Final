@@ -156,3 +156,13 @@ if (selectedProduct) {
       body.classList.toggle('night-mode');
     }
    
+    if (localStorage.getItem('claseBody')) {
+      const claseGuardada = localStorage.getItem('claseBody');
+      document.body.className = claseGuardada; // Establece la clase del body
+    }
+    
+    // Escucha el evento 'beforeunload' para guardar la clase antes de recargar
+    window.addEventListener('beforeunload', function() {
+      const claseActual = document.body.className;
+      localStorage.setItem('claseBody', claseActual); // Almacena la clase actual del body
+    });
