@@ -123,7 +123,7 @@ function getCommentsList(productId) {
   
 }
 
-// if (selectedProduct) {
+
 //   getCommentsList();
 //   obtenerDatos(selectedProduct.id);
 // }
