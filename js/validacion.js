@@ -28,5 +28,20 @@ document.addEventListener("DOMContentLoaded", function(){
         } 
     } 
 
+    document.getElementById("mi-carrito").addEventListener("click", function () {
+        // Redirige a la página de "Mi Carrito"
+        window.location.href = "ruta_a_mi_carrito.html";
+      });
+      
+      document.getElementById("mi-perfil").addEventListener("click", function () {
+        // Redirige a la página de "Mi Perfil"
+        window.location.href = "ruta_a_mi_perfil.html";
+      });
+      
+      document.getElementById("cerrar-sesion").addEventListener("click", function () {
+        // Redirige a la página de inicio de sesión y elimina la sesión del usuario
+        window.location.href = "ruta_a_inicio_de_sesion.html";
+        // Puedes implementar aquí la lógica para cerrar la sesión del usuario
+      });
 
 });
