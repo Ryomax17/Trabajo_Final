@@ -35,7 +35,15 @@ document.addEventListener("DOMContentLoaded", function(){
     
     if (usuarioChange.email !== null) {
     let cambiarUsuario = document.getElementById("cuenta");
-    cambiarUsuario.innerHTML = usuarioChange.email;
+        cambiarUsuario.innerHTML = `
+           <div id="dropdown"> ${usuarioChange.email} 
+            <ul id="dropdown-contain">
+                <li class="dropdown-item"><a href="my-profile.html">Mi perfil</a></li>
+                <li class="dropdown-item"><a href="cart.html" >Carrito</a></li>
+                <li class="dropdown-item" id="cerrarSesion">Cerrar sesion</li>
+            </ul>
+            </div>
+            `
     }
     
     if (!window.location.pathname.includes("login.html")) {
@@ -45,6 +53,13 @@ document.addEventListener("DOMContentLoaded", function(){
             }, 2000);
         } 
     } 
-
-
+let cerrarSesion = document.getElementById("cerrarSesion");
+    cerrarSesion.addEventListener("click", function (e) {
+        localStorage.removeItem("usuarioChange");
+        localStorage.removeItem("sesionIniciada");
+        console.log(usuarioChange);
+       e.stopPropagation()
+    })
+ 
 });
+
