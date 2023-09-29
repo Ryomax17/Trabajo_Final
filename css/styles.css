@@ -457,6 +457,7 @@ p {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
+  margin-bottom: 10px;
 }
 
 #comment-button {
