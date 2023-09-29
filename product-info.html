@@ -12,7 +12,7 @@
   <link href="css/styles.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="day-mode">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -34,10 +34,12 @@
           </li>
         </ul>
       </div>
+      <input type="checkbox" id="switch" onclick="toggleMode()">
+      <label  for="switch" class="lblswitch"></label>
     </div>
   </nav>
   <main>
-    <div class="container" id="product-info">
+    <div class="container" id="product-info" class="day-mode">
     </div>
     <div id="image-carousel">
       <div class="carousel-container">
@@ -49,7 +51,7 @@
       </div>
     </div>
     <div id="comments-container">
-      <h3>Comentarios</h3>
+      <h3 id="titulocoment">Comentarios</h3>
       <div id="add-comments">
       <h5></h5>
       <input type="text" id="add-comments-box" name="add-comments-box" placeholder="Agrega un comentario..." style="opacity: 0.5;" value=""> 
@@ -60,8 +62,11 @@
       <button onclick="getRate(4)" class="fa fa-star checked-btn">4</button>
       <button onclick="getRate(5)" class="fa fa-star checked-btn">5</button>
     </div>
+      <div id="comments-box"></div>
     </div>
-
+    
+    <div id="related-products"></div>
+      
 
   </main>
   <footer class="text-muted">
