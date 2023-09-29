@@ -295,7 +295,7 @@ order: 1;
 
 }
 .cartbttn:hover{
-  background-color: #641818;
+  background-color: #d40d0d;
   color: #ffffff;
 }
 .alert-heading{
@@ -390,13 +390,11 @@ button {
 }
 
 button:hover{
-  background-color: maroon;
+  background-color: rgb(0, 0, 0);
   color: #ffffff;
 }
 
-.navbar {
-  margin-bottom: .85rem;
-}
+
 
 #product-info {
   color: #521414;
@@ -431,10 +429,8 @@ p {
 }
 
 #comments-container {
-  background-color: #f0f0f0;
   border: 1px solid #ddd;
   padding: 20px;
-  margin: 20px 0;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
@@ -461,6 +457,7 @@ p {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
+  margin-bottom: 10px;
 }
 
 #comment-button {
@@ -486,7 +483,6 @@ p {
   padding: 5px;
   transition: color 0.3s;
 }
-
 
 #dropdown{
   position: relative;
@@ -528,3 +524,73 @@ div ul li a{
 color: #b9b9b9;
 }
 
+=======
+body.day-mode *:not(.navbar *, .stari, .checked-btn) {
+  background-color: #fff;
+  color: #141414;
+  
+}
+
+/* Estilos para el modo oscuro */
+body.night-mode *:not(.navbar *, .stari, .checked-btn) {
+  background-color: #141414;
+  color: #ffffff;
+  & #product-info {
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+  }
+}
+
+
+#next-button,#prev-button {
+  background-color: black;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+body.night-mode #next-button, body.night-mode #prev-button, body.night-mode #comment-button {
+  background-color: white;
+  color: black;
+}
+
+
+div .lblswitch{
+  display: inline-block;
+  width: 55px;
+  height: 30px;
+  background-color: black;
+  border-radius: 100px;
+  position: relative;
+  cursor: pointer;
+}
+div .lblswitch:after{
+position: absolute;
+content: '';
+width: 22px;
+height: 22px;
+background-color: aliceblue;
+border-radius: 100px;
+transition: 0.4s;
+bottom: 0.3em;
+top: 0.3em;
+}
+
+#switch{
+  display: none;
+}
+
+#switch:checked~ .lblswitch{
+  background-color: aliceblue;
+
+}
+#switch:checked~.lblswitch:after {
+  background-color: rgb(5, 5, 5);
+  left: 28px;
+}
+
+body.night-mode #titulocoment {
+  color: white;
+}
