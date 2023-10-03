@@ -2,8 +2,6 @@
   const selectedProduct = JSON.parse(selectedProductJSON);
   const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
   const user = JSON.parse(localStorage.getItem("usuarioChange"));
-  // console.log(user);
-
   let productData = {};
   let commentsData = [];
   let rate = 0;
@@ -11,7 +9,6 @@
   async function obtenerDatos(select) {
     const respuesta = await fetch(`https://japceibal.github.io/emercado-api/products/${select}.json`);
     productData = await respuesta.json();
-    // console.log(productData);
     return productData;
   }
 
@@ -94,18 +91,6 @@
     }
   }
 
-/*   if (selectedProduct) {
-    obtenerDatos(selectedProduct.id);
-    fetch(`https://japceibal.github.io/emercado-api/products_comments/${selectedProduct.id}.json`) 
-    .then(response => response.json())
-    .then(data => {
-        let commentsData = data;
-        console.log(commentsData);
-        createCommentsList(commentsData);
-    });
-  } */
-
-
 function clearComments() {
   const commentsContainer = document.getElementById("comments-box");
   commentsContainer.innerHTML = "";
@@ -121,14 +106,8 @@ function getCommentsList(productId) {
       return selectedProduct;
     });
   
-}
+  }
 
-
-//   getCommentsList();
-//   obtenerDatos(selectedProduct.id);
-// }
-  
-  /* Actualizar la pagina con el producto seleccionado desde categories o related products */
   function cargarProducto(productData) {
     const productosinfo = document.getElementById('product-info');
     
@@ -144,7 +123,6 @@ function getCommentsList(productId) {
     const nextButton = document.getElementById('next-button');
     let currentImageIndex = 0;
 
-    /* Productos relacionados */
     const relProducts = document.getElementById('related-products');
     relProducts.innerHTML = `
       <h3>Productos relacionados</h3>
@@ -162,9 +140,9 @@ function getCommentsList(productId) {
       function updateImage() {
         const imageUrl = productImages[currentImageIndex];
         productImage.src = imageUrl;
-    }
+      }
     
-    prevButton.addEventListener('click', () => {
+      prevButton.addEventListener('click', () => {
             if (currentImageIndex > 0) {
                 currentImageIndex--;
                 updateImage();
@@ -179,6 +157,7 @@ function getCommentsList(productId) {
         });
         updateImage();
   }
+
   function cargarProductoSeleccionado(productId) {
     obtenerDatos(productId)
       .then(data => {
