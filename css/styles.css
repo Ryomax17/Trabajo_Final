@@ -544,7 +544,13 @@ body.night-mode *:not(.navbar *, .stari, .checked-btn) {
   & #product-info {
     box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
   }
+  & .cartbttn{
+background-color: #ffffff;
+  color: #000000;
+  }
 }
+
+
 
 
 #next-button,#prev-button {
