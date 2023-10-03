@@ -108,6 +108,29 @@ function getCommentsList(productId) {
   
   }
 
+  function addImages(imagesQty, objImages) {
+
+    let imagesHTML = '';
+
+    console.log(imagesQty);
+    console.log(objImages);
+
+    imagesHTML += 
+      `<div class="carousel-item active">
+        <img src="${objImages[0]}" class="d-block w-100" alt="...">
+      </div>`;
+
+    for (let i = 1; i < imagesQty; i++) {
+      imagesHTML += 
+      `<div class="carousel-item">
+        <img src="${objImages[i]}" class="d-block w-100" alt="...">
+      </div>`;
+    }
+    console.log(imagesHTML);
+
+    return imagesHTML;
+  }
+
   function cargarProducto(productData) {
     const productosinfo = document.getElementById('product-info');
     
@@ -118,10 +141,22 @@ function getCommentsList(productId) {
 
       
     const productImages = productData.images;
-    const productImage = document.getElementById('product-image');
-    const prevButton = document.getElementById('prev-button');
-    const nextButton = document.getElementById('next-button');
-    let currentImageIndex = 0;
+    const length = productImages.length;
+    const productImage = document.getElementById('carousel-container');
+    
+
+    productImage.innerHTML = ` 
+      <div class="carousel-inner">
+        ${addImages(length, productImages)}
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carousel-container" data-bs-slide="prev">
+       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+     </button>
+     <button class="carousel-control-next" type="button" data-bs-target="#carousel-container" data-bs-slide="next">
+       <span class="carousel-control-next-icon" aria-hidden="true"></span>
+       <span class="visually-hidden">Next</span>
+      </button>`
 
     const relProducts = document.getElementById('related-products');
     relProducts.innerHTML = `
@@ -137,25 +172,6 @@ function getCommentsList(productId) {
         </div>
       `;
 
-      function updateImage() {
-        const imageUrl = productImages[currentImageIndex];
-        productImage.src = imageUrl;
-      }
-    
-      prevButton.addEventListener('click', () => {
-            if (currentImageIndex > 0) {
-                currentImageIndex--;
-                updateImage();
-            }
-        });
-        
-        nextButton.addEventListener('click', () => {
-            if (currentImageIndex < productImages.length - 1) {
-                currentImageIndex++;
-                updateImage();
-            }
-        });
-        updateImage();
   }
 
   function cargarProductoSeleccionado(productId) {
@@ -171,7 +187,6 @@ function getCommentsList(productId) {
       });
   }
 
-  /* Obtener los datos del producto */
   document.addEventListener("DOMContentLoaded", function () {
     if (selectedProduct) {
       getCommentsList(selectedProduct.id);
