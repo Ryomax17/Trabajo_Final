@@ -16,7 +16,7 @@ function toggleMode() {
   });
 
 
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function () {
     function getCookie(name) {
         const cookieArray = document.cookie.split('; ');
         for (const cookie of cookieArray) {
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 return decodeURIComponent(cookieValue);
             }
         }
-        return null; 
+        return null;
     }
     
     let recuerdameValue = getCookie('recuerdame');
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function(){
     console.log(usuarioChange);
     
     if (usuarioChange.email !== null) {
-    let cambiarUsuario = document.getElementById("cuenta");
+        let cambiarUsuario = document.getElementById("cuenta");
         cambiarUsuario.innerHTML = `
            <div id="dropdown"> ${usuarioChange.email} 
             <ul id="dropdown-contain">
@@ -48,18 +48,19 @@ document.addEventListener("DOMContentLoaded", function(){
     
     if (!window.location.pathname.includes("login.html")) {
         if (recuerdameValue !== 'true' && !localStorage.getItem("sesionIniciada")) {
-            setTimeout(function() {
+            setTimeout(function () {
                 window.location.href = "login.html";
             }, 2000);
-        } 
-    } 
-let cerrarSesion = document.getElementById("cerrarSesion");
+        }
+    }
+    let cerrarSesion = document.getElementById("cerrarSesion");
     cerrarSesion.addEventListener("click", function (e) {
         localStorage.removeItem("usuarioChange");
         localStorage.removeItem("sesionIniciada");
-        console.log(usuarioChange);
-       e.stopPropagation()
-    })
+        console.log(usuarioChange);    
+        e.stopPropagation()
+         
  
-});
+    });
 
+})
