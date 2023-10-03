@@ -45,7 +45,7 @@ function showProductsList(array) {
             </div>
             <p class="mb-1">${products.description}</p>
             <small class="mb-1 txtcont">${products.currency}${products.cost} </small>
-            <input id "id${products.id} class="cartbttn" type= "button" value= "Comprar" onclick="redirectToProductInfo('${products.id}')"> 
+            <input id "id${products.id} class="cartbttn " type= "button" value= "Comprar" onclick="redirectToProductInfo('${products.id}')"> 
             </div>
             </div>
             </div>`;
