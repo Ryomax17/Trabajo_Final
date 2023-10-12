@@ -152,50 +152,53 @@ function addToCart(productsId) {
   }
 }
 
-  function cargarProducto(productData) {
-    const productosinfo = document.getElementById('product-info');
-    
-    productosinfo.innerHTML = `
-      <h2>${productData.name}</h2>
-      <p>${productData.description}</p>
-      <p>Precio: ${productData.currency} ${productData.cost}</p>
-      <button class="btn btn-primary comprar-btn" data-id="${productData.id}" onclick="alert('Producto agregado al carrito!'); addToCart('${productData.id}')">Comprar</button>
-`;
+function scrollUp() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
-      
-    const productImages = productData.images;
-    const length = productImages.length;
-    const productImage = document.getElementById('carousel-container');
+function cargarProducto(productData) {
+  const productosinfo = document.getElementById('product-info');
     
+  productosinfo.innerHTML = `
+    <h2>${productData.name}</h2>
+    <p>${productData.description}</p>
+    <p>Precio: ${productData.currency} ${productData.cost}</p>
+    <button class="btn btn-primary comprar-btn" data-id="${productData.id}" onclick="alert('Producto agregado al carrito!'); addToCart('${productData.id}'); scrollUp();">Comprar</button>
+  `;
 
-    productImage.innerHTML = ` 
-      <div class="carousel-inner">
-        ${addImages(length, productImages)}
+  const productImages = productData.images;
+  const length = productImages.length;
+  const productImage = document.getElementById('carousel-container');
+
+  productImage.innerHTML = ` 
+    <div class="carousel-inner">
+      ${addImages(length, productImages)}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carousel-container" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carousel-container" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  `;
+
+  const relProducts = document.getElementById('related-products');  
+  relProducts.innerHTML = `
+    <h3>Productos relacionados</h3>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div  id="rel-${productData.relatedProducts[0].id}" class="col" onclick="cargarProductoSeleccionado('${productData.relatedProducts[0].id}'); scrollUp();">
+        <img src="${productData.relatedProducts[0].image}" alt="${productData.relatedProducts[0].name}" class="img-thumbnail">
+        <p>${productData.relatedProducts[0].name}</p>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carousel-container" data-bs-slide="prev">
-       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-     </button>
-     <button class="carousel-control-next" type="button" data-bs-target="#carousel-container" data-bs-slide="next">
-       <span class="carousel-control-next-icon" aria-hidden="true"></span>
-       <span class="visually-hidden">Next</span>
-      </button>`
-
-    const relProducts = document.getElementById('related-products');  
-    relProducts.innerHTML = `
-      <h3>Productos relacionados</h3>
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div  id="${productData.relatedProducts[0].id}" class="col" onclick="cargarProductoSeleccionado('${productData.relatedProducts[0].id}')">
-          <img src="${productData.relatedProducts[0].image}" alt="${productData.relatedProducts[0].name}" class="img-thumbnail">
-          <p>${productData.relatedProducts[0].name}</p>
-        </div>
-        <div  id="${productData.relatedProducts[1].id}" class="col" onclick="cargarProductoSeleccionado('${productData.relatedProducts[1].id}')">
-          <img src="${productData.relatedProducts[1].image}" alt="${productData.relatedProducts[1].name}" class="img-thumbnail">
-          <p>${productData.relatedProducts[1].name}</p>
-        </div>
-      `;
-
-  }
+      <div  id="rel-${productData.relatedProducts[1].id}" class="col" onclick="cargarProductoSeleccionado('${productData.relatedProducts[1].id}'); scrollUp();">
+        <img src="${productData.relatedProducts[1].image}" alt="${productData.relatedProducts[1].name}" class="img-thumbnail">
+        <p>${productData.relatedProducts[1].name}</p>
+      </div>
+    </div>
+  `;
+}
 
   function cargarProductoSeleccionado(productId) {
     obtenerDatos(productId)
