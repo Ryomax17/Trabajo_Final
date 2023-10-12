@@ -152,10 +152,6 @@ function addToCart(productsId) {
   }
 }
 
-function scrollUp() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
 function cargarProducto(productData) {
   const productosinfo = document.getElementById('product-info');
     
@@ -188,11 +184,11 @@ function cargarProducto(productData) {
   relProducts.innerHTML = `
     <h3>Productos relacionados</h3>
     <div class="row row-cols-1 row-cols-md-3 g-4">
-      <div  id="rel-${productData.relatedProducts[0].id}" class="col" onclick="cargarProductoSeleccionado('${productData.relatedProducts[0].id}'); scrollUp();">
+      <div  id="rel-${productData.relatedProducts[0].id}" class="col" onclick="cargarProductoSeleccionado('${productData.relatedProducts[0].id}'); window.scrollTo({ top: 0, behavior: 'smooth' });">
         <img src="${productData.relatedProducts[0].image}" alt="${productData.relatedProducts[0].name}" class="img-thumbnail">
         <p>${productData.relatedProducts[0].name}</p>
       </div>
-      <div  id="rel-${productData.relatedProducts[1].id}" class="col" onclick="cargarProductoSeleccionado('${productData.relatedProducts[1].id}'); scrollUp();">
+      <div  id="rel-${productData.relatedProducts[1].id}" class="col" onclick="cargarProductoSeleccionado('${productData.relatedProducts[1].id}'); window.scrollTo({ top: 0, behavior: 'smooth' });">
         <img src="${productData.relatedProducts[1].image}" alt="${productData.relatedProducts[1].name}" class="img-thumbnail">
         <p>${productData.relatedProducts[1].name}</p>
       </div>
