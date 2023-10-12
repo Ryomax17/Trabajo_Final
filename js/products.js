@@ -36,7 +36,7 @@ function showProductsList(array) {
         (maxCount != undefined && parseInt(products.cost) <= maxCount))
     ) {
       htmlContentToAppend += `
-      <button id="id${products.id}" class="btn btn-outline-primary cartbttn" type="button" onclick="redirectToProductInfo('${products.id}')">
+      <button id="id${products.id}" class="btn" type="button" onclick="redirectToProductInfo('${products.id}')">
       <div id="${products.id}" class="list-group-item list-group-item-action cursor-active" >
       <div class="row">
       <div class="col-3">

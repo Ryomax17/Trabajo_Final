@@ -607,3 +607,6 @@ top: 0.3em;
 body.night-mode #titulocoment {
   color: white;
 }
+body.night-mode {
+  background-color: #141414;
+}
