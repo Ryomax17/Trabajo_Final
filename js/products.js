@@ -17,26 +17,6 @@ function redirectToProductInfo (productsId) {
   window.location.href = 'product-info.html';
 };
 
-function addToCart(productsId) {
-  var cart = JSON.parse(localStorage.getItem('cart')) || [];
-  var productToAdd = productsArray.find(product => product.id == productsId);
-
-  if (productToAdd) {
-    const existingProduct = cart.find(p => p.id === productToAdd.id);
-
-    if (existingProduct) {
-      existingProduct.quantity += 1;
-    } else {
-      productToAdd.quantity = 1;
-      cart.push(productToAdd);
-      console.log(cart);
-    }
-
-
-    var cartString = JSON.stringify(cart);
-    localStorage.setItem('cart', cartString);
-  }
-}
 
 function seleccionarNumero(numero) {
   document.getElementById('numeroSeleccionado').textContent = numero;
@@ -54,22 +34,25 @@ function showProductsList(array) {
         (maxCount != undefined && parseInt(products.cost) <= maxCount))
     ) {
       htmlContentToAppend += `
-            <div id="${products.id}" class="list-group-item list-group-item-action cursor-active" >
-            <div class="row">
-            <div class="col-3">
-            <img src="${products.image}" alt="${products.name}" class="img-thumbnail" onclick="redirectToProductInfo('${products.id}')">
-            </div>
-            <div class="col">
-            <div class="d-flex w-100 justify-content-between">
-            <h4 class="mb-1">${products.name}</h4>
-            <small class="text-muted">${products.soldCount} artículos</small>
-            </div>
-            <p class="mb-1">${products.description}</p>
-            <small class="mb-1 txtcont">${products.currency}${products.cost} </small>
-            <input id "id${products.id} class="cartbttn " type= "button" value= "Añadir al carrito" onclick="addToCart('${products.id}')"> 
-            </div>
-            </div>
-            </div>`;
+      <button id="id${products.id}" class="btn btn-outline-primary cartbttn" type="button" onclick="redirectToProductInfo('${products.id}');')">
+      <div id="${products.id}" class="list-group-item list-group-item-action cursor-active" >
+      <div class="row">
+      <div class="col-3">
+      <img src="${products.image}" alt="${products.name}" class="img-thumbnail" ">
+      </div>
+      <div class="col">
+      <div class="d-flex w-100 justify-content-between">
+      <h4 class="mb-1">${products.name}</h4>
+      <small class="text-muted">${products.soldCount} artículos</small>
+      </div>
+      <p class="mb-1">${products.description}</p>
+      <small class="mb-1 txtcont">${products.currency}${products.cost} </small>
+      </div>
+      </div>
+      </div>
+      
+      </button>
+      `;
     }
   }
   document.getElementById("product-list").innerHTML = htmlContentToAppend;

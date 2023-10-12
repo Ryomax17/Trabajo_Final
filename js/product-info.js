@@ -131,6 +131,27 @@ function getCommentsList(productId) {
     return imagesHTML;
   }
 
+function addToCart(productsId) {
+  var cart = JSON.parse(localStorage.getItem('cart')) || [];
+  var productToAdd = productsArray.find(product => product.id == productsId);
+
+  if (productToAdd) {
+    const existingProduct = cart.find(p => p.id === productToAdd.id);
+
+    if (existingProduct) {
+      existingProduct.quantity += 1;
+    } else {
+      productToAdd.quantity = 1;
+      cart.push(productToAdd);
+      console.log(cart);
+    }
+
+
+    var cartString = JSON.stringify(cart);
+    localStorage.setItem('cart', cartString);
+  }
+}
+
   function cargarProducto(productData) {
     const productosinfo = document.getElementById('product-info');
     
@@ -138,7 +159,8 @@ function getCommentsList(productId) {
       <h2>${productData.name}</h2>
       <p>${productData.description}</p>
       <p>Precio: ${productData.currency} ${productData.cost}</p>
-      <button class="btn btn-primary comprar-btn" data-id="${productData.id}" onclick="alert('Producto agregado al carrito!')">Comprar</button>`;
+      <button class="btn btn-primary comprar-btn" data-id="${productData.id}" onclick="alert('Producto agregado al carrito!'); addToCart('${productData.id}')">Comprar</button>
+`;
 
       
     const productImages = productData.images;
