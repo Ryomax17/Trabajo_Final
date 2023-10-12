@@ -15,6 +15,8 @@ function redirectToProductInfo (productsId) {
   var productString = JSON.stringify(productToExport);
   localStorage.setItem('selectedProduct', productString);
   window.location.href = 'product-info.html';
+  var productArrayString = JSON.stringify(productsArray);
+  localStorage.setItem('productsArray', productArrayString);
 };
 
 

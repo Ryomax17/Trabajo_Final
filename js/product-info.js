@@ -133,6 +133,7 @@ function getCommentsList(productId) {
 
 function addToCart(productsId) {
   var cart = JSON.parse(localStorage.getItem('cart')) || [];
+  var productsArray = JSON.parse(localStorage.getItem('productsArray')) || [];
   var productToAdd = productsArray.find(product => product.id == productsId);
 
   if (productToAdd) {
@@ -143,7 +144,6 @@ function addToCart(productsId) {
     } else {
       productToAdd.quantity = 1;
       cart.push(productToAdd);
-      console.log(cart);
     }
 
 
