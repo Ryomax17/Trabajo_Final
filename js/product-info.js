@@ -137,7 +137,8 @@ function getCommentsList(productId) {
     productosinfo.innerHTML = `
       <h2>${productData.name}</h2>
       <p>${productData.description}</p>
-      <p>Precio: ${productData.currency} ${productData.cost}</p>`;
+      <p>Precio: ${productData.currency} ${productData.cost}</p>
+      <button class="btn btn-primary comprar-btn" data-id="${productData.id}" onclick="alert('Producto agregado al carrito!')">Comprar</button>`;
 
       
     const productImages = productData.images;
