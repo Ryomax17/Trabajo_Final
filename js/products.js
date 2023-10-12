@@ -12,10 +12,31 @@ let productsArray = [];
 
 function redirectToProductInfo (productsId) {
   var productToExport = productsArray.find(product => product.id == productsId);
-  productString = JSON.stringify(productToExport);
+  var productString = JSON.stringify(productToExport);
   localStorage.setItem('selectedProduct', productString);
   window.location.href = 'product-info.html';
 };
+
+function addToCart(productsId) {
+  var cart = JSON.parse(localStorage.getItem('cart')) || [];
+  var productToAdd = productsArray.find(product => product.id == productsId);
+
+  if (productToAdd) {
+    const existingProduct = cart.find(p => p.id === productToAdd.id);
+
+    if (existingProduct) {
+      existingProduct.quantity += 1;
+    } else {
+      productToAdd.quantity = 1;
+      cart.push(productToAdd);
+      console.log(cart);
+    }
+
+
+    var cartString = JSON.stringify(cart);
+    localStorage.setItem('cart', cartString);
+  }
+}
 
 function seleccionarNumero(numero) {
   document.getElementById('numeroSeleccionado').textContent = numero;
@@ -36,7 +57,7 @@ function showProductsList(array) {
             <div id="${products.id}" class="list-group-item list-group-item-action cursor-active" >
             <div class="row">
             <div class="col-3">
-            <img src="${products.image}" alt="${products.name}" class="img-thumbnail">
+            <img src="${products.image}" alt="${products.name}" class="img-thumbnail" onclick="redirectToProductInfo('${products.id}')">
             </div>
             <div class="col">
             <div class="d-flex w-100 justify-content-between">
@@ -45,7 +66,7 @@ function showProductsList(array) {
             </div>
             <p class="mb-1">${products.description}</p>
             <small class="mb-1 txtcont">${products.currency}${products.cost} </small>
-            <input id "id${products.id} class="cartbttn " type= "button" value= "Comprar" onclick="redirectToProductInfo('${products.id}')"> 
+            <input id "id${products.id} class="cartbttn " type= "button" value= "Añadir al carrito" onclick="addToCart('${products.id}')"> 
             </div>
             </div>
             </div>`;

@@ -158,7 +158,7 @@ function getCommentsList(productId) {
        <span class="visually-hidden">Next</span>
       </button>`
 
-    const relProducts = document.getElementById('related-products');
+    const relProducts = document.getElementById('related-products');  
     relProducts.innerHTML = `
       <h3>Productos relacionados</h3>
       <div class="row row-cols-1 row-cols-md-3 g-4">
