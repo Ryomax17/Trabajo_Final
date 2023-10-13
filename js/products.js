@@ -53,7 +53,6 @@ function showProductsList(array) {
       </div>
       </div>
       
-      </button>
       `;
     }
   }

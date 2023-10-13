@@ -28,6 +28,19 @@ document.addEventListener("DOMContentLoaded", function () {
         return null;
     }
     
+function phoneDropdown(){
+    cambiarUsuario = document.getElementById("cuenta");
+    cambiarUsuario.innerHTML = `
+           <div id="dropdown"> ${usuarioChange.email} 
+            <ul id="dropdown-containPhone">
+                <li class="dropdown-item"><a href="my-profile.html">Mi perfil</a></li>
+                <li class="dropdown-item"><a href="cart.html" >Carrito</a></li>
+                <li class="dropdown-item" id="cerrarSesion">Cerrar sesion</li>
+            </ul>
+            </div>
+            `
+}  
+
     let recuerdameValue = getCookie('recuerdame');
     let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
     let usuarioChange = JSON.parse(localStorage.getItem("usuarioChange"));
@@ -35,8 +48,9 @@ document.addEventListener("DOMContentLoaded", function () {
     
     if (usuarioChange.email !== null) {
         let cambiarUsuario = document.getElementById("cuenta");
+        cambiarUsuario.removeAttribute("href");
         cambiarUsuario.innerHTML = `
-           <div id="dropdown"> ${usuarioChange.email} 
+           <div id="dropdown" onclick="phoneDropdown()"> ${usuarioChange.email} 
             <ul id="dropdown-contain">
                 <li class="dropdown-item"><a href="my-profile.html">Mi perfil</a></li>
                 <li class="dropdown-item"><a href="cart.html" >Carrito</a></li>

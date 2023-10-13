@@ -12,8 +12,7 @@ async function getPrechargedProduct() {
 function prechargedProduct(products) {
     let htmlContentToAppend = "";
     htmlContentToAppend = `
-      <td class= "h-25" style="width: 100px">
-      <img src="${products.image}" alt="${products.name}" class="img-thumbnail"></td>
+      <td class= "h-25" style="width: 100px"> <img src="${products.image}" alt="${products.name}" class="img-thumbnail"> </td>
       <td>${products.name}</td>
       <td>${products.currency} ${products.unitCost}</td>
       <td>
