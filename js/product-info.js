@@ -117,16 +117,15 @@ function getCommentsList(productId) {
 
     imagesHTML += 
       `<div class="carousel-item active">
-        <img src="${objImages[0]}" class="d-block w-100" alt="...">
+        <img src="${objImages[0]}" class="d-block w-100 max-img" alt="...">
       </div>`;
 
     for (let i = 1; i < imagesQty; i++) {
       imagesHTML += 
-      `<div class="carousel-item">
-        <img src="${objImages[i]}" class="d-block w-100" alt="...">
+      `<div class="carousel-item ">
+        <img src="${objImages[i]}" class="d-block w-100 max-img" alt="...">
       </div>`;
     }
-    console.log(imagesHTML);
 
     return imagesHTML;
   }
@@ -167,10 +166,10 @@ function cargarProducto(productData) {
   const productImage = document.getElementById('carousel-container');
 
   productImage.innerHTML = ` 
-    <div class="carousel-inner">
+    <div class="carousel-inner row">
       ${addImages(length, productImages)}
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carousel-container" data-bs-slide="prev">
+    
+      <button class="carousel-control-prev" type="button" data-bs-target="#carousel-container" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
@@ -178,6 +177,7 @@ function cargarProducto(productData) {
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
+    </div>
   `;
 
   const relProducts = document.getElementById('related-products');  
