@@ -44,21 +44,25 @@
     <div id="carousel-container" class="carousel slide" data-bs-ride="carousel"></div>
 
     </div>
-    <div id="comments-container row col-md-6">
-      <h3 id="titulocoment">Comentarios</h3>
-      <div id="add-comments col-md-6">
-      <h5></h5>
-      <input type="text" id="add-comments-box" name="add-comments-box" placeholder="Agrega un comentario..." style="opacity: 0.5;" value=""> 
-      <button class="mb-3" id="comment-button" onclick="addComments()" type="button">Comentar</button>
-      <div class="mb-3"> 
-      <button onclick="getRate(1)" class="fa fa-star checked-btn">1</button>
-      <button onclick="getRate(2)" class="fa fa-star checked-btn">2</button>
-      <button onclick="getRate(3)" class="fa fa-star checked-btn">3</button>
-      <button onclick="getRate(4)" class="fa fa-star checked-btn">4</button>
-      <button onclick="getRate(5)" class="fa fa-star checked-btn">5</button>
+    <div class="container day-mode card my-5" id="product-info">
+      <div id="comments-container row col-md-6">
+        <h3 id="titulocoment">Comentarios</h3>
+        <div id="add-comments col-md-6">
+        <h5></h5>
+        <input type="text" id="add-comments-box" name="add-comments-box" placeholder="Agrega un comentario..." style="opacity: 0.5;" value=""> 
+        <button class="mb-3" id="comment-button" onclick="addComments()" type="button">Comentar</button>
+        <div class="mb-3"> 
+        <button onclick="getRate(1)" class="fa fa-star checked-btn">1</button>
+        <button onclick="getRate(2)" class="fa fa-star checked-btn">2</button>
+        <button onclick="getRate(3)" class="fa fa-star checked-btn">3</button>
+        <button onclick="getRate(4)" class="fa fa-star checked-btn">4</button>
+        <button onclick="getRate(5)" class="fa fa-star checked-btn">5</button>
+      </div>
     </div>
-  </div>
-      <div id="comments-box"></div>
+        <div id="comments-box"></div>
+      </div>
+  
+      <div id="related-products"></div>
     </div>
     
     <div id="related-products"></div>
