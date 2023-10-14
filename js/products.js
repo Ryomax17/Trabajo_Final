@@ -36,6 +36,7 @@ function showProductsList(array) {
         (maxCount != undefined && parseInt(products.cost) <= maxCount))
     ) {
       htmlContentToAppend += `
+<<<<<<< Updated upstream
       <button id="id${products.id}" class=" btn m-0 " type="button" onclick="redirectToProductInfo('${products.id}')">
       <div id="${products.id} " class="list-group-item containerprincipal list-group-item-action cursor-active" >
 
@@ -53,6 +54,21 @@ function showProductsList(array) {
       <small class="mb-1 textcontent txtcont">${products.currency}${products.cost} </small>
       
   
+=======
+      <button id="id${products.id}" class="btn" type="button" onclick="redirectToProductInfo('${products.id}')">
+      <div id="${products.id}" class="list-group-item list-group-item-action cursor-active " >
+      <div class="row">
+      <div class="col-sm-6 container  ">
+      <img src="${products.image}" alt="${products.name}" class="img-thumbnail w-auto h-auto  h-auto m-3" >
+      </div>
+      <div class="col-sm-6">
+      <div class="d-flex justify-content-between">
+      <h5 class="mb-1">${products.name}</h5>
+      <p class="text-muted d-none d-lg-block">${products.soldCount} artículos</p>
+      </div>
+      <p class="mb-1">${products.description}</p>
+      <p class="mb-1 txtcont">${products.currency}${products.cost} </p>
+>>>>>>> Stashed changes
       </div>
       </div>
       </div>
