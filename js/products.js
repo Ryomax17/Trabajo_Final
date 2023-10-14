@@ -51,13 +51,10 @@ function showProductsList(array) {
       </div>
       <p class=" textcontent mb-1 ">${products.description}</p>
       <small class="mb-1 textcontent txtcont">${products.currency}${products.cost} </small>
-      
-  
       </div>
       </div>
       </div>
       
-      </button>
       `;
     }
   }
