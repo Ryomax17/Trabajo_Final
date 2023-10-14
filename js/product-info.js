@@ -117,13 +117,13 @@ function getCommentsList(productId) {
 
     imagesHTML += 
       `<div class="carousel-item active">
-        <img src="${objImages[0]}" class="d-block w-100 max-img" alt="...">
+        <img src="${objImages[0]}" class="d-block w-100 max-img img-thumbnail" alt="...">
       </div>`;
 
     for (let i = 1; i < imagesQty; i++) {
       imagesHTML += 
       `<div class="carousel-item ">
-        <img src="${objImages[i]}" class="d-block w-100 max-img" alt="...">
+        <img src="${objImages[i]}" class="d-block w-100 max-img img-thumbnail" alt="...">
       </div>`;
     }
 
