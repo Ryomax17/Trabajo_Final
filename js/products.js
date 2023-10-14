@@ -36,19 +36,23 @@ function showProductsList(array) {
         (maxCount != undefined && parseInt(products.cost) <= maxCount))
     ) {
       htmlContentToAppend += `
-      <button id="id${products.id}" class="btn" type="button" onclick="redirectToProductInfo('${products.id}')">
-      <div id="${products.id}" class="list-group-item list-group-item-action cursor-active" >
-      <div class="row">
-      <div class="col-3">
-      <img src="${products.image}" alt="${products.name}" class="img-thumbnail" ">
+      <button id="id${products.id}" class=" btn m-0 " type="button" onclick="redirectToProductInfo('${products.id}')">
+      <div id="${products.id} " class="list-group-item containerprincipal list-group-item-action cursor-active" >
+
+      <div class="container p-0 m-0 containerprincipal">
+      
+      <div class=" col-lg-4 col-md-4 col-sm-7 ">
+      <img src="${products.image}" alt="${products.name}" class="img-thumbnail imagenproducts">
       </div>
-      <div class="col">
-      <div class="d-flex w-100 justify-content-between">
-      <h4 class="mb-1">${products.name}</h4>
-      <small class="text-muted">${products.soldCount} artículos</small>
+      <div class="textcontent col-lg-8 col-md-5 col-sm-5">
+      <div class="d-flex justify-content-between">
+      <h6 class="title mb-1">${products.name}</h6>
+      <small class="text-muted d-none d-sm-none">${products.soldCount} artículos</small>
       </div>
-      <p class="mb-1">${products.description}</p>
-      <small class="mb-1 txtcont">${products.currency}${products.cost} </small>
+      <p class=" textcontent mb-1 ">${products.description}</p>
+      <small class="mb-1 textcontent txtcont">${products.currency}${products.cost} </small>
+      
+  
       </div>
       </div>
       </div>

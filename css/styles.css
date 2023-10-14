@@ -610,3 +610,161 @@ body.night-mode #titulocoment {
 body.night-mode {
   background-color: #141414;
 }
+
+
+
+@media (max-width: 568px) {
+  .textcontent {
+    font-size: 0.8em;
+      justify-content: start;
+      text-align: start;
+      padding-top: 0.8em;
+    
+
+  }
+}
+@media (max-width: 568px) {
+  .title {
+    font-size: 1.1em;
+  }
+}
+
+@media (max-width: 568px) {
+  .imagenproducts {
+    width:80%;
+   
+  }
+}
+@media (max-width: 568px)  {
+  .containerprincipal{
+display: flex;
+  flex-direction:column;
+
+    margin: 0
+  }
+}
+
+
+@media (min-width: 569px) and (max-width:800px) {
+  .containerprincipal { 
+    display: flex;
+  }
+
+}
+
+
+@media (min-width: 569px) and (max-width:800px) {
+  .imagenproducts {
+    width: 90%;
+
+  }
+}
+@media (min-width: 569px) and (max-width:800px) {
+  .title {
+    font-size: 1.3em;
+
+  }
+}
+@media (min-width: 569px) and (max-width:800px) {
+  .textcontent{
+    font-size: 0.9em;
+    text-align: start;
+    justify-content: start;
+
+  }
+}
+@media (min-width: 570px) and (max-width:776px) {
+  .containerprincipal {
+    display: flex;
+    flex-direction: row;
+    
+  }
+
+}
+
+
+@media (min-width: 570px) and (max-width:777px) {
+  .imagenproducts {
+    width: 90%;
+
+  }
+}
+
+@media (min-width: 570px) and (max-width:777px) {
+  .title {
+    font-size: 1.1em;
+
+  }
+}
+
+@media (min-width: 570px) and (max-width:777px) {
+  .textcontent {
+    font-size: 0.8em;
+    text-align: start;
+    justify-content: start;
+
+  }
+}
+
+@media (min-width: 777px) and (max-width:1200px) {
+  .containerprincipal {
+    display: flex;
+    flex-direction: row;
+  }
+
+}
+
+
+@media (min-width: 777px) and (max-width:1200px) {
+  .imagenproducts {
+    width: 90%;
+
+  }
+}
+
+@media (min-width: 777px) and (max-width:1200px) {
+  .title {
+    font-size:1.5em;
+
+  }
+}
+
+@media (min-width: 777px) and (max-width:1200px) {
+  .textcontent {
+    font-size: 0.9em;
+    text-align: start;
+    justify-content: start;
+
+  }
+}
+@media (min-width: 1201px) and (max-width:1900px) {
+  .containerprincipal {
+    display: flex;
+    flex-direction: row;
+  }
+
+}
+
+
+@media (min-width: 1201px) and (max-width:1900px) {
+  .imagenproducts {
+    width: 90%;
+
+  }
+}
+
+@media (min-width:1201px) and (max-width:1900px) {
+  .title {
+    font-size: 1.5em;
+
+  }
+}
+
+@media (min-width: 1201px) and (max-width:1900px) {
+  .textcontent {
+    font-size: 0.9em;
+    text-align: start;
+    justify-content: start;
+
+  }
+}
