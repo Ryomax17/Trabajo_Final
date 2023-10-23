@@ -204,7 +204,6 @@ let esquinaval =esquina.value.trim()
  
 }
 
-=======
 //Porcentajes de envio
 function calcularEnvio() {
   const radioButtons = document.getElementsByName("inlineRadioOptions");
