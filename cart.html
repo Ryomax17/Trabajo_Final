@@ -59,38 +59,54 @@
       </div>   
       </div>
       <br>
+      <form novalidate id="form" class="needs-validation">
       <div class="form-check form-check-inline">
         <h4>Tipo de envío</h4>  
-        <div class="form-check form-check-inline">
-         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="premium">
+        <div class="form-check form-check-inline input-control">
+         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="premium" required>
          <label class="form-check-label" for="inlineRadio1">Premium 2 a 5 días(15%)</label>
        </div>
        <br>
-       <div class="form-check form-check-inline">
-         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="express">
+       <div class="form-check form-check-inline input-control">
+         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="express" required>
          <label class="form-check-label" for="inlineRadio2">Express 5 a 8 días(7%)</label>
        </div>
        <br>
-       <div class="form-check form-check-inline">
-         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="Estándar" >
+       <div class="form-check form-check-inline input-control">
+         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="Estándar" required >
          <label class="form-check-label" for="inlineRadio3">Estándar 12 a 15 días(5%)</label>
+         <div class="invalid-feedback text-danger">
+          Debe ingresar un tipo de envio
+         </div>
        </div>
-            <br>
-             <br>
-             <h4>Dirección de envío</h4>
-             <label>Calle</label>
-              <br> 
-              <input size="30" type="text" name="" id="">
-               <br> 
-               <label>Número</label>
-                <br> 
-                <input size="30" type="text" name="" id=""> <br> 
-                <label>Esquina</label>
-                 <br>
-                  <input size="30" type="text" name="" id=""> 
-                </form>
+
+        <div>
+             <h4 class="mb-4 mt-4">Dirección de envío</h4>
+              <div class="mb-4">
+                <div class="input-control">
+                  <label for="calle"class="mr-3 form-label">Calle</label>
+                <input class="mr-5  form-control" size="30" type="text" name="" id="calle" required>
+                <div class="invalid-feedback text-danger"> Debe ingresar una calle</div>
+                </div>
+                <div class="input-control">
+                   <label for="numero"class="mr-3 form-label">Número</label>
+                <input class="mr-3 form-control" size="30" type="number" name="" id="numero" required>
+                <div class="invalid-feedback text-danger"> Debe ingresar un numero</div>
+              </div>
+                
+                </div>
+               <div class="input-control">
+                  <label for="esquina" class="form-label">Esquina</label>
+                  <input class="form-control" size="30" type="text" name="" id="esquina" required>
+                  <div class="invalid-feedback text-danger">Debe ingresar una esquina</div>
                </div>
-    
+                </form>
+         </div>
+        </form>
+        <div>
+            <button type="submit" class="btn bg-primary text-light btn-block w-100 m-5 " id="endPurchase">Finalizar Compra</button>
+        </div>
+         
     
   </main>
   <footer class="text-muted">
