@@ -197,11 +197,11 @@ let esquinaval =esquina.value.trim()
   if (checked1.checked || checked2.checked || checked3.checked) {
     checkedIsValidated=true
   }
-  
+   form.classList.add('was-validated')
   if (calleIsValidated===true && esquinaIsValidated===true && numeroIsValidated===true &&checkedIsValidated===true) {
-    alert("compra realizada con exito")
+    //aca va la alerta
   }
-  form.classList.add('was-validated')
+ 
 }
 
 =======
