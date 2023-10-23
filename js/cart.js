@@ -168,8 +168,8 @@ async function main() {
 
 main();
 
-let calle =document.getElementById("calle");
-let esquina =document.getElementById("esquina");
+let calle = document.getElementById("calle");
+let esquina = document.getElementById("esquina");
 let numero = document.getElementById("numero");
 let form = document.getElementById("form");
 let checked1 = document.getElementById("inlineRadio1");
@@ -177,50 +177,51 @@ let checked2 = document.getElementById("inlineRadio2");
 let checked3 = document.getElementById("inlineRadio3");
 let containalert = document.getElementById("containAlert");
 
-
 form.addEventListener("submit", function (e) {
-
-  e.preventDefault()
+  e.preventDefault();
   validateInputs();
 });
 
 function validateInputs() {
-  let calleIsValidated = false
-let esquinaIsValidated = false
-  let numeroIsValidated = false
-  let checkedIsValidated=false
+  let calleIsValidated = false;
+  let esquinaIsValidated = false;
+  let numeroIsValidated = false;
+  let checkedIsValidated = false;
 
-let calleval =calle.value.trim()
-let esquinaval =esquina.value.trim()
-  let numeroval = numero.value.trim()
-  
-  if (calleval=== "" ) {
+  let calleval = calle.value.trim();
+  let esquinaval = esquina.value.trim();
+  let numeroval = numero.value.trim();
+
+  if (calleval === "") {
     calle.classList.add("is-invalid");
-    
   } else {
     calle.classList.remove("is-invalid");
-    calleIsValidated=true
+    calleIsValidated = true;
   }
-  if (esquinaval=== "") {
-   esquina.classList.add("is-invalid")
+  if (esquinaval === "") {
+    esquina.classList.add("is-invalid");
   } else {
     esquina.classList.remove("is-invalid");
-    esquinaIsValidated=true
+    esquinaIsValidated = true;
   }
-  if (numeroval=== "") {
-   numero.classList.add("is-invalid")
+  if (numeroval === "") {
+    numero.classList.add("is-invalid");
   } else {
     numero.classList.remove("is-invalid");
-    numeroIsValidated=true
+    numeroIsValidated = true;
   }
   if (checked1.checked || checked2.checked || checked3.checked) {
-    checkedIsValidated=true
+    checkedIsValidated = true;
   }
-   form.classList.add('was-validated')
-  if (calleIsValidated===true && esquinaIsValidated===true && numeroIsValidated===true &&checkedIsValidated===true) {
+  form.classList.add("was-validated");
+  if (
+    calleIsValidated === true &&
+    esquinaIsValidated === true &&
+    numeroIsValidated === true &&
+    checkedIsValidated === true
+  ) {
     //aca va la alerta
   }
- 
 }
 
 //Porcentajes de envio
@@ -257,36 +258,36 @@ function calcularEnvio() {
 }
 
 const metodoCredito = document.getElementById("credito");
-        const metodoTransferencia = document.getElementById("transferencia");
-        const formularioCredito = document.getElementById("formularioCredito");
-        const formularioTransferencia = document.getElementById("formularioTransferencia");
-        const mpseleccionado = document.getElementById("mpseleccionado");
+const metodoTransferencia = document.getElementById("transferencia");
+const formularioCredito = document.getElementById("formularioCredito");
+const formularioTransferencia = document.getElementById(
+  "formularioTransferencia"
+);
+const mpseleccionado = document.getElementById("mpseleccionado");
 
-        metodoCredito.addEventListener("change", function() {
-            if (metodoCredito.checked) {
-                formularioCredito.style.display = "block";
-                formularioTransferencia.style.display = "none";
-                mpseleccionado.textContent = "Tarjeta de crédito";
-            }
-        });
+metodoCredito.addEventListener("change", function () {
+  if (metodoCredito.checked) {
+    formularioCredito.style.display = "block";
+    formularioTransferencia.style.display = "none";
+    mpseleccionado.textContent = "Tarjeta de crédito";
+  }
+});
 
-        metodoTransferencia.addEventListener("change", function() {
-            if (metodoTransferencia.checked) {
-                formularioTransferencia.style.display = "block";
-                formularioCredito.style.display = "none";
-                mpseleccionado.textContent = "Transferencia";
-            }
-        });
+metodoTransferencia.addEventListener("change", function () {
+  if (metodoTransferencia.checked) {
+    formularioTransferencia.style.display = "block";
+    formularioCredito.style.display = "none";
+    mpseleccionado.textContent = "Transferencia";
+  }
+});
 
-        const guardarmp = document.getElementById("guardarmp");
-        guardarmp.addEventListener("click", function() {
-            if (metodoCredito.checked) {
-                mpseleccionado.textContent = "Tarjeta de crédito";
-            }
+const guardarmp = document.getElementById("guardarmp");
+guardarmp.addEventListener("click", function () {
+  if (metodoCredito.checked) {
+    mpseleccionado.textContent = "Tarjeta de crédito";
+  }
 
-            if (metodoTransferencia.checked) {
-                mpseleccionado.textContent = "Transferencia";
-            }
-        });
-
-
+  if (metodoTransferencia.checked) {
+    mpseleccionado.textContent = "Transferencia";
+  }
+});
