@@ -34,31 +34,34 @@
         </ul>
       </div>
       <input type="checkbox" id="switch" onclick="toggleMode()">
-      <label  for="switch" class="lblswitch"></label>
+      <label for="switch" class="lblswitch"></label>
     </div>
   </nav>
   <main>
     <br>
     <h2 class="centrar">Carrito de compras</h2>
     <div class="container">
-        <div class="table-responsive-sm">
-          <table class="table table-striped" id="tablaProductos">
-              <thead>
-                  <tr>
-                      <th></th>
-                      <th>Artículo</th>
-                      <th>Precio</th>
-                      <th>Cantidad</th>
-                      <th>Subtotal</th>
-                      <th></th>
-                  </tr>
-              </thead>
-              <tbody id="cart-container">
-              </tbody>
-          </table>
-      </div>   
+      <div class="table-responsive-sm">
+        <table class="table table-striped" id="tablaProductos">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Artículo</th>
+              <th>Precio</th>
+              <th>Cantidad</th>
+              <th>Subtotal</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="cart-container">
+          </tbody>
+        </table>
       </div>
-      <br>
+    </div>
+    <br>
+    <div class="form-check form-check-inline card">
+      <h4>Tipo de envío</h4>
+      
       <form novalidate id="form" class="needs-validation">
       <div class="form-check form-check-inline">
         
@@ -103,9 +106,7 @@
                 </form>
          </div>
         </form>
-        <div>
-            <button type="submit" class="btn bg-primary text-light btn-block w-100 m-5 " id="endPurchase">Finalizar Compra</button>
-        </div>
+        
          
        <br>
        <br>
@@ -113,33 +114,108 @@
        <div class="container">
         <div class="table-responsive-sm">
           <table class="table table-striped" id="tablaProductos">
-              <thead>
-                <tr>
-                  <td>Subtotal</td>
-                  <td id="subtotal-final"></td>
+            <thead>
+              <tr>
+                <td>Subtotal</td>
+                <td id="subtotal-final"></td>
               </tr>
-              <tr> 
-                  <td>Costo de envío</td>
-                  <td id="costo-envio"></td>
+              <tr>
+                <td>Costo de envío</td>
+                <td id="costo-envio"></td>
               </tr>
-              </thead>
-              <tbody id="cart-container">
-              </tbody>
+            </thead>
+            <tbody id="cart-container">
+            </tbody>
           </table>
-      </div>   
+        </div>
       </div>
-
-       <h5 id="precio-final"></h5>
+      <h5 id="precio-final"></h5>
+      <br>
+      <br>
     </div>
-    
-    
+
+      <div class="form-check form-check-inline  my-5">
+      <h4>Forma de pago:</h4>
+      <p id="mpseleccionado">No ha seleccionado</p>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Seleccionar
+      </button>
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered"> <!-- Utiliza modal-dialog-centered para centrar el contenido -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Elige tu método de pago</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body m-4">
+                    <div>
+                      <p><input type="radio" id="credito" class="form-check-input" name="payOptions">Tarjeta de crédito</p>
+                    </div>
+                    <div class="modal-footer container" id="formularioCredito" style="display: none">
+                        <div class="row gy-2">
+                            <div class="col-md-12 col-lg-6">
+                                <label for="cc-name" class="form-label">Nombre en la tarjeta</label>
+                                <input type="text" class="form-control" id="cc-name" placeholder="" required="">
+                                <small class="text-muted">Nombre completo como se muestra en la tarjeta</small>
+                                <div class="invalid-feedback">
+                                    Se requiere el nombre en la tarjeta
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-6">
+                                <label for="cc-number" class="form-label">Número de tarjeta</label>
+                                <input type="number" class="form-control" id="cc-number" placeholder="" required="">
+                                <div class="invalid-feedback">
+                                    Se requiere número de tarjeta de crédito
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="cc-expiration" class="form-label">Vencimiento</label>
+                                <input type="month" class="form-control" id="cc-expiration" placeholder="" required="">
+                                <div class="invalid-feedback">
+                                    Fecha de vencimiento requerida
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="cc-cvv" class="form-label">CVV</label>
+                                <input type="number" class="form-control" id="cc-cvv" placeholder="" required="">
+                                <div class="invalid-feedback">
+                                    Código de seguridad requerido
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <p><input type="radio" id="transferencia" class="form-check-input" name="payOptions">Transferencia</p>
+                    </div>
+                    <div class="modal-footer " id="formularioTransferencia" style="display: none;">
+                        <div class="row gy-2">
+                            <div class="col-md-12 col-lg-6">
+                                <input type="number" class="form-control" id="numeroCuenta">
+                                <small class="text-muted">Ingrese el número de cuenta</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="guardarmp" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <div>
+    <button type="submit" class="btn bg-primary text-light btn-block w-100 m-5 " id="endPurchase">Finalizar Compra</button>
+</div>
   </main>
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+      </p>
     </div>
   </footer>
   <div id="spinner-wrapper">
@@ -157,4 +233,3 @@
 </body>
 
 </html>
-
