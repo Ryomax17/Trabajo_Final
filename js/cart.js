@@ -18,13 +18,13 @@ function prechargedProduct(products) {
   htmlContentToAppend = `
     <td class="h-25" style="width: 100px"><img src="${products.image}" alt="${products.name}" class="img-thumbnail"></td>
     <td>${products.name}</td>
-    <td>${products.currency} ${products.unitCost}</td>
+    <td>${products.currency} ${products.currency === 'UYU' ? (products.unitCost * conversionUyuDolar).toFixed(2) : products.unitCost}</td>
     <td>
     <button class="btn btn-sm btn-primary" onclick="reducirCantidadPrecharged('${products.id}')">-</button>
     <span class="mx-2">${products.quantity}</span>
     <button class="btn btn-sm btn-primary" onclick="aumentarCantidadPrecharged('${products.id}')">+</button>
     </td>
-    <td id="total_${products.id}"><b>${products.currency} ${products.unitCost * products.quantity * conversionUyuDolar}</b></td>
+    <td id="total_${products.id}"><b>${products.currency} ${products.currency === 'UYU' ? (products.unitCost * products.quantity * conversionUyuDolar).toFixed(2) : products.unitCost * products.quantity}</b></td>
     <td><input id="id${products.id}" class="cartbttn" type="button" value="Sacar del carrito""></td>`;
 
   document.getElementById("cart-container").innerHTML += htmlContentToAppend;
@@ -55,24 +55,24 @@ function getUserCart() {
   for (let i = 0; i < cartArray.length; i++) {
     let cart = cartArray[i];
     let costoTotalUyu = cart.cost * cart.quantity; // Subtotal en UYU
-    let costoTotalUsd = costoTotalUyu * conversionUyuDolar; // Subtotal en USD
+    let costoTotalUsd = cart.currency === 'USD' ? cart.cost : costoTotalUyu * conversionUyuDolar; // Subtotal en USD si ya está en USD
     subtotalUyu += costoTotalUyu; // Sumar al subtotal en UYU
     htmlContentToAppend += `<tr>
       <td class="h-25" style="width: 100px">
-        <img src="${cart.image}" alt="${cart.name}" class="img-thumbnail"></td>
+        <img src="${cart.image}" alt "${cart.name}" class="img-thumbnail"></td>
       <td>${cart.name}</td>
-      <td>${cart.currency} ${cart.cost}</td>
+      <td>${cart.currency} ${cart.currency === 'UYU' ? (cart.cost * conversionUyuDolar).toFixed(2) : cart.cost}</td>
       <td>
         <button class="btn btn-sm btn-primary" onclick="reducirCantidad('${cart.id}')">-</button>
         <span class="mx-2">${cart.quantity}</span>
         <button class="btn btn-sm btn-primary" onclick="aumentarCantidad('${cart.id}')">+</button>
       </td>
-      <td id="total_${cart.id}"><b>${cart.currency} ${costoTotalUsd.toFixed(2)}</b></td>
+      <td id="total_${cart.id}"><b>${cart.currency} ${cart.currency === 'UYU' ? (costoTotalUsd).toFixed(2) : cart.cost * cart.quantity}</b></td>
       <td><input id="id${cart.id}" class="cartbttn" type="button" value="Sacar del carrito" onclick="eliminarDelCarrito(${cart.id})"></td>
     </tr>`;
   }
 
-  document.getElementById("precio-final").textContent = `Total a pagar: ${cartArray[0].currency} ${(subtotalUyu * conversionUyuDolar).toFixed(2)}`; // Mostrar el subtotal total en UYU y su equivalente en USD
+  document.getElementById("precio-final").textContent = `Total a pagar: ${cartArray[0].currency} ${(subtotalUyu * conversionUyuDolar).toFixed(2)}`;
   document.getElementById("cart-container").innerHTML = htmlContentToAppend;
   calcularEnvio();
 }
@@ -119,12 +119,12 @@ function eliminarDelCarrito(productoId) {
     cartArray.splice(index, 1);
     const productoCarrito = document.getElementById(productoId);
     if (productoCarrito) {
-      productoCarrito remove();
+      productoCarrito.remove();
     }
 
     const precioTotalElement = document.getElementById('precioTotalElement');
     if (precioTotalElement) {
-      precioTotal = cartArray.reduce((total, p) => total + p.cost, 0);
+      precioTotal = cartArray.reduce((total, p) => total + (p.currency === 'UYU' ? p.cost * conversionUyuDolar : p.cost), 0);
       precioTotalElement.textContent = `Precio Total: ${cartArray[0].currency} ${(precioTotal * conversionUyuDolar).toFixed(2)}`;
     }
     localStorage.setItem("cart", JSON.stringify(cartArray));
@@ -163,17 +163,14 @@ function calcularEnvio() {
         porcentajeEnvio = 0.05;
       }
 
-      break; // No es necesario seguir verificando los otros radio buttons
+      break;
     }
   }
 
-  // Calcular el costo de envío en USD usando el subtotal en UYU
   costoEnvio = subtotalUyu * porcentajeEnvio * conversionUyuDolar;
-
-  // Calcular el precio total en USD usando el subtotal en UYU
   precioFinal = subtotalUyu * conversionUyuDolar + costoEnvio;
 
-  document.getElementById("costo-envio").textContent = `${cartArray[0].currency} ${(costoEnvio).toFixed(2)}`;
-  document.getElementById("subtotal-final").textContent = `${cartArray[0].currency} ${(subtotalUyu).toFixed(2)}`;
+  document.getElementById("costo-envio").textContent = `Costo de envío: ${cartArray[0].currency} ${(costoEnvio).toFixed(2)}`;
+  document.getElementById("subtotal-final").textContent = `Subtotal: ${cartArray[0].currency} ${(subtotalUyu * conversionUyuDolar).toFixed(2)}`;
   document.getElementById("precio-final").textContent = `Total a pagar: ${cartArray[0].currency} ${(precioFinal).toFixed(2)}`;
 }
