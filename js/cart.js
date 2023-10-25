@@ -234,3 +234,26 @@ function calcularEnvio() {
   });
 }
 
+const metodoCredito = document.getElementById("credito");
+    const metodoTransferencia = document.getElementById("transferencia");
+    const formularioCredito = document.getElementById("formularioCredito");
+    const formularioTransferencia = document.getElementById("formularioTransferencia");
+    const mpseleccionado = document.getElementById("mpseleccionado");
+
+    document.getElementById("guardarmp").addEventListener("click", function () {
+        if (metodoCredito.checked) {
+            mpseleccionado.textContent = "Tarjeta de crédito";
+        } else if (metodoTransferencia.checked) {
+            mpseleccionado.textContent = "Transferencia";
+        }
+    });
+
+    document.getElementById("credito").addEventListener("click", function () {
+        formularioCredito.style.display = "block";
+        formularioTransferencia.style.display = "none";
+    });
+
+    document.getElementById("transferencia").addEventListener("click", function () {
+        formularioTransferencia.style.display = "block";
+        formularioCredito.style.display = "none";
+    });
