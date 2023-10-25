@@ -65,7 +65,14 @@ function getUserCart() {
   subtotal = 0;
   for (let i = 0; i < cartArray.length; i++) {
     let cart = cartArray[i];
-    let costoTotal = cart.cost * cart.quantity;
+    let costoTotal;
+
+    if (cart.currency === "UYU") {
+      costoTotal = (cart.cost / 39) * cart.quantity;
+    } else {
+      costoTotal = cart.cost * cart.quantity;
+    }
+
     subtotal += costoTotal;
     htmlContentToAppend += `<tr>
         <td class= "h-25" style="width: 100px">
@@ -92,9 +99,7 @@ function getUserCart() {
         </tr>`;
   }
 
-  document.getElementById("precio-final").textContent = `Total a pagar: ${
-    cartArray[0].currency
-  } ${subtotal.toFixed(2)}`;
+  document.getElementById("subtotal-final").textContent = `USD ${subtotal.toFixed(2)}`;
   document.getElementById("cart-container").innerHTML = htmlContentToAppend;
   calcularEnvio();
 }
@@ -240,19 +245,13 @@ function calcularEnvio() {
       } else if (selectedValue === "estandar") {
         porcentajeEnvio = 0.05;
       }
-
-      costoEnvio = subtotal * porcentajeEnvio;
+            //Tipo de cambio = 39UYU
+      costoEnvio = (subtotal * porcentajeEnvio) / 39;
       precioFinal = subtotal + costoEnvio;
-
-      document.getElementById("costo-envio").textContent = `${
-        cartArray[0].currency
-      } ${costoEnvio.toFixed(2)}`;
-      document.getElementById("subtotal-final").textContent = `${
-        cartArray[0].currency
-      } ${subtotal.toFixed(2)}`;
-      document.getElementById("precio-final").textContent = `Total a pagar: ${
-        cartArray[0].currency
-      } ${precioFinal.toFixed(2)}`;
+console.log(subtotal)
+      document.getElementById("costo-envio").textContent = `USD ${costoEnvio.toFixed(2)}`;
+      document.getElementById("subtotal-final").textContent = `USD ${subtotal.toFixed(2)}`;
+      document.getElementById("precio-final").textContent = `Total a pagar: USD ${precioFinal.toFixed(2)}`;
     });
   });
 }
