@@ -4,6 +4,7 @@ let cartArray = [];
 let subtotalUyu = 0; // Subtotal en UYU
 let costoEnvio = 0;
 let precioFinal = 0;
+let currency; // Variable para almacenar la moneda del carrito
 
 async function getPrechargedProduct() {
   const respuesta = await fetch(`https://japceibal.github.io/emercado-api/user_cart/${25801}.json`);
@@ -28,6 +29,7 @@ function prechargedProduct(products) {
     <td><input id="id${products.id}" class="cartbttn" type="button" value="Sacar del carrito""></td>`;
 
   document.getElementById("cart-container").innerHTML += htmlContentToAppend;
+  currency = products.currency; // Almacena la moneda del carrito
 }
 
 function aumentarCantidadPrecharged() {
@@ -55,24 +57,24 @@ function getUserCart() {
   for (let i = 0; i < cartArray.length; i++) {
     let cart = cartArray[i];
     let costoTotalUyu = cart.cost * cart.quantity; // Subtotal en UYU
-    let costoTotalUsd = cart.currency === 'USD' ? cart.cost : costoTotalUyu * conversionUyuDolar; // Subtotal en USD si ya está en USD
+    let costoTotalUsd = currency === 'USD' ? cart.cost : costoTotalUyu * conversionUyuDolar; // Subtotal en USD si ya está en USD
     subtotalUyu += costoTotalUyu; // Sumar al subtotal en UYU
     htmlContentToAppend += `<tr>
       <td class="h-25" style="width: 100px">
         <img src="${cart.image}" alt "${cart.name}" class="img-thumbnail"></td>
       <td>${cart.name}</td>
-      <td>${cart.currency} ${cart.currency === 'UYU' ? (cart.cost * conversionUyuDolar).toFixed(2) : cart.cost}</td>
+      <td>${currency} ${currency === 'UYU' ? (cart.cost * conversionUyuDolar).toFixed(2) : cart.cost}</td>
       <td>
-        <button class="btn btn-sm btn-primary" onclick="reducirCantidad('${cart.id}')">-</button>
+        <button class "btn btn-sm btn-primary" onclick="reducirCantidad('${cart.id}')">-</button>
         <span class="mx-2">${cart.quantity}</span>
         <button class="btn btn-sm btn-primary" onclick="aumentarCantidad('${cart.id}')">+</button>
       </td>
-      <td id="total_${cart.id}"><b>${cart.currency} ${cart.currency === 'UYU' ? (costoTotalUsd).toFixed(2) : cart.cost * cart.quantity}</b></td>
+      <td id="total_${cart.id}"><b>${currency} ${currency === 'UYU' ? (costoTotalUsd).toFixed(2) : cart.cost * cart.quantity}</b></td>
       <td><input id="id${cart.id}" class="cartbttn" type="button" value="Sacar del carrito" onclick="eliminarDelCarrito(${cart.id})"></td>
     </tr>`;
   }
 
-  document.getElementById("precio-final").textContent = `Total a pagar: ${cartArray[0].currency} ${(subtotalUyu * conversionUyuDolar).toFixed(2)}`;
+  document.getElementById("precio-final").textContent = `Total a pagar: ${currency} ${(subtotalUyu * conversionUyuDolar).toFixed(2)}`;
   document.getElementById("cart-container").innerHTML = htmlContentToAppend;
   calcularEnvio();
 }
@@ -125,7 +127,7 @@ function eliminarDelCarrito(productoId) {
     const precioTotalElement = document.getElementById('precioTotalElement');
     if (precioTotalElement) {
       precioTotal = cartArray.reduce((total, p) => total + (p.currency === 'UYU' ? p.cost * conversionUyuDolar : p.cost), 0);
-      precioTotalElement.textContent = `Precio Total: ${cartArray[0].currency} ${(precioTotal * conversionUyuDolar).toFixed(2)}`;
+      precioTotalElement.textContent = `Precio Total: ${currency} ${(precioTotal * conversionUyuDolar).toFixed(2)}`;
     }
     localStorage.setItem("cart", JSON.stringify(cartArray));
     actualizarCarritoEnLocalStorage();
@@ -170,7 +172,7 @@ function calcularEnvio() {
   costoEnvio = subtotalUyu * porcentajeEnvio * conversionUyuDolar;
   precioFinal = subtotalUyu * conversionUyuDolar + costoEnvio;
 
-  document.getElementById("costo-envio").textContent = `Costo de envío: ${cartArray[0].currency} ${(costoEnvio).toFixed(2)}`;
-  document.getElementById("subtotal-final").textContent = `Subtotal: ${cartArray[0].currency} ${(subtotalUyu * conversionUyuDolar).toFixed(2)}`;
-  document.getElementById("precio-final").textContent = `Total a pagar: ${cartArray[0].currency} ${(precioFinal).toFixed(2)}`;
+  document.getElementById("costo-envio").textContent = `Costo de envío: ${currency} ${(costoEnvio).toFixed(2)}`;
+  document.getElementById("subtotal-final").textContent = `Subtotal: ${currency} ${(subtotalUyu * conversionUyuDolar).toFixed(2)}`;
+  document.getElementById("precio-final").textContent = `Total a pagar: ${currency} ${(precioFinal).toFixed(2)}`;
 }
