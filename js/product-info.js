@@ -158,7 +158,7 @@ function cargarProducto(productData) {
     <h2>${productData.name}</h2>
     <p>${productData.description}</p>
     <p>Precio: ${productData.currency} ${productData.cost}</p>
-    <button class="btn btn-primary comprar-btn" data-id="${productData.id}" onclick="alert('Producto agregado al carrito!'); addToCart('${productData.id}'); scrollUp();">Comprar</button>
+    <button class="btn btn-primary m-2 comprar-btn" data-id="${productData.id}" onclick="alert('Producto agregado al carrito!'); addToCart('${productData.id}'); scrollUp();">Comprar</button>
   `;
 
   const productImages = productData.images;

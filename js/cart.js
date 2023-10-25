@@ -50,10 +50,12 @@ function reducirCantidadPrecharged() {
   }
 }
 
+
 function getUserCart() {
   cartArray = JSON.parse(localStorage.getItem("cart")) || [];
   let htmlContentToAppend = "";
   subtotalUyu = 0; // Inicializar el subtotal en UYU
+   subtotalUyu += userCart.unitCost * userCart.quantity;
   for (let i = 0; i < cartArray.length; i++) {
     let cart = cartArray[i];
     let costoTotalUyu = cart.cost * cart.quantity; // Subtotal en UYU
@@ -73,10 +75,14 @@ function getUserCart() {
       <td><input id="id${cart.id}" class="cartbttn" type="button" value="Sacar del carrito" onclick="eliminarDelCarrito(${cart.id})"></td>
     </tr>`;
   }
+  if (cartArray && cartArray.length > 0) {
+    document.getElementById("precio-final").textContent = `Total a pagar: ${currency} ${(subtotalUyu * conversionUyuDolar).toFixed(2)}`;
+    calcularEnvio();
+    }
+    document.getElementById("cart-container").innerHTML += htmlContentToAppend;
+    return subtotal;
 
-  document.getElementById("precio-final").textContent = `Total a pagar: ${currency} ${(subtotalUyu * conversionUyuDolar).toFixed(2)}`;
-  document.getElementById("cart-container").innerHTML = htmlContentToAppend;
-  calcularEnvio();
+
 }
 
 function aumentarCantidad(productoId) {
@@ -147,7 +153,9 @@ async function main() {
   }
 }
 
+
 main();
+
 
 function calcularEnvio() {
   const radioButtons = document.getElementsByName("inlineRadioOptions");
