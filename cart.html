@@ -132,11 +132,14 @@
       <br>
       <br>
     </div>
-  <div>
+  <div class="text-md-start">
 
       <h4>Forma de pago:</h4>
       <p id="mpseleccionado">No ha seleccionado</p>
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<div id="mpseleccionadoError" class="invalid-feedback">
+  Debe seleccionar un método de pago
+</div>
+      <button type="button" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Seleccionar
       </button>
     </div>
@@ -157,7 +160,6 @@
                             <div class="col-md-12 col-lg-6">
                                 <label for="cc-name" class="form-label">Nombre en la tarjeta</label>
                                 <input type="text" class="form-control" id="cc-name" placeholder="" required="">
-                                <small class="text-muted">Nombre completo como se muestra en la tarjeta</small>
                                 <div class="invalid-feedback">
                                     Se requiere el nombre en la tarjeta
                                 </div>
@@ -170,17 +172,17 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <label for="cc-expiration" class="form-label">Vencimiento</label>
+                                <label for="cc-expiration" class="form-label">Vencimiento (MM/AA)</label>
                                 <input type="month" class="form-control" id="cc-expiration" placeholder="" required="">
                                 <div class="invalid-feedback">
-                                    Fecha de vencimiento requerida
+                                    Vencimiento
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <label for="cc-cvv" class="form-label">CVV</label>
+                                <label for="cc-cvv" class="form-label">Código de seguridad</label>
                                 <input type="number" class="form-control" id="cc-cvv" placeholder="" required="">
                                 <div class="invalid-feedback">
-                                    Código de seguridad requerido
+                                    Código de seguridad CVV
                                 </div>
                             </div>
                         </div>
@@ -191,21 +193,29 @@
                     <div class="modal-footer " id="formularioTransferencia" style="display: none;">
                         <div class="row gy-2">
                             <div class="col-md-12 col-lg-6">
-                                <input type="number" class="form-control" id="numeroCuenta">
-                                <small class="text-muted">Ingrese el número de cuenta</small>
+                              <label for="cc-cvv" class="form-label">Número de cuenta</label>
+                              <input type="number" class="form-control" id="cc-cvv" placeholder="" required="">
+                              <div class="invalid-feedback">
+                              Debe ingresar un número de cuenta  
+                              </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer mb-4 col-6">
-                        <button type="button" id="guardarmp" class=" btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <div class="modal-footer ">
+                        <button type="button" id="guardarmp" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div id="cartelCompra" class="hidden alert alert-success">
+      ¡Su compra ha sido exitosa!
+  </div>
     <div class="text-center mt-5">
       <button type="submit" class="btn bg-primary m-5 text-light w-50" id="endPurchase">Finalizar Compra</Finalizar></button>
     </div></form>
+
+    
                 
 </div>  
   
