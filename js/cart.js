@@ -246,7 +246,7 @@ function calcularEnvio() {
         porcentajeEnvio = 0.05;
       }
             //Tipo de cambio = 39UYU
-      costoEnvio = (subtotal * porcentajeEnvio) / 39;
+      costoEnvio = (subtotal * porcentajeEnvio);
       precioFinal = subtotal + costoEnvio;
 console.log(subtotal)
       document.getElementById("costo-envio").textContent = `USD ${costoEnvio.toFixed(2)}`;
