@@ -132,11 +132,14 @@
       <br>
       <br>
     </div>
-  <div>
+  <div class="text-md-start">
 
       <h4>Forma de pago:</h4>
       <p id="mpseleccionado">No ha seleccionado</p>
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<div id="mpseleccionadoError" class="invalid-feedback">
+  Debe seleccionar un método de pago
+</div>
+      <button type="button" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Seleccionar
       </button>
     </div>
@@ -193,6 +196,7 @@
                               <label for="cc-cvv" class="form-label">Número de cuenta</label>
                               <input type="number" class="form-control" id="cc-cvv" placeholder="" required="">
                               <div class="invalid-feedback text-danger">
+
                               Debe ingresar un número de cuenta  
                               </div>
                             </div>
