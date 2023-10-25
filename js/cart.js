@@ -291,3 +291,13 @@ guardarmp.addEventListener("click", function () {
     mpseleccionado.textContent = "Transferencia";
   }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  var botonCompra = document.getElementById('endPurchase');
+  var cartelCompra = document.getElementById('cartelCompra');
+
+  botonCompra.addEventListener('click', function() {
+      // Muestra el cartel de compra exitosa
+      cartelCompra.style.display = 'block';
+  });
+  });
