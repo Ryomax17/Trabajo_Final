@@ -160,6 +160,11 @@ let checked1 = document.getElementById("inlineRadio1");
 let checked2 = document.getElementById("inlineRadio2");
 let checked3 = document.getElementById("inlineRadio3");
 let containalert = document.getElementById("containAlert");
+<<<<<<< Updated upstream
+=======
+let mpseleccionadoError = document.getElementById("mpseleccionadoError");
+let mpseleccionadoincompleto = document.getElementById("mpseleccionadoincompleto");
+>>>>>>> Stashed changes
 
 
 form.addEventListener("submit", function (e) {
