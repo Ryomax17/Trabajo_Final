@@ -161,52 +161,54 @@ let checked2 = document.getElementById("inlineRadio2");
 let checked3 = document.getElementById("inlineRadio3");
 let containalert = document.getElementById("containAlert");
 
+document.addEventListener('DOMContentLoaded', function() {
+  var form = document.getElementById('form');
+  var cartelCompra = document.getElementById('cartelCompra');
 
-form.addEventListener("submit", function (e) {
+  form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      validateInputs();
+  });
 
-  e.preventDefault()
-  validateInputs();
+  function validateInputs() {
+      let calleIsValidated = false;
+      let esquinaIsValidated = false;
+      let numeroIsValidated = false;
+      let checkedIsValidated = false;
+
+      let calleval = calle.value.trim();
+      let esquinaval = esquina.value.trim();
+      let numeroval = numero.value.trim();
+
+      if (calleval === "") {
+          calle.classList.add("is-invalid");
+      } else {
+          calle.classList.remove("is-invalid");
+          calleIsValidated = true;
+      }
+      if (esquinaval === "") {
+          esquina.classList.add("is-invalid");
+      } else {
+          esquina.classList.remove("is-invalid");
+          esquinaIsValidated = true;
+      }
+      if (numeroval === "") {
+          numero.classList.add("is-invalid");
+      } else {
+          numero.classList.remove("is-invalid");
+          numeroIsValidated = true;
+      }
+      if (checked1.checked || checked2.checked || checked3.checked) {
+          checkedIsValidated = true;
+      }
+
+      if (calleIsValidated === true && esquinaIsValidated === true && numeroIsValidated === true && checkedIsValidated === true) {
+          // Si las validaciones son exitosas, muestra el cartel
+          cartelCompra.style.display = 'block';
+      }
+      form.classList.add('was-validated');
+  }
 });
-
-function validateInputs() {
-  let calleIsValidated = false
-let esquinaIsValidated = false
-  let numeroIsValidated = false
-  let checkedIsValidated=false
-
-let calleval =calle.value.trim()
-let esquinaval =esquina.value.trim()
-  let numeroval = numero.value.trim()
-  
-  if (calleval=== "" ) {
-    calle.classList.add("is-invalid");
-    
-  } else {
-    calle.classList.remove("is-invalid");
-    calleIsValidated=true
-  }
-  if (esquinaval=== "") {
-   esquina.classList.add("is-invalid")
-  } else {
-    esquina.classList.remove("is-invalid");
-    esquinaIsValidated=true
-  }
-  if (numeroval=== "") {
-   numero.classList.add("is-invalid")
-  } else {
-    numero.classList.remove("is-invalid");
-    numeroIsValidated=true
-  }
-  if (checked1.checked || checked2.checked || checked3.checked) {
-    checkedIsValidated=true
-  }
-  
-  if (calleIsValidated===true && esquinaIsValidated===true && numeroIsValidated===true &&checkedIsValidated===true) {
-    alert("compra realizada con exito")
-  }
-  form.classList.add('was-validated')
-}
-
 
 function calcularEnvio() {
   const radioButtons = document.getElementsByName("inlineRadioOptions");
