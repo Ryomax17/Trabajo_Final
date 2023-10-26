@@ -15,6 +15,8 @@ async function getPrechargedProduct() {
 
 function prechargedProduct(products) {
   let htmlContentToAppend = "";
+  subtotal = 0;
+  subtotal += userCart.unitCost * userCart.quantity;
   htmlContentToAppend = `
       <td class= "h-25" style="width: 100px"> <img src="${
         products.image
@@ -37,7 +39,8 @@ function prechargedProduct(products) {
         products.id
       }" class="cartbttn" type="button" value="Sacar del carrito""></td>
       `;
-
+  document.getElementById("precio-final").textContent = `Total a pagar: ${products.currency} ${subtotal.toFixed(2)}`;
+  calcularEnvio();
   document.getElementById("cart-container").innerHTML += htmlContentToAppend;
 }
 
@@ -93,9 +96,7 @@ function getUserCart() {
         </tr>`;
   }
   if (cartArray && cartArray.length > 0) {
-    document.getElementById("precio-final").textContent = `Total a pagar: ${
-      cartArray[0].currency
-    } ${subtotal.toFixed(2)}`;
+    document.getElementById("precio-final").textContent = `Total a pagar: ${cartArray[0].currency} ${subtotal.toFixed(2)}`;
     calcularEnvio();
   }
   document.getElementById("cart-container").innerHTML += htmlContentToAppend;
@@ -280,7 +281,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (fortransf == "" || forcvv == "" || forexpiration == "" || fornumber== "" || forname == "" ) {
       mpseleccionadoincompleto.classList.add("text-danger");
       mpseleccionadoincompleto.classList.remove("invalid-feedback");
-
     }
   }
 
@@ -293,6 +293,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     ) {
       cartelCompra.style.display = "block";
+      mpseleccionadoincompleto.classList.add("invalid-feedback");
 
     }
 
@@ -308,6 +309,8 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
       // Si las validaciones son exitosas, muestra el cartel
       cartelCompra.style.display = "block";
+      mpseleccionadoincompleto.classList.add("invalid-feedback");
+
     }
 
     form.classList.add("was-validated");
@@ -318,7 +321,6 @@ function calcularEnvio() {
   const radioButtons = document.getElementsByName("inlineRadioOptions");
   radioButtons.forEach(function (radio) {
     radio.addEventListener("change", function () {
-      calcularEnvio();
       const selectedValue = this.value.toLowerCase();
 
       let porcentajeEnvio = 0.0;
@@ -332,16 +334,10 @@ function calcularEnvio() {
 
       costoEnvio = subtotal * porcentajeEnvio;
       precioFinal = subtotal + costoEnvio;
-
-      document.getElementById("costo-envio").textContent = `${
-        cartArray[0].currency
-      } ${costoEnvio.toFixed(2)}`;
-      document.getElementById("subtotal-final").textContent = `${
-        cartArray[0].currency
-      } ${subtotal.toFixed(2)}`;
-      document.getElementById("precio-final").textContent = `Total a pagar: ${
-        cartArray[0].currency
-      } ${precioFinal.toFixed(2)}`;
+      console.log(subtotal);
+      document.getElementById("costo-envio").textContent = `${userCart.currency} ${costoEnvio.toFixed(2)}`;
+      document.getElementById("subtotal-final").textContent = `${userCart.currency} ${subtotal.toFixed(2)}`;
+      document.getElementById("precio-final").textContent = `Total a pagar: ${userCart.currency} ${precioFinal.toFixed(2)}`;
     });
   });
 }
