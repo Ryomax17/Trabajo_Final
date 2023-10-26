@@ -35,9 +35,11 @@ function prechargedProduct(products) {
       <td id="total_${products.id}"><b>${products.currency} ${
     products.unitCost * products.quantity
   }</b></td>
-      <td><input id="id${
-        products.id
-      }" class="cartbttn" type="button" value="Sacar del carrito""></td>
+  <td>
+  <button id="id${products.id}" class="btn btn-delete" type="button" style="border: 1px solid red; onclick="eliminarDelCarrito(${products.id})">
+    <i class="fas fa-trash" style="color: red;"></i>
+  </button>
+</td>
       `;
   document.getElementById("precio-final").textContent = `Total a pagar: ${products.currency} ${subtotal.toFixed(2)}`;
   calcularEnvio();
@@ -88,11 +90,11 @@ function getUserCart() {
         <td id="total_${cart.id}"><b>${cart.currency} ${
       cart.cost * cart.quantity
     }</b></td>
-        <td><input id="id${
-          cart.id
-        }" class="cartbttn" type="button" value="Sacar del carrito" onclick="eliminarDelCarrito(${
-      cart.id
-    })"></td>
+    <td>
+    <button id="id${cart.id}" style="border: 1px solid red;" class="btn btn-delete" type="button" onclick="eliminarDelCarrito(${cart.id})">
+      <i class="fas fa-trash" style="color: red;"></i>
+    </button>
+  </td>
         </tr>`;
   }
   if (cartArray && cartArray.length > 0) {
