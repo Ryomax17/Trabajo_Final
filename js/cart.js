@@ -280,7 +280,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (fortransf == "" || forcvv == "" || forexpiration == "" || fornumber== "" || forname == "" ) {
       mpseleccionadoincompleto.classList.add("text-danger");
       mpseleccionadoincompleto.classList.remove("invalid-feedback");
-
     }
   }
 
@@ -293,6 +292,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     ) {
       cartelCompra.style.display = "block";
+      mpseleccionadoincompleto.classList.add("invalid-feedback");
 
     }
 
@@ -308,6 +308,8 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
       // Si las validaciones son exitosas, muestra el cartel
       cartelCompra.style.display = "block";
+      mpseleccionadoincompleto.classList.add("invalid-feedback");
+
     }
 
     form.classList.add("was-validated");
