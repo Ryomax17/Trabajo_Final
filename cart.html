@@ -139,6 +139,9 @@
 <div id="mpseleccionadoError" class="invalid-feedback">
   Debe seleccionar un método de pago
 </div>
+<div id="mpseleccionadoincompleto" class="invalid-feedback">
+  Debe completar los datos de su método de pago
+</div>
       <button type="button" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Seleccionar
       </button>
@@ -159,28 +162,28 @@
                         <div class="row gy-2">
                             <div class="col-md-12 col-lg-6">
                                 <label for="cc-name" class="form-label">Nombre en la tarjeta</label>
-                                <input type="text" class="form-control" id="cc-name" placeholder="" required="">
+                                <input type="text" class="form-control" id="ccname" placeholder="" required="">
                                 <div class="invalid-feedback">
                                     Se requiere el nombre en la tarjeta
                                 </div>
                             </div>
                             <div class="col-md-12 col-lg-6">
                                 <label for="cc-number" class="form-label">Número de tarjeta</label>
-                                <input type="number" class="form-control" id="cc-number" placeholder="" required="">
+                                <input type="number" class="form-control" id="ccnumber" placeholder="" required="">
                                 <div class="invalid-feedback">
                                     Se requiere número de tarjeta de crédito
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <label for="cc-expiration" class="form-label">Vencimiento (MM/AA)</label>
-                                <input type="month" class="form-control" id="cc-expiration" placeholder="" required="">
+                                <input type="month" class="form-control" id="ccexpiration" placeholder="" required="">
                                 <div class="invalid-feedback">
                                     Vencimiento
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <label for="cc-cvv" class="form-label">Código de seguridad</label>
-                                <input type="number" class="form-control" id="cc-cvv" placeholder="" required="">
+                                <input type="number" class="form-control" id="cccvv" placeholder="" required="">
                                 <div class="invalid-feedback">
                                     Código de seguridad CVV
                                 </div>
@@ -194,7 +197,7 @@
                         <div class="row gy-2">
                             <div class="col-md-12 col-lg-6">
                               <label for="cc-cvv" class="form-label">Número de cuenta</label>
-                              <input type="number" class="form-control" id="cc-cvv" placeholder="" required="">
+                              <input type="number" class="form-control" id="cctransf" placeholder="" required="">
                               <div class="invalid-feedback">
                               Debe ingresar un número de cuenta  
                               </div>
