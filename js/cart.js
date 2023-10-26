@@ -216,11 +216,11 @@ document.addEventListener("DOMContentLoaded", function () {
     let forcvv=formcvv.value.trim();
     let fortransf=formtransf.value.trim();
     
-    var fnamess = false;
-    var fnumber= false;
-    var fexpiration = false;
-    var fcvv = false;
-    var ftransf = false;
+    let fnamess = false;
+    let fnumber= false;
+    let fexpiration = false;
+    let fcvv = false;
+    let ftransf = false;
 
 
     if (forname !== "") {
