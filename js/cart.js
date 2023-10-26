@@ -70,6 +70,13 @@ function getUserCart() {
   for (let i = 0; i < cartArray.length; i++) {
     let cart = cartArray[i];
     let costoTotal = cart.cost * cart.quantity;
+    if (cart.currency === "UYU") {
+      costoTotal = (cart.cost / 40) * cart.quantity;
+      cart.currency = "USD"
+      cart.cost = cart.cost / 40;
+    } else {
+      costoTotal = cart.cost * cart.quantity;
+    }
     subtotal += costoTotal;
     htmlContentToAppend += `<tr>
         <td class= "h-25" style="width: 100px">
@@ -77,26 +84,16 @@ function getUserCart() {
         <td>${cart.name}</td>
         <td>${cart.currency} ${cart.cost}</td>
         <td>
-        <button class="btn btn-sm btn-primary" onclick="reducirCantidad('${
-          cart.id
-        }')">-</button>
+        <button class="btn btn-sm btn-primary" onclick="reducirCantidad('${cart.id}')">-</button>
         <span class="mx-2">${cart.quantity}</span>
-        <button class="btn btn-sm btn-primary" onclick="aumentarCantidad('${
-          cart.id
-        }')">+</button>
+        <button class="btn btn-sm btn-primary" onclick="aumentarCantidad('${cart.id}')">+</button>
         </td>
-        <td id="total_${cart.id}"><b>${cart.currency} ${
-      cart.cost * cart.quantity
-    }</b></td>
-        <td><input id="id${
-          cart.id
-        }" class="cartbttn" type="button" value="Sacar del carrito" onclick="eliminarDelCarrito(${
-      cart.id
-    })"></td>
+        <td id="total_${cart.id}"><b>${cart.currency} ${cart.cost * cart.quantity}</b></td>
+        <td><input id="id${cart.id}" class="cartbttn" type="button" value="Sacar del carrito" onclick="eliminarDelCarrito(${cart.id})"></td>
         </tr>`;
   }
   if (cartArray && cartArray.length > 0) {
-    document.getElementById("precio-final").textContent = `Total a pagar: ${cartArray[0].currency} ${subtotal.toFixed(2)}`;
+    document.getElementById("precio-final").textContent = `Total a pagar: ${userCart.currency} ${subtotal.toFixed(2)}`;
     calcularEnvio();
   }
   document.getElementById("cart-container").innerHTML += htmlContentToAppend;
@@ -338,6 +335,7 @@ function calcularEnvio() {
       document.getElementById("costo-envio").textContent = `${userCart.currency} ${costoEnvio.toFixed(2)}`;
       document.getElementById("subtotal-final").textContent = `${userCart.currency} ${subtotal.toFixed(2)}`;
       document.getElementById("precio-final").textContent = `Total a pagar: ${userCart.currency} ${precioFinal.toFixed(2)}`;
+
     });
   });
 }
