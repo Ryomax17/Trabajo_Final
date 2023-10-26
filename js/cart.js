@@ -180,6 +180,15 @@ let checked2 = document.getElementById("inlineRadio2");
 let checked3 = document.getElementById("inlineRadio3");
 let containalert = document.getElementById("containAlert");
 let mpseleccionadoError = document.getElementById("mpseleccionadoError");
+let mpseleccionadoincompleto = document.getElementById("mpseleccionadoincompleto");
+
+let formname =document.getElementById("ccname");
+let formnumber=document.getElementById("ccnumber");
+let formexpiration=document.getElementById("ccexpiration");
+let formcvv=document.getElementById("cccvv");
+let formtransf=document.getElementById("cctransf");
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
   var form = document.getElementById("form");
@@ -190,15 +199,49 @@ document.addEventListener("DOMContentLoaded", function () {
     validateInputs();
   });
 
+
   function validateInputs() {
+
     let calleIsValidated = false;
     let esquinaIsValidated = false;
     let numeroIsValidated = false;
     let checkedIsValidated = false;
+   
 
     let calleval = calle.value.trim();
     let esquinaval = esquina.value.trim();
     let numeroval = numero.value.trim();
+
+    let forname =formname.value.trim();
+    let fornumber=formnumber.value.trim();
+    let forexpiration=formexpiration.value.trim();
+    let forcvv=formcvv.value.trim();
+    let fortransf=formtransf.value.trim();
+    
+    var fnamess = false;
+    var fnumber= false;
+    var fexpiration = false;
+    var fcvv = false;
+    var ftransf = false;
+
+
+    if (forname !== "") {
+      fnamess = true;
+    }
+    if (fornumber !== "") {
+      fnumber = true;
+    }
+    if (forexpiration !== "") {
+      fexpiration = true;
+    }
+    if (forcvv !== "") {
+      fcvv = true;
+    }
+    if (fortransf !== "") {
+      ftransf = true;
+    }
+
+
 
     if (calleval === "") {
       calle.classList.add("is-invalid");
@@ -233,11 +276,35 @@ document.addEventListener("DOMContentLoaded", function () {
       mpseleccionado.classList.remove("d-none");
     }
 
+    if (metodoCredito.checked || metodoTransferencia.checked) {
+    if (fortransf == "" || forcvv == "" || forexpiration == "" || fornumber== "" || forname == "" ) {
+      mpseleccionadoincompleto.classList.add("text-danger");
+      mpseleccionadoincompleto.classList.remove("invalid-feedback");
+
+    }
+  }
+
     if (
       calleIsValidated === true &&
       esquinaIsValidated === true &&
       numeroIsValidated === true &&
-      checkedIsValidated === true
+      checkedIsValidated === true &&
+      ftransf === true
+
+    ) {
+      cartelCompra.style.display = "block";
+
+    }
+
+    if (
+      calleIsValidated === true &&
+      esquinaIsValidated === true &&
+      numeroIsValidated === true &&
+      fnamess === true &&
+      fnumber === true &&
+      fexpiration === true &&
+      fcvv === true &&
+      checkedIsValidated ===  true
     ) {
       // Si las validaciones son exitosas, muestra el cartel
       cartelCompra.style.display = "block";
@@ -282,9 +349,7 @@ function calcularEnvio() {
 const metodoCredito = document.getElementById("credito");
 const metodoTransferencia = document.getElementById("transferencia");
 const formularioCredito = document.getElementById("formularioCredito");
-const formularioTransferencia = document.getElementById(
-  "formularioTransferencia"
-);
+const formularioTransferencia = document.getElementById("formularioTransferencia");
 const mpseleccionado = document.getElementById("mpseleccionado");
 
 document.getElementById("guardarmp").addEventListener("click", function () {
