@@ -23,7 +23,8 @@ window.onload = function () {
   function guardarDatos() {
     let nombre = document.getElementById('txtNombre').value;
     let apellido = document.getElementById('txtApellido').value;
-    
+    let btnAlert = document.getElementById('btnGuardar');
+
     if (nombre !=="" ||apellido !=="" ) {
       let segundoNombre = document.getElementById('txtSegundoNombre').value;
       let segundoApellido = document.getElementById('txtSegundoApellido').value;
@@ -36,11 +37,10 @@ window.onload = function () {
       valueLocal.segundoApellido = segundoApellido;
       valueLocal.email = email;
       valueLocal.telefono = telefono;
-    
       localStorage.setItem('datosGuardados', JSON.stringify(valueLocal));
-      alert('Datos guardados'); 
+      alert("Datos guardados correctamente")
     }
-    alert('Faltan datos')
+    alert("Faltan datos")
   }
   
   function agregarDatosValue() {
