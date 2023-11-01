@@ -1,3 +1,14 @@
+let usuarioChange = JSON.parse(localStorage.getItem("usuarioChange"));
+const vLocal = JSON.parse(localStorage.getItem('datosGuardados'))
+let seeName=usuarioChange.email;
+phoneDropdown();
+
+function phoneDropdown(){
+
+    if (vLocal.nombre  !== "" && vLocal.apellido !=="") {
+        seeName=vLocal.nombre+" "+vLocal.apellido;
+    }        
+    }
 function toggleMode() {
     const body = document.body
     body.classList.toggle('day-mode');
@@ -28,29 +39,15 @@ document.addEventListener("DOMContentLoaded", function () {
         return null;
     }
     
-function phoneDropdown(){
-    cambiarUsuario = document.getElementById("cuenta");
-    cambiarUsuario.innerHTML = `
-           <div id="dropdown"> ${usuarioChange.email} 
-            <ul id="dropdown-containPhone">
-                <li class="dropdown-item"><a href="my-profile.html">Mi perfil</a></li>
-                <li class="dropdown-item"><a href="cart.html" >Carrito</a></li>
-                <li class="dropdown-item" id="cerrarSesion">Cerrar sesion</li>
-            </ul>
-            </div>
-            `
-}  
-
     let recuerdameValue = getCookie('recuerdame');
-    let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-    let usuarioChange = JSON.parse(localStorage.getItem("usuarioChange"));
     console.log(usuarioChange);
     
     if (usuarioChange.email !== null) {
+
         let cambiarUsuario = document.getElementById("cuenta");
         cambiarUsuario.removeAttribute("href");
         cambiarUsuario.innerHTML = `
-           <div id="dropdown" onclick="phoneDropdown()"> ${usuarioChange.email} 
+           <div id="dropdown" onclick="phoneDropdown()"> ${seeName} 
             <ul id="dropdown-contain">
                 <li class="dropdown-item"><a href="my-profile.html">Mi perfil</a></li>
                 <li class="dropdown-item"><a href="cart.html" >Carrito</a></li>
