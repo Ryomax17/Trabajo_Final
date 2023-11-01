@@ -38,9 +38,9 @@ window.onload = function () {
       valueLocal.email = email;
       valueLocal.telefono = telefono;
       localStorage.setItem('datosGuardados', JSON.stringify(valueLocal));
-//va otro alert
+      alert("Datos guardados correctamente")
     }
-    btnAlert.onclick=swal("¡Buen trabajo!", "¡Hiciste clic en el botón!", "éxito");
+    alert("Faltan datos")
   }
   
   function agregarDatosValue() {
