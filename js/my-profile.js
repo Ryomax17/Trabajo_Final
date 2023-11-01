@@ -22,21 +22,25 @@ window.onload = function () {
   
   function guardarDatos() {
     let nombre = document.getElementById('txtNombre').value;
-    let segundoNombre = document.getElementById('txtSegundoNombre').value;
     let apellido = document.getElementById('txtApellido').value;
-    let segundoApellido = document.getElementById('txtSegundoApellido').value;
-    let email = document.getElementById('txtEmail').value;
-    let telefono = document.getElementById('txtTelefono').value;
-  
-    valueLocal.nombre = nombre;
-    valueLocal.segundoNombre = segundoNombre;
-    valueLocal.apellido = apellido;
-    valueLocal.segundoApellido = segundoApellido;
-    valueLocal.email = email;
-    valueLocal.telefono = telefono;
-  
-    localStorage.setItem('datosGuardados', JSON.stringify(valueLocal));
-    alert('Datos guardados');
+    
+    if (nombre !=="" ||apellido !=="" ) {
+      let segundoNombre = document.getElementById('txtSegundoNombre').value;
+      let segundoApellido = document.getElementById('txtSegundoApellido').value;
+      let email = document.getElementById('txtEmail').value;
+      let telefono = document.getElementById('txtTelefono').value;
+    
+      valueLocal.nombre = nombre;
+      valueLocal.segundoNombre = segundoNombre;
+      valueLocal.apellido = apellido;
+      valueLocal.segundoApellido = segundoApellido;
+      valueLocal.email = email;
+      valueLocal.telefono = telefono;
+    
+      localStorage.setItem('datosGuardados', JSON.stringify(valueLocal));
+      alert('Datos guardados'); 
+    }
+    alert('Faltan datos')
   }
   
   function agregarDatosValue() {
