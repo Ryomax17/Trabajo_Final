@@ -9,25 +9,11 @@ function toggleMode() {
     document.body.className = claseGuardada; // Establece la clase del body
   }
   
-  // Escucha el evento 'beforeunload' para guardar la clase antes de recargar
   window.addEventListener('beforeunload', function() {
     const claseActual = document.body.className;
     localStorage.setItem('claseBody', claseActual); // Almacena la clase actual del body
   });
 
-  function phoneDropdown(){
-    let usuarioChange = JSON.parse(localStorage.getItem("usuarioChange"));
-    cambiarUsuario = document.getElementById("cuenta");
-    cambiarUsuario.innerHTML = `
-           <div id="dropdown"> ${usuarioChange.email} 
-            <ul id="dropdown-containPhone">
-                <li class="dropdown-item"><a href="my-profile.html">Mi perfil</a></li>
-                <li class="dropdown-item"><a href="cart.html" >Carrito</a></li>
-                <li class="dropdown-item" id="cerrarSesion">Cerrar sesion</li>
-            </ul>
-            </div>
-            `;
-};  
 
 document.addEventListener("DOMContentLoaded", function () {
     function getCookie(name) {
@@ -52,14 +38,14 @@ document.addEventListener("DOMContentLoaded", function () {
         let cambiarUsuario = document.getElementById("cuenta");
         cambiarUsuario.removeAttribute("href");
         cambiarUsuario.innerHTML = `
-           <div id="dropdown" onclick="phoneDropdown()"> ${usuarioChange.email} 
+           <div id="dropdown"> ${usuarioChange.email} 
             <ul id="dropdown-contain">
                 <li class="dropdown-item"><a href="my-profile.html">Mi perfil</a></li>
                 <li class="dropdown-item"><a href="cart.html" >Carrito</a></li>
                 <li class="dropdown-item" id="cerrarSesion">Cerrar sesion</li>
             </ul>
             </div>
-            `
+            `;
     }
     
     if (!window.location.pathname.includes("login.html")) {
