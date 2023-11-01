@@ -13,7 +13,6 @@ function showAlertSuccess() {
 
     usuarios.push(usuario);
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
-    // console.log(usuario); 
     
     setTimeout(function() {
         window.location.href = "login.html";

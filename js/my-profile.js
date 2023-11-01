@@ -4,66 +4,71 @@ window.onload = function () {
     agregarDatosValue();
   };
   
-  const valueLocal = JSON.parse(localStorage.getItem('datosGuardados')) || {
-    nombre: '',
-    segundoNombre: '',
-    apellido: '',
-    segundoApellido: '',
-    email: '',
-    telefono: ''
-  };
-  
-  document.addEventListener('DOMContentLoaded', function () {
-    document.querySelector('#btnGuardar').addEventListener('click', function () {
-      guardarDatos();
-      agregarDatosValue();
-    });
+document.addEventListener('DOMContentLoaded', function () {
+  const imageInput = document.getElementById('imageInput');
+  const profileImage = document.getElementById('profileImage');
+  const storedImageUrl = localStorage.getItem('userProfileImage');
+
+  if (storedImageUrl) {
+    profileImage.src = storedImageUrl;
+  }
+
+  imageInput.addEventListener('change', function (event) {
+    const selectedFile = event.target.files[0];
+
+    if (selectedFile) {
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        profileImage.src = e.target.result;
+        localStorage.setItem('userProfileImage', e.target.result);
+      };
+
+      reader.readAsDataURL(selectedFile);
+    }
   });
+
+  document.querySelector('#btnGuardar').addEventListener('click', function () {
+     guardarDatos();
+    agregarDatosValue();
+   });
+});
   
   function guardarDatos() {
+    const datosUsu = JSON.parse(localStorage.getItem('usuarioChange'));
     let nombre = document.getElementById('txtNombre').value;
     let apellido = document.getElementById('txtApellido').value;
+
+    if (nombre === "" || apellido === "") {
+      alert('Faltan datos');
+    } else {
+      datosUsu.segundoNombre = document.getElementById('txtSegundoNombre').value;
+      datosUsu.segundoApellido = document.getElementById('txtSegundoApellido').value;
+      datosUsu.telefono = document.getElementById('txtTelefono').value;
     
-    if (nombre !=="" ||apellido !=="" ) {
-      let segundoNombre = document.getElementById('txtSegundoNombre').value;
-      let segundoApellido = document.getElementById('txtSegundoApellido').value;
-      let email = document.getElementById('txtEmail').value;
-      let telefono = document.getElementById('txtTelefono').value;
-    
-      valueLocal.nombre = nombre;
-      valueLocal.segundoNombre = segundoNombre;
-      valueLocal.apellido = apellido;
-      valueLocal.segundoApellido = segundoApellido;
-      valueLocal.email = email;
-      valueLocal.telefono = telefono;
-    
-      localStorage.setItem('datosGuardados', JSON.stringify(valueLocal));
+      localStorage.setItem('usuarioChange', JSON.stringify(datosUsu));
       alert('Datos guardados'); 
     }
-    alert('Faltan datos')
   }
   
   function agregarDatosValue() {
+    const datosUsu = JSON.parse(localStorage.getItem('usuarioChange'));
+    console.log(datosUsu);
+    
     const sFistName = document.getElementById('txtSegundoNombre');
-    sFistName.value = valueLocal.segundoNombre;
+    sFistName.value = datosUsu.segundoNombre || "";
   
     const lastName = document.getElementById('txtApellido');
-    lastName.value = valueLocal.apellido;
+    lastName.value = datosUsu.apellido || "";
   
     const sLastName = document.getElementById('txtSegundoApellido');
-    sLastName.value = valueLocal.segundoApellido;
+    sLastName.value = datosUsu.segundoApellido || "";
   
     const txtTelNum = document.getElementById('txtTelefono');
-    txtTelNum.value = valueLocal.telefono;
+    txtTelNum.value = datosUsu.telefono || "";
   
     const firstName = document.getElementById('txtNombre');
-    firstName.value = valueLocal.nombre;
-  }
-  
-  function agregarEmail() {
-    const datosUsu = localStorage.getItem('usuarioChange');
-    const divFormulario = document.getElementById('txtEmail');
-    divFormulario.value = datosUsu.email;
+    firstName.value = datosUsu.nombre || "";
   }
   
   function agregarEmail() {
