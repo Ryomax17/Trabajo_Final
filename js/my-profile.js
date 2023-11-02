@@ -28,29 +28,42 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  document.querySelector('#btnGuardar').addEventListener('click', function () {
-     guardarDatos();
-    agregarDatosValue();
-   });
+  document.querySelector('#btnGuardar').addEventListener('click', function (e) {
+    e.preventDefault();
+    if (validateInputsProfile()) {
+      guardarDatos();
+      agregarDatosValue();
+      mostrarMensajeGuardado();
+    }
+  });
 });
+
+
+
   
   function guardarDatos() {
     const datosUsu = JSON.parse(localStorage.getItem('usuarioChange'));
     let nombre = document.getElementById('txtNombre').value;
     let apellido = document.getElementById('txtApellido').value;
+    let telefono=document.getElementById("txtTelefono").value;
 
-    if (nombre === "" || apellido === "") {
-      alert('Faltan datos');
+    
+    if (nombre === "" || apellido === "" || telefono==="") {
+      preventDefault();
+      validateInputsprofile();
     } else {
       datosUsu.segundoNombre = document.getElementById('txtSegundoNombre').value;
       datosUsu.segundoApellido = document.getElementById('txtSegundoApellido').value;
       datosUsu.telefono = document.getElementById('txtTelefono').value;
     
       localStorage.setItem('usuarioChange', JSON.stringify(datosUsu));
-      alert('Datos guardados'); 
     }
   }
   
+
+
+
+
   function agregarDatosValue() {
     const datosUsu = JSON.parse(localStorage.getItem('usuarioChange'));
     console.log(datosUsu);
@@ -77,4 +90,47 @@ document.addEventListener('DOMContentLoaded', function () {
       const divFormulario = document.getElementById('txtEmail');
       divFormulario.value = datosUsu.email;
     }
+  }
+
+
+
+
+
+
+  function validateInputsProfile() {
+    let formprof = document.getElementById("profileForm");
+    let cartelguardado= document.getElementById("cartelguardado");
+
+    let txtNombre = document.getElementById("txtNombre");
+    let txtNombrec = txtNombre.value.trim();
+    let txtApellido = document.getElementById("txtApellido");
+    let txtApellidoc = txtApellido.value.trim();
+    let txtTelefono = document.getElementById("txtTelefono");
+    let txtTelefonoc = txtTelefono.value.trim();
+
+  
+    if (txtNombrec === "") {
+      txtNombre.classList.add("is-invalid");
+      return false;
+    } else {
+      txtNombre.classList.remove("is-invalid");
+    }
+  
+    if (txtApellidoc === "") {
+      txtApellido.classList.add("is-invalid");
+      return false;
+    } else {
+      txtApellido.classList.remove("is-invalid");
+    }
+
+    if (txtTelefonoc === "") {
+      txtTelefono.classList.add("is-invalid");
+      return false;
+    } else {
+      txtTelefono.classList.remove("is-invalid");
+    }
+
+    cartelguardado.style.display = "block";
+    formprof.classList.add("was-validated");
+    return true;
   }
