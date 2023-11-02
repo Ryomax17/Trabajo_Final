@@ -8,22 +8,6 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
-  <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
-    }
-  </style>
 </head>
 
 <body>
@@ -55,54 +39,72 @@
       <label for="switch" class="lblswitch"></label>
     </div>
   </nav>
+  <div class="container">
+    <div id="divFormulario" class="card m-5 p-5">
+      <div class="text-center">
+        
+        <h2>Datos de mi perfil</h2>
+        <img id="profileImage" class="rounded m-2 img-thumbnail" src="https://us.123rf.com/450wm/martialred/martialred1608/martialred160800018/61263271-cuenta-de-usuario-perfil-del-icono-del-c%C3%ADrculo-plana-para-aplicaciones-y-sitios-web.jpg" alt="Imagen de perfil">
+      </div>
+      <form class="container my-5 col-8" id="profileForm">
+        <div id="cartelguardado" class="hidden text-center top-0 alert alert-success">
+          ¡Datos guardados de forma exitosa!
+        </div>
+        <div class="mb-3">
+          <label for="txtNombre" class="form-label">Nombre:<strong>*</strong></label>
+          <input type="text" class="form-control" id="txtNombre" name="nombre" required>
+          <div class="invalid-feedback text-danger">
+            Debes ingresar tu nombre
+          </div>
+        </div>
+  
+        <div class="mb-3 ">
+          <label for="txtSegundoNombre" class="form-label">Segundo nombre:</label>
+          <input type="text" class="form-control" id="txtSegundoNombre" name="segundo_nombre">
+        </div>
+  
+        <div class="mb-3">
+          <label for="txtApellido" class="form-label"> Apellido:<strong>*</strong>
+          </label>
+          <input type="text" class="form-control" id="txtApellido" name="apellido" required>
+          <div class="invalid-feedback text-danger">
+            Debes ingresar tu apellido
+          </div>
+        </div>
+  
+        <div class="mb-3">
+          <label for="txtSegundoApellido" class="form-label">Segundo apellido:</label>
+          <input type="text" class="form-control" id="txtSegundoApellido" name="segundo_apellido">
+        </div>
+  
+        <div class="mb-3">
+          <label for="txtEmail" class="form-label">Email:</label>
+          <input type="text" class="form-control" id="txtEmail" name="email" value="" disabled>
+        </div>
+  
+        <div class="mb-3">
+          <label for="txtTelefono"  class="form-label">Teléfono:<strong>*</strong></label>
+          <input type="tel" class="form-control" id="txtTelefono" name="telefono" required>
+          <div class="invalid-feedback text-danger">
+            Debes ingresar un teléfono de contacto
+          </div>
+        </div>
+  
+        <div class="mb-3">
+          <label for="imageInput" class="form-label">Subir nueva foto de perfil:</label>
+          <input type="file" id="imageInput" class="my-3 btn btn-dark btn-secondary" name="Imagen" accept="image/*">
+        </div>
 
+        <div class="text-end my-5">
+          <button class="btn btn-primary" id="btnGuardar">Guardar</button>
+        </div>
 
-  <div id="divFormulario" class="container text-center">
-    <div class="">
-      <h2>Datos de mi perfil</h2>
-      <img id="profileImage" class="rounded mx-auto d-block" src="https://us.123rf.com/450wm/martialred/martialred1608/martialred160800018/61263271-cuenta-de-usuario-perfil-del-icono-del-c%C3%ADrculo-plana-para-aplicaciones-y-sitios-web.jpg" alt="Imagen de perfil">
+      </form>
+     
     </div>
-
-    <form class="row g-3">
-      <div class=" col-md-6">
-        <label for="txtNombre" class="form-label">Nombre<span>*</span>:</label>
-        <input type="text" class="form-control" id="txtNombre" name="nombre" required>
-      </div>
-
-      <div class=" col-md-6">
-        <label for="txtSegundoNombre" class="form-label">Segundo nombre:</label>
-        <input type="text" class="form-control" id="txtSegundoNombre" name="segundo_nombre">
-      </div>
-
-      <div class=" col-md-6">
-        <label for="txtApellido" class="form-label">Apellido:<span>*</span></label>
-        <input type="text" class="form-control" id="txtApellido" name="apellido" required>
-      </div>
-
-      <div class=" col-md-6">
-        <label for="segundo_apellido" class="form-label">Segundo apellido:</label>
-        <input type="text" class="form-control" id="txtSegundoApellido" name="segundo_apellido">
-      </div>
-
-
-
-      <fieldset disabled class="col-12">
-        <label for="txtEmail" class="form-label">Email:<span>*</span></label>
-        <input type="text" class="form-control" id="txtEmail" name="email" value="">
-      </fieldset>
-
-      <label for="txtTelefono" class="form-label col-12">Teléfono de contacto:</label>
-      <input type="tel" class="form-control" id="txtTelefono" name="telefono">
-
-      
-      <input type="file" id="imageInput" name="Imagen" accept="image/*">
-
-      <div>
-        <button class="btn btn-primary " id="btnGuardar">Guardar</button>
-      </div>
-    </form>
+    
   </div>
-
+  
 
   <footer class="text-muted">
     <div class="container">
