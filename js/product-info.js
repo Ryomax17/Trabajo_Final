@@ -29,7 +29,8 @@ function addStars(starsQty) {
   return starsHTML;
 }
 
-function getRate(rate) {
+function getRate(rating) {
+  rate = rating;
   let buttons = document.querySelectorAll('.fa.fa-star.checked-btn');
 
   buttons.forEach(button => {
