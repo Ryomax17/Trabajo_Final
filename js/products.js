@@ -10,7 +10,7 @@ const ORDER_DESC_BY_PRICE = "10-1";
 let search = document.getElementById("buscador");
 let productsArray = [];
 
-function redirectToProductInfo (productsId) {
+function redirectToProductInfo(productsId) {
   var productToExport = productsArray.find(product => product.id == productsId);
   var productString = JSON.stringify(productToExport);
   localStorage.setItem('selectedProduct', productString);
@@ -20,8 +20,8 @@ function redirectToProductInfo (productsId) {
 };
 
 
-function seleccionarNumero(numero) {
-  document.getElementById('numeroSeleccionado').textContent = numero;
+function selectNumber(number) {
+  document.getElementById('numeroSeleccionado').textContent = number;
 }
 
 function showProductsList(array) {
@@ -50,7 +50,7 @@ function showProductsList(array) {
       <small class="text-muted d-none d-sm-none">${products.soldCount} artículos</small>
       </div>
       <p class=" textcontent mb-1 ">${products.description}</p>
-      <small class="mb-1 textcontent txtcont">${products.currency}${products.cost} </small>
+      <small class="mb-1 textcontent txtcont">${products.currency} ${products.cost} </small>
       </div>
       </div>
       </div>
@@ -61,7 +61,6 @@ function showProductsList(array) {
   document.getElementById("product-list").innerHTML = htmlContentToAppend;
 }
 
-//Hace lo mismo que sortCategories pero ordena el array por precio
 function sortCategoriesByPrice(criteria, array) {
   let p_result = [];
   if (criteria === ORDER_ASC_BY_PRICE) {
@@ -105,7 +104,6 @@ function setCatID(id) {
 }
 
 
-//es lo mismo que sort and show categories solo que acomodado a a funcion de asc y desc
 function sortAndShowAscAndDesc(sortCriteria, categoriesArray) {
   currentSortCriteria = sortCriteria;
   if (categoriesArray != undefined) {
@@ -124,14 +122,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const categoriaId = localStorage.getItem("catID");
 
   if (categoriaId) {
-    // Construye la URL de los productos utilizando el identificador de categoría almacenado.
     const PRODS_URL = `https://japceibal.github.io/emercado-api/cats_products/${categoriaId}.json`;
     fetch(PRODS_URL)
       .then((response) => response.json())
       .then((data) => {
         if (data.products) {
           productsArray = data.products;
-          // Verificamos que "products" exista en el objeto
           currentProductArray = data.products;
           showProductsList(currentProductArray);
         } else {
@@ -170,7 +166,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
     search.addEventListener("input", (e) => {
-      let inputText = e.target.value.toLowerCase().trim(); //obtiene el valor que tiene el input en cada momento-trim()me elimina los espacios en blanco que pueden haber-tolowercase cambia todo el texto a minuscula cuando es procesado para que me busque lo que quiero este usando mayus o minus.
+      let inputText = e.target.value.toLowerCase().trim();
       console.log(inputText);
       let mostrarfiltro = currentProductArray.filter(function (elmnt) {
         return (
