@@ -1,14 +1,14 @@
 cartArray = [];
 let subtotal = 0;
-let costoEnvio = 0;
-let precioFinal = 0;
+let shippingCost = 0;
+let finalPrice = 0;
 
 async function getPrechargedProduct() {
-  const respuesta = await fetch(
+  const respone = await fetch(
     `https://japceibal.github.io/emercado-api/user_cart/${25801}.json`
   );
-  response = await respuesta.json();
-  userCart = response.articles[0];
+  data = await respone.json();
+  userCart = data.articles[0];
   userCart.quantity = userCart.count;
   return userCart;
 }
@@ -24,11 +24,11 @@ function prechargedProduct(products) {
       <td>${products.name}</td>
       <td>${products.currency} ${products.unitCost}</td>
       <td>
-      <button class="btn btn-sm btn-primary" onclick="reducirCantidadPrecharged('${
+      <button class="btn btn-sm btn-primary" onclick="qntyDownPrecharged('${
         products.id
       }')">-</button>
       <span class="mx-2">${products.quantity}</span>
-      <button class="btn btn-sm btn-primary" onclick="aumentarCantidadPrecharged('${
+      <button class="btn btn-sm btn-primary" onclick="qntyUpPrecharged('${
         products.id
       }')">+</button>
       </td>
@@ -36,7 +36,7 @@ function prechargedProduct(products) {
     products.unitCost * products.quantity
   }</b></td>
   <td>
-  <button id="id${products.id}" class="btn btn-delete" type="button" style="border: 1px solid red; onclick="eliminarDelCarrito(${products.id})">
+  <button id="id${products.id}" class="btn btn-delete" type="button" style="border: 1px solid red; onclick="removeFromCart(${products.id})">
     <i class="fas fa-trash" style="color: red;"></i>
   </button>
 </td>
@@ -46,19 +46,19 @@ function prechargedProduct(products) {
   document.getElementById("cart-container").innerHTML += htmlContentToAppend;
 }
 
-function aumentarCantidadPrecharged() {
+function qntyUpPrecharged() {
   if (userCart.quantity) {
     userCart.quantity += 1;
-    vaciarCarrito();
+    clearCart();
     prechargedProduct(userCart);
     getUserCart();
   }
 }
 
-function reducirCantidadPrecharged() {
+function qntyDownPrecharged() {
   if (userCart.quantity && userCart.quantity > 1) {
     userCart.quantity -= 1;
-    vaciarCarrito();
+    clearCart();
     prechargedProduct(userCart);
     getUserCart();
   }
@@ -86,13 +86,13 @@ function getUserCart() {
         <td>${cart.name}</td>
         <td>${cart.currency} ${cart.cost}</td>
         <td>
-        <button class="btn btn-sm btn-primary" onclick="reducirCantidad('${cart.id}')">-</button>
+        <button class="btn btn-sm btn-primary" onclick="qntyDown('${cart.id}')">-</button>
         <span class="mx-2">${cart.quantity}</span>
-        <button class="btn btn-sm btn-primary" onclick="aumentarCantidad('${cart.id}')">+</button>
+        <button class="btn btn-sm btn-primary" onclick="qntyUp('${cart.id}')">+</button>
         </td>
         <td id="total_${cart.id}"><b>${cart.currency} ${cart.cost * cart.quantity}</b></td>
         <td>
-        <button id="id${cart.id}" style="border: 1px solid red;" class="btn btn-delete" type="button" onclick="eliminarDelCarrito(${cart.id})">
+        <button id="id${cart.id}" style="border: 1px solid red;" class="btn btn-delete" type="button" onclick="removeFromCart(${cart.id})">
           <i class="fas fa-trash" style="color: red;"></i>
         </button>
       </td>        </tr>`;
@@ -105,48 +105,48 @@ function getUserCart() {
   return subtotal;
 }
 
-function aumentarCantidad(productoId) {
+function qntyUp(productoId) {
   var product = cartArray.find((p) => p.id == productoId);
   if (product) {
     product.quantity += 1;
-    actualizarCarritoEnLocalStorage();
-    vaciarCarrito();
+    uptadeCartOnLocalStorage();
+    clearCart();
     prechargedProduct(userCart);
     getUserCart();
   }
 }
 
-function reducirCantidad(productoId) {
+function qntyDown(productoId) {
   var product = cartArray.find((p) => p.id == productoId);
   if (product) {
     if (product.quantity > 1) {
       product.quantity -= 1;
-      actualizarCarritoEnLocalStorage();
-      vaciarCarrito();
+      uptadeCartOnLocalStorage();
+      clearCart();
       prechargedProduct(userCart);
       getUserCart();
     }
   }
 }
 
-function vaciarCarrito() {
+function clearCart() {
   var cartContainer = document.getElementById("cart-container");
   if (cartContainer) {
     cartContainer.innerHTML = "";
   }
 }
 
-function actualizarCarritoEnLocalStorage() {
+function uptadeCartOnLocalStorage() {
   var cartString = JSON.stringify(cartArray);
   localStorage.setItem("cart", cartString);
 }
-function eliminarDelCarrito(productoId) {
+function removeFromCart(productoId) {
   const index = cartArray.findIndex((p) => p.id === productoId);
   if (index !== -1) {
     cartArray.splice(index, 1);
-    const productoCarrito = document.getElementById(productoId);
-    if (productoCarrito) {
-      productoCarrito.remove();
+    const cartProduct = document.getElementById(productoId);
+    if (cartProduct) {
+      cartProduct.remove();
     }
 
     const precioTotalElement = document.getElementById("precioTotalElement");
@@ -155,8 +155,8 @@ function eliminarDelCarrito(productoId) {
       precioTotalElement.textContent = `Precio Total: $${precioTotal}`;
     }
     localStorage.setItem("cart", JSON.stringify(cartArray));
-    actualizarCarritoEnLocalStorage();
-    vaciarCarrito();
+    uptadeCartOnLocalStorage();
+    clearCart();
     prechargedProduct(userCart);
     getUserCart();
   }
@@ -210,7 +210,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let numeroIsValidated = false;
     let checkedIsValidated = false;
    
-
     let calleval = calle.value.trim();
     let esquinaval = esquina.value.trim();
     let numeroval = numero.value.trim();
@@ -227,7 +226,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let fcvv = false;
     let ftransf = false;
 
-
     if (forname !== "") {
       fnamess = true;
     }
@@ -243,8 +241,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (fortransf !== "") {
       ftransf = true;
     }
-
-
 
     if (calleval === "") {
       calle.classList.add("is-invalid");
@@ -309,7 +305,6 @@ document.addEventListener("DOMContentLoaded", function () {
       fcvv === true &&
       checkedIsValidated ===  true
     ) {
-      // Si las validaciones son exitosas, muestra el cartel
       cartelCompra.style.display = "block";
       mpseleccionadoincompleto.classList.add("invalid-feedback");
 
@@ -334,12 +329,12 @@ function calcularEnvio() {
         porcentajeEnvio = 0.05;
       }
 
-      costoEnvio = subtotal * porcentajeEnvio;
-      precioFinal = subtotal + costoEnvio;
+      shippingCost = subtotal * porcentajeEnvio;
+      finalPrice = subtotal + shippingCost;
       console.log(subtotal);
-      document.getElementById("costo-envio").textContent = `${userCart.currency} ${costoEnvio.toFixed(2)}`;
+      document.getElementById("costo-envio").textContent = `${userCart.currency} ${shippingCost.toFixed(2)}`;
       document.getElementById("subtotal-final").textContent = `${userCart.currency} ${subtotal.toFixed(2)}`;
-      document.getElementById("precio-final").textContent = `Total a pagar: ${userCart.currency} ${precioFinal.toFixed(2)}`;
+      document.getElementById("precio-final").textContent = `Total a pagar: ${userCart.currency} ${finalPrice.toFixed(2)}`;
 
     });
   });

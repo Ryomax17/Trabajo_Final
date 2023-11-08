@@ -1,18 +1,17 @@
 function showAlertSuccess() {
     document.getElementById("alert-success").classList.add("show");
-    localStorage.setItem("usuarioCreado", "true");
 
-    let usuario = {
-        nombre: document.getElementById("nombre").value,
-        apellido: document.getElementById("apellido").value,
+    let user = {
+        name: document.getElementById("nombre").value,
+        lastname: document.getElementById("apellido").value,
         email: document.getElementById("email").value,
         password: document.getElementById("password1").value
     };
 
-    let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+    let usersArray = JSON.parse(localStorage.getItem("usersArray")) || [];
 
-    usuarios.push(usuario);
-    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+    usersArray.push(user);
+    localStorage.setItem("usersArray", JSON.stringify(usersArray));
     
     setTimeout(function() {
         window.location.href = "login.html";
@@ -26,13 +25,13 @@ document.addEventListener("DOMContentLoaded", function() {
     let regBtn = document.getElementById("regBtn");
     
     regBtn.addEventListener("click", function() {
-        let nombre = document.getElementById("nombre").value;
-        let apellido = document.getElementById("apellido").value;
+        let name = document.getElementById("nombre").value;
+        let lastname = document.getElementById("apellido").value;
         let email = document.getElementById("email").value;
         let password1 = document.getElementById("password1").value;
         let password2 = document.getElementById("password2").value;
 
-        if (nombre.trim() === "" || apellido.trim() === "") {
+        if (name.trim() === "" || lastname.trim() === "") {
             showAlertError();
             return;
         }
@@ -52,8 +51,8 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
 
-        let terminosCheckbox = document.getElementById("terminos");
-        if (!terminosCheckbox.checked) {
+        let termsCheckBox = document.getElementById("terminos");
+        if (!termsCheckBox.checked) {
             showAlertError();
             return;
         }
