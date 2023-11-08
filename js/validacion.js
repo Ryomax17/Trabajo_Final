@@ -14,18 +14,18 @@ window.addEventListener('beforeunload', function () {
     localStorage.setItem('claseBody', claseActual);
 });
 
+function getCookie(name) {
+    const cookieArray = document.cookie.split('; ');
+    for (const cookie of cookieArray) {
+        const [cookieName, cookieValue] = cookie.split('=');
+        if (cookieName === name) {
+            return decodeURIComponent(cookieValue);
+        }
+    }
+    return null;
+}
 
 document.addEventListener("DOMContentLoaded", function () {
-    function getCookie(name) {
-        const cookieArray = document.cookie.split('; ');
-        for (const cookie of cookieArray) {
-            const [cookieName, cookieValue] = cookie.split('=');
-            if (cookieName === name) {
-                return decodeURIComponent(cookieValue);
-            }
-        }
-        return null;
-    }
 
     let rememberMeValue = getCookie('rememberMe');
     let loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
@@ -46,13 +46,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-
-    if (!window.location.pathname.includes("login.html")) {
-        if (rememberMeValue !== 'true' && !localStorage.getItem("loggedIn")) {
-            setTimeout(function () {
-                window.location.href = "login.html";
-            }, 2000);
-        }
+    if (window.location.pathname.includes("login.html")) {
+    } else if (rememberMeValue !== 'true' || !localStorage.getItem("loggedIn")) {
+        setTimeout(function () {
+            window.location.href = "login.html";
+        }, 2000);
     }
 
 
@@ -64,7 +62,6 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.removeItem("loggedIn");
             console.log(loggedUser);
             e.stopPropagation()
-
 
         });
     }
