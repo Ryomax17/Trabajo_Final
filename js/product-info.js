@@ -45,8 +45,8 @@ function getDate() {
   const year = actualTime.getFullYear();
   const month = String(actualTime.getMonth() + 1).padStart(2, '0');
   const day = String(actualTime.getDate()).padStart(2, '0');
-  const hours = String(actualTime.gethourss()).padStart(2, '0');
-  const minutes = String(actualTime.getminutess()).padStart(2, '0');
+  const hours = String(actualTime.getHours()).padStart(2, '0');
+  const minutes = String(actualTime.getMinutes()).padStart(2, '0');
   const seconds = String(actualTime.getSeconds()).padStart(2, '0');
 
   const formatedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
