@@ -1,21 +1,20 @@
 document.addEventListener("DOMContentLoaded", function() {
  
     let regBtn = document.getElementById("regBtn");
-    console.log(regBtn);
     regBtn.addEventListener("click", function() {
         let email = document.getElementById("email1").value;
         let password = document.getElementById("password1").value;
 
-        let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+        let usersArray = JSON.parse(localStorage.getItem("usersArray")) || [];
 
-        let usuarioEncontrado = usuarios.find(user => user.email === email && user.password === password);
+        let userFound = usersArray.find(user => user.email === email && user.password === password);
 
-        if (!usuarioEncontrado) {
+        if (!userFound) {
             showAlertError();
             return;
         }
-        usuarioString = JSON.stringify(usuarioEncontrado);
-        localStorage.setItem("usuarioChange", usuarioString);
+        userString = JSON.stringify(userFound);
+        localStorage.setItem("loggedUser", userString);
         showAlertSuccess();
     });
 
@@ -23,14 +22,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function showAlertSuccess() {
         document.getElementById("alert-success").classList.add("show");
-        localStorage.setItem("sesionIniciada", "true");
-        let recuerdameCheckbox = document.getElementById("recuerdame");
-        if (recuerdameCheckbox.checked) {
+        localStorage.setItem("loggedIn", "true");
+        let rememberMeCheckbox = document.getElementById("recuerdame");
+        if (rememberMeCheckbox.checked) {
             expirationDate.setDate(expirationDate.getDate() + 7);
-            const cookieValue = "recuerdame=true; expires=" + expirationDate.toUTCString() + "; path=/";
+            const cookieValue = "rememberMe=true; expires=" + expirationDate.toUTCString() + "; path=/";
             document.cookie = cookieValue;
         } else {
-            document.cookie = "recuerdame=true; path=/";
+            document.cookie = "rememberMe=true; path=/";
         }
         setTimeout(function() {
             window.location.href = "index.html";

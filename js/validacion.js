@@ -6,12 +6,12 @@ function toggleMode() {
  
   if (localStorage.getItem('claseBody')) {
     const claseGuardada = localStorage.getItem('claseBody');
-    document.body.className = claseGuardada; // Establece la clase del body
+    document.body.className = claseGuardada;
   }
   
   window.addEventListener('beforeunload', function() {
     const claseActual = document.body.className;
-    localStorage.setItem('claseBody', claseActual); // Almacena la clase actual del body
+    localStorage.setItem('claseBody', claseActual);
   });
 
 
@@ -27,18 +27,15 @@ document.addEventListener("DOMContentLoaded", function () {
         return null;
     }
     
-
-
-    let recuerdameValue = getCookie('recuerdame');
-    let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-    let usuarioChange = JSON.parse(localStorage.getItem("usuarioChange"));
-    console.log(usuarioChange);
+    let rememberMeValue = getCookie('rememberMe');
+    let loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+    console.log(loggedUser);
     
-    if (usuarioChange.email !== null) {
-        let cambiarUsuario = document.getElementById("cuenta");
-        cambiarUsuario.removeAttribute("href");
-        cambiarUsuario.innerHTML = `
-           <div id="dropdown"> ${usuarioChange.email} 
+    if (loggedUser.email !== null) {
+        let account = document.getElementById("cuenta");
+        account.removeAttribute("href");
+        account.innerHTML = `
+           <div id="dropdown"> ${loggedUser.email} 
             <ul id="dropdown-contain">
                 <li class="dropdown-item"><a href="my-profile.html">Mi perfil</a></li>
                 <li class="dropdown-item"><a href="cart.html" >Carrito</a></li>
@@ -49,17 +46,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     
     if (!window.location.pathname.includes("login.html")) {
-        if (recuerdameValue !== 'true' && !localStorage.getItem("sesionIniciada")) {
+        if (rememberMeValue !== 'true' && !localStorage.getItem("loggedIn")) {
             setTimeout(function () {
                 window.location.href = "login.html";
             }, 2000);
         }
     }
-    let cerrarSesion = document.getElementById("cerrarSesion");
-    cerrarSesion.addEventListener("click", function (e) {
-        localStorage.removeItem("usuarioChange");
-        localStorage.removeItem("sesionIniciada");
-        console.log(usuarioChange);    
+    let logOut = document.getElementById("cerrarSesion");
+    logOut.addEventListener("click", function (e) {
+        localStorage.removeItem("loggedUser");
+        localStorage.removeItem("loggedIn");
+        console.log(loggedUser);    
         e.stopPropagation()
          
  
