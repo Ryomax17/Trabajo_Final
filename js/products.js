@@ -50,7 +50,7 @@ function showProductsList(array) {
       <small class="text-muted d-none d-sm-none">${products.soldCount} artículos</small>
       </div>
       <p class=" textcontent mb-1 ">${products.description}</p>
-      <small class="mb-1 textcontent txtcont">${products.currency}${products.cost} </small>
+      <small class="mb-1 textcontent txtcont">${products.currency} ${products.cost} </small>
       </div>
       </div>
       </div>
