@@ -1,14 +1,22 @@
 function showAlertSuccess() {
     document.getElementById("alert-success").classList.add("show");
 
+    let usersArray = JSON.parse(localStorage.getItem("usersArray")) || [];
+    
+    let lastUserId = localStorage.getItem("lastUserId");
+    lastUserId = lastUserId ? parseInt(lastUserId, 10) : 0;
+    const newUserId = lastUserId + 1;
+
+
     let user = {
+        id: newUserId,
         name: document.getElementById("nombre").value,
         lastname: document.getElementById("apellido").value,
         email: document.getElementById("email").value,
         password: document.getElementById("password1").value
     };
 
-    let usersArray = JSON.parse(localStorage.getItem("usersArray")) || [];
+    localStorage.setItem("lastUserId", newUserId.toString());
 
     usersArray.push(user);
     localStorage.setItem("usersArray", JSON.stringify(usersArray));
