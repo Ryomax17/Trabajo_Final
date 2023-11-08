@@ -92,7 +92,10 @@
   
         <div class="mb-3">
           <label for="imageInput" class="form-label">Subir nueva foto de perfil:</label>
-          <input type="file" id="imageInput" class="my-3 btn btn-dark btn-secondary" name="Imagen" accept="image/*">
+          <div class="input-wrapper">
+            <button type="button" id="uploadButton" class="my-3 btn btn-dark btn-secondary">Subir Imagen</button>
+            <input type="file" id="imageInput" class="hidden-input" name="Imagen" accept="image/*">
+          </div>
         </div>
 
         <div class="text-end my-5">

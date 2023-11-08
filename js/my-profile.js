@@ -134,3 +134,7 @@ document.addEventListener('DOMContentLoaded', function () {
     formprof.classList.add("was-validated");
     return true;
   }
+
+  document.getElementById('uploadButton').addEventListener('click', function() {
+    document.getElementById('imageInput').click();
+  });

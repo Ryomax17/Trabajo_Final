@@ -788,3 +788,11 @@ display: flex;
 .hidden {
   display: none;
 }
+
+.hidden-input {
+  height: 1px;
+  width: 1px;
+  position: absolute;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
