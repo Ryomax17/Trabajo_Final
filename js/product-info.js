@@ -149,8 +149,11 @@ function chargeProducts(productData) {
     <h2>${productData.name}</h2>
     <p>${productData.description}</p>
     <p>Precio: ${productData.currency} ${productData.cost}</p>
-    <button class="btn btn-primary m-2 comprar-btn" data-id="${productData.id}" onclick="alert('Producto agregado al carrito!'); addToCart('${productData.id}'); scrollUp();">Comprar</button>
-  `;
+    <button class="btn btn-primary m-2 comprar-btn" data-id="${productData.id}" onclick="alertcart(); addToCart('${productData.id}'); scrollUp();">Agregar al carrito</button>
+    <div id="alertcartdisplay" class="hidden card text-center text-success alert-success">
+      ¡Agregado al carrito exitosamente!
+    </div>
+    `;
 
   const productImages = productData.images;
   const length = productImages.length;
@@ -185,6 +188,12 @@ function chargeProducts(productData) {
       </div>
     </div>
   `;
+}
+
+
+function alertcart(){
+  const alertcartdisplay = document.getElementById("alertcartdisplay");
+  alertcartdisplay.style.display = "block";
 }
 
 function chargeSelectedProduct(productId) {
