@@ -25,11 +25,38 @@ function getCookie(name) {
     return null;
 }
 
+function deleteCookie(name) {
+    document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+}
+
 document.addEventListener("DOMContentLoaded", function () {
 
-    let rememberMeValue = getCookie('rememberMe');
+    let rememberMeCookie = getCookie('rememberMe');
+    console.log(rememberMeCookie);
     let loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
-    console.log(loggedUser);
+
+
+
+    if ((!localStorage.getItem("loggedIn")) || (localStorage.getItem("loggedIn") !== "true")){
+        if (rememberMeCookie) {
+            let userId = parseInt(rememberMeCookie, 10);
+            console.log(userId);
+            let usersArray = JSON.parse(localStorage.getItem("usersArray")) || [];
+
+            let lastLoggedInUser = usersArray.find(user => user.id === userId);
+            console.log(lastLoggedInUser);
+            if (lastLoggedInUser) {
+                localStorage.setItem("loggedIn", "true");
+                userString = JSON.stringify(lastLoggedInUser);
+                localStorage.setItem("loggedUser", userString);
+                window.location.reload();
+            } else {
+                localStorage.setItem("loggedIn", "false");
+                localStorage.removeItem("loggedUser");
+                window.location.reload();
+            }
+        }
+    }
 
     if (loggedUser && loggedUser.email !== null) {
         let account = document.getElementById("cuenta");
@@ -45,9 +72,8 @@ document.addEventListener("DOMContentLoaded", function () {
         `;
     }
 
-
     if (window.location.pathname.includes("login.html")) {
-    } else if (rememberMeValue !== 'true' || !localStorage.getItem("loggedIn")) {
+    } else if ( !rememberMeCookie || localStorage.getItem("loggedIn") !== "true") {
         setTimeout(function () {
             window.location.href = "login.html";
         }, 2000);
@@ -62,7 +88,8 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.removeItem("loggedIn");
             console.log(loggedUser);
             e.stopPropagation()
-
+            deleteCookie("rememberMe");
+            window.location.reload();
         });
     }
 })

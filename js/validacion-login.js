@@ -22,14 +22,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function showAlertSuccess() {
         document.getElementById("alert-success").classList.add("show");
+        let loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
         localStorage.setItem("loggedIn", "true");
         let rememberMeCheckbox = document.getElementById("recuerdame");
         if (rememberMeCheckbox.checked) {
             expirationDate.setDate(expirationDate.getDate() + 7);
-            const cookieValue = "rememberMe=true; expires=" + expirationDate.toUTCString() + "; path=/";
+            const cookieValue = `rememberMe=${loggedUser.id}; expires=` + expirationDate.toUTCString() + "; path=/";
             document.cookie = cookieValue;
         } else {
-            document.cookie = "rememberMe=true; path=/";
+            document.cookie = "rememberMe=0; path=/";
         }
         setTimeout(function() {
             window.location.href = "index.html";
