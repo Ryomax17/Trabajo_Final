@@ -10,8 +10,6 @@ function showAlertSuccess() {
 
     let user = {
         id: newUserId,
-        name: document.getElementById("nombre").value,
-        lastname: document.getElementById("apellido").value,
         email: document.getElementById("email").value,
         password: document.getElementById("password1").value
     };
@@ -33,16 +31,9 @@ document.addEventListener("DOMContentLoaded", function() {
     let regBtn = document.getElementById("regBtn");
     
     regBtn.addEventListener("click", function() {
-        let name = document.getElementById("nombre").value;
-        let lastname = document.getElementById("apellido").value;
         let email = document.getElementById("email").value;
         let password1 = document.getElementById("password1").value;
         let password2 = document.getElementById("password2").value;
-
-        if (name.trim() === "" || lastname.trim() === "") {
-            showAlertError();
-            return;
-        }
 
         if (email.trim() === "") {
             showAlertError();

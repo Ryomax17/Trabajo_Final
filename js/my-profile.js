@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function exportData() {
   const userData = JSON.parse(localStorage.getItem('loggedUser'));
+  const usersArray = JSON.parse(localStorage.getItem('usersArray'));
   let name = document.getElementById('txtNombre').value;
   let lastname = document.getElementById('txtApellido').value;
   let phoneNumber = document.getElementById("txtTelefono").value;
@@ -54,7 +55,13 @@ function exportData() {
     userData.secondName = document.getElementById('txtSegundoNombre').value;
     userData.secondLastname = document.getElementById('txtSegundoApellido').value;
 
+    const indexToUpdate = usersArray.findIndex(user => user.id === userData.id);
+    if (indexToUpdate !== -1) {
+      usersArray[indexToUpdate] = { ...userData };
+    }
+
     localStorage.setItem('loggedUser', JSON.stringify(userData));
+    localStorage.setItem('usersArray', JSON.stringify(usersArray));
   }
 }
 
