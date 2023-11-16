@@ -62,13 +62,16 @@ document.addEventListener("DOMContentLoaded", function () {
         let account = document.getElementById("cuenta");
         account.removeAttribute("href");
         account.innerHTML = `
-           <div id="dropdown"> ${loggedUser.email} 
+        <div class="col-md-6 col-lg-6">
+        <div id="dropdown" class="dropdown">
+            ${loggedUser.email} 
             <ul id="dropdown-contain">
                 <li class="dropdown-item"><a href="my-profile.html">Mi perfil</a></li>
-                <li class="dropdown-item"><a href="cart.html" >Carrito</a></li>
+                <li class="dropdown-item"><a href="cart.html">Carrito</a></li>
                 <li class="dropdown-item" id="cerrarSesion">Cerrar sesión</li>
             </ul>
-            </div>
+        </div>
+    </div>
         `;
     }
 
