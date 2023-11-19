@@ -552,6 +552,9 @@ background-color: #ffffff;
 }
 
 
+.night-mode .jumbotron {
+  background-image: url('../img/cover_back-PhotoRoom.png');
+}
 
 
 #next-button,#prev-button {
