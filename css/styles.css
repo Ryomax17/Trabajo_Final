@@ -569,7 +569,9 @@ body.night-mode #next-button, body.night-mode #prev-button, body.night-mode #com
   color: black;
 }
 
-
+body.album {
+  background-color: #000000;
+}
 div .lblswitch{
   display: inline-block;
   width: 55px;
