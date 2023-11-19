@@ -12,8 +12,6 @@
 
 <body>
 
-
-
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -22,23 +20,27 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav w-100 justify-content-between">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
-          </li>
-          <li class="nav-item">
+          <button class="nav-item btn-dark">
+            <a class="nav-link active" href="index.html">Inicio</a>
+          </button>
+          <button class="nav-item btn-dark">
             <a class="nav-link" href="categories.html">Categorías</a>
-          </li>
-          <li class="nav-item">
+          </button>
+          <button class="nav-item btn-dark">
             <a class="nav-link" href="sell.html">Vender</a>
-          </li>
-          <a class="nav-link" id="cuenta" href="login.html">Iniciar Sesión</a>
-          </li>
+          </button>
+          <button class="nav-item btn-dark">
+            <a class="nav-link " id="cuenta" href="login.html">Iniciar Sesión</a>
+          </button>
         </ul>
       </div>
+      <div class="form-switch">
       <input type="checkbox" id="switch" onclick="toggleMode()">
-      <label for="switch" class="lblswitch"></label>
+      <label  for="switch" class="lblswitch"></label>
+    </div>
     </div>
   </nav>
+
   <div class="container">
     <div id="divFormulario" class="card m-5 p-5">
       <div class="text-center">
