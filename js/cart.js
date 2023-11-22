@@ -4,9 +4,7 @@ let shippingCost = 0;
 let finalPrice = 0;
 
 async function getPrechargedProduct() {
-  const respone = await fetch(
-    `https://japceibal.github.io/emercado-api/user_cart/${25801}.json`
-  );
+  const respone = await fetch("/emercado-api/user_cart/25801.json");
   data = await respone.json();
   userCart = data.articles[0];
   userCart.quantity = userCart.count;

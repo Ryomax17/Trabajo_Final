@@ -6,7 +6,7 @@ let commentsData = [];
 let rate = 0;
 
 async function getData(select) {
-  const respuesta = await fetch(`https://japceibal.github.io/emercado-api/products/${select}.json`);
+  const respuesta = await fetch(`/emercado-api/products/${select}.json`);
   productData = await respuesta.json();
   return productData;
 }
@@ -94,7 +94,7 @@ function clearComments() {
 }
 
 function getCommentsList(productId) {
-  fetch(`https://japceibal.github.io/emercado-api/products_comments/${productId}.json`)
+  fetch(`/emercado-api/products_comments/${productId}.json`)
     .then(response => response.json())
     .then(data => {
       commentsData = data;
