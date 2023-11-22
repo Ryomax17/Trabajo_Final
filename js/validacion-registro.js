@@ -23,6 +23,10 @@ function showAlertSuccess() {
         window.location.href = "login.html";
     }, 1500);
 }
+
+
+
+module.exports = loginUser
 function showAlertError() {
     document.getElementById("alert-danger").classList.add("show");
 }
